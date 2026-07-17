@@ -15,6 +15,7 @@ use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
 use App\Http\Controllers\Web\Suppliers\SupplierController;
+use App\Http\Controllers\Web\Visitors\VisitorController;
 use App\Http\Middleware\SetTenantFromSession;
 use Illuminate\Support\Facades\Route;
 
@@ -110,6 +111,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('edit');
             Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name('update');
             Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.visitors.')->group(function (): void {
+            Route::get('/visitors', [VisitorController::class, 'index'])->name('index');
+            Route::get('/visitors/create', [VisitorController::class, 'create'])->name('create');
+            Route::post('/visitors', [VisitorController::class, 'store'])->name('store');
+            Route::get('/visitors/{visitor}', [VisitorController::class, 'show'])->name('show');
+            Route::get('/visitors/{visitor}/edit', [VisitorController::class, 'edit'])->name('edit');
+            Route::put('/visitors/{visitor}', [VisitorController::class, 'update'])->name('update');
+            Route::delete('/visitors/{visitor}', [VisitorController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

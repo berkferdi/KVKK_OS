@@ -20,8 +20,8 @@
 | 16 | Personel | **tamamlandı** | |
 | 17 | Müşteri | **tamamlandı** | |
 | 18 | Tedarikçi | **tamamlandı** | |
-| 19 | Ziyaretçi | **sıradaki** | |
-| 20 | Kamera | bekliyor | |
+| 19 | Ziyaretçi | **tamamlandı** | |
+| 20 | Kamera | **sıradaki** | |
 | 21 | Web Sitesi | bekliyor | |
 | 22 | Çerez | bekliyor | |
 | 23 | VERBİS | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–18 tamamlandı. Sıradaki: FAZ 19 Ziyaretçi.
+**Son güncelleme:** 2026-07-17 — FAZ 01–19 tamamlandı. Sıradaki: FAZ 20 Kamera.

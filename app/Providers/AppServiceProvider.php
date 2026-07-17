@@ -17,6 +17,7 @@ use App\Application\Services\Personnel\EmployeeService;
 use App\Application\Services\Risk\RiskAssessmentService;
 use App\Application\Services\Suppliers\SupplierService;
 use App\Application\Services\TenantContext;
+use App\Application\Services\Visitors\VisitorService;
 use App\Domain\Compliance\Models\AnalysisRun;
 use App\Domain\Customers\Models\Customer;
 use App\Domain\Documents\Models\PolicyDocument;
@@ -28,6 +29,7 @@ use App\Domain\Organization\Models\Company;
 use App\Domain\Personnel\Models\Employee;
 use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Suppliers\Models\Supplier;
+use App\Domain\Visitors\Models\Visitor;
 use App\Infrastructure\Repositories\Customers\CustomerRepository;
 use App\Infrastructure\Repositories\Documents\PolicyDocumentRepository;
 use App\Infrastructure\Repositories\Documents\ProcedureDocumentRepository;
@@ -39,6 +41,7 @@ use App\Infrastructure\Repositories\Organization\TenantRepository;
 use App\Infrastructure\Repositories\Personnel\EmployeeRepository;
 use App\Infrastructure\Repositories\Risk\RiskAssessmentRepository;
 use App\Infrastructure\Repositories\Suppliers\SupplierRepository;
+use App\Infrastructure\Repositories\Visitors\VisitorRepository;
 use App\Models\User;
 use App\Policies\AnalysisRunPolicy;
 use App\Policies\BranchPolicy;
@@ -53,6 +56,7 @@ use App\Policies\RiskAssessmentPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\SupplierPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\VisitorPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
@@ -75,6 +79,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(EmployeeRepository::class);
         $this->app->singleton(CustomerRepository::class);
         $this->app->singleton(SupplierRepository::class);
+        $this->app->singleton(VisitorRepository::class);
         $this->app->singleton(CompanyService::class);
         $this->app->singleton(BranchService::class);
         $this->app->singleton(UserService::class);
@@ -88,6 +93,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(EmployeeService::class);
         $this->app->singleton(CustomerService::class);
         $this->app->singleton(SupplierService::class);
+        $this->app->singleton(VisitorService::class);
     }
 
     public function boot(): void
@@ -105,6 +111,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Employee::class, EmployeePolicy::class);
         Gate::policy(Customer::class, CustomerPolicy::class);
         Gate::policy(Supplier::class, SupplierPolicy::class);
+        Gate::policy(Visitor::class, VisitorPolicy::class);
 
         Gate::before(function ($user, string $ability) {
             if ($user->is_super_admin) {

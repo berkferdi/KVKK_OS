@@ -69,3 +69,8 @@
 - Firma nested tedarikçi CRUD (`suppliers`)
 - Veri işleme sözleşmesi (DPA), kişisel veri işleme bayrağı
 - Sözleşme tarihleri, şube, audit
+
+### FAZ 19 — Ziyaretçi
+- Firma nested ziyaretçi CRUD (`visitors`)
+- Giriş/çıkış, aydınlatma, kart ve fotoğraf bayrakları
+- Şube bağlantısı, durum (expected/checked_in/out), audit

@@ -52,6 +52,8 @@ class DatabaseSeeder extends Seeder
             'customers.manage',
             'suppliers.view',
             'suppliers.manage',
+            'visitors.view',
+            'visitors.manage',
             'dashboard.view',
         ];
 
@@ -116,6 +118,8 @@ class DatabaseSeeder extends Seeder
             'customers.manage',
             'suppliers.view',
             'suppliers.manage',
+            'visitors.view',
+            'visitors.manage',
             'dashboard.view',
         ]);
 

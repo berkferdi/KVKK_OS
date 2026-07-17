@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–18**  
-Sıradaki: **19 Ziyaretçi**
+Tamamlanan: **01–19**  
+Sıradaki: **20 Kamera**
