@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Auth;
 
 use App\Application\Services\Audit\AuditLogger;
 use App\Application\Services\TenantContext;
+use App\Domain\Organization\Models\Tenant;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
@@ -48,9 +49,11 @@ class LoginController extends Controller
         $user = Auth::user();
         $user->forceFill(['last_login_at' => now()])->save();
 
-        $tenant = $user->is_super_admin
-            ? $user->tenants()->first()
-            : $user->tenants()->orderByPivot('is_owner', 'desc')->first();
+        $tenant = $user->tenants()->orderByPivot('is_owner', 'desc')->first();
+
+        if ($tenant === null && $user->is_super_admin) {
+            $tenant = Tenant::query()->orderBy('id')->first();
+        }
 
         if ($tenant !== null) {
             $request->session()->put('tenant_id', $tenant->id);

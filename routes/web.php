@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Identity\PermissionController;
+use App\Http\Controllers\Web\Identity\RoleController;
+use App\Http\Controllers\Web\Identity\UserController;
 use App\Http\Controllers\Web\Organization\BranchController;
 use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Middleware\SetTenantFromSession;
@@ -29,4 +32,9 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
         Route::put('/branches/{branch}', [BranchController::class, 'update'])->name('update');
         Route::delete('/branches/{branch}', [BranchController::class, 'destroy'])->name('destroy');
     });
+
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class)->except(['show']);
+    Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::post('/permissions', [PermissionController::class, 'store'])->name('permissions.store');
 });

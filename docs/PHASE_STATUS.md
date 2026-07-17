@@ -8,13 +8,13 @@
 | 04 | Dashboard | **tamamlandı** | Temel iskelet |
 | 05 | Firma Yönetimi | **tamamlandı** | CRUD + policy |
 | 06 | Şube Yönetimi | **tamamlandı** | Nested CRUD |
-| 07 | Kullanıcı Yönetimi | **sıradaki** | |
-| 08 | Roller | bekliyor | |
-| 09 | Yetkiler | bekliyor | |
-| 10 | KVKK Analiz Sihirbazı | bekliyor | |
+| 07 | Kullanıcı Yönetimi | **tamamlandı** | Tenant kullanıcı CRUD |
+| 08 | Roller | **tamamlandı** | Spatie teams roller |
+| 09 | Yetkiler | **tamamlandı** | Katalog + ekleme |
+| 10 | KVKK Analiz Sihirbazı | **sıradaki** | |
 | 11 | Veri İşleme Envanteri | bekliyor | |
 | 12 | Risk Analizi | bekliyor | |
-| 13 | Rule Engine | bekliyor | |
+| 13 | Rule Engine | bekliyor | (sihirbaz ile erken iskelet) |
 | 14 | Politikalar | bekliyor | |
 | 15 | Prosedürler | bekliyor | |
 | 16 | Personel | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–06 tamamlandı. Sıradaki: FAZ 07 Kullanıcı Yönetimi.
+**Son güncelleme:** 2026-07-17 — FAZ 01–09 tamamlandı. Sıradaki: FAZ 10 Analiz Sihirbazı (+ Rule Engine iskeleti).

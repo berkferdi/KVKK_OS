@@ -42,6 +42,24 @@
                             <p>Firmalar</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>Kullanıcılar</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('roles.index') }}" class="nav-link {{ request()->routeIs('roles.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-user-shield"></i>
+                            <p>Roller</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('permissions.index') }}" class="nav-link {{ request()->routeIs('permissions.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-key"></i>
+                            <p>Yetkiler</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

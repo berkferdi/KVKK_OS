@@ -27,3 +27,12 @@
 
 ### FAZ 06 — Şube Yönetimi
 - Firmaya nested şube CRUD, tek merkez şube kuralı, audit log
+
+### FAZ 07 — Kullanıcı Yönetimi
+- Tenant kullanıcı CRUD, rol atama, self-delete engeli, audit
+
+### FAZ 08 — Roller
+- Spatie tenant roller CRUD + permission sync
+
+### FAZ 09 — Yetkiler
+- Yetki kataloğu ve yeni yetki ekleme UI

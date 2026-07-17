@@ -1,9 +1,9 @@
 <?php
 
+use App\Domain\Identity\Models\Role;
 use App\Domain\Organization\Models\Tenant;
 use Spatie\Permission\DefaultTeamResolver;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 return [
 

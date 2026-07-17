@@ -3,12 +3,12 @@
 namespace Tests\Feature;
 
 use App\Application\Services\TenantContext;
+use App\Domain\Identity\Models\Role;
 use App\Domain\Organization\Models\Company;
 use App\Domain\Organization\Models\Tenant;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class CompanyManagementTest extends TestCase

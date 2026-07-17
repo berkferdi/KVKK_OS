@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Domain\Identity\Models\Role;
 use App\Domain\Organization\Enums\CompanyStatus;
 use App\Domain\Organization\Models\Branch;
 use App\Domain\Organization\Models\Company;
@@ -12,7 +13,6 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
 
 class DatabaseSeeder extends Seeder
@@ -34,6 +34,8 @@ class DatabaseSeeder extends Seeder
             'users.manage',
             'roles.view',
             'roles.manage',
+            'permissions.view',
+            'permissions.manage',
             'dashboard.view',
         ];
 
@@ -71,6 +73,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $tenant->users()->attach($consultant->id, ['is_owner' => true]);
+        $tenant->users()->attach($superAdmin->id, ['is_owner' => false]);
 
         $adminRole = Role::findOrCreate('tenant_admin', 'web');
         $consultantRole = Role::findOrCreate('consultant', 'web');
