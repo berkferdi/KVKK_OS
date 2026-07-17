@@ -53,6 +53,9 @@
                     @can('viewAny', App\Domain\Customers\Models\Customer::class)
                         <a href="{{ route('companies.customers.index', $company) }}" class="btn btn-outline-primary">Müşteriler</a>
                     @endcan
+                    @can('viewAny', App\Domain\Suppliers\Models\Supplier::class)
+                        <a href="{{ route('companies.suppliers.index', $company) }}" class="btn btn-outline-primary">Tedarikçiler</a>
+                    @endcan
                 </div>
             </div>
         </div>

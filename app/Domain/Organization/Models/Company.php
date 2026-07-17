@@ -11,6 +11,7 @@ use App\Domain\Personnel\Models\Employee;
 use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
+use App\Domain\Suppliers\Models\Supplier;
 use Database\Factories\CompanyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -118,5 +119,13 @@ class Company extends Model
     public function customers(): HasMany
     {
         return $this->hasMany(Customer::class);
+    }
+
+    /**
+     * @return HasMany<Supplier, $this>
+     */
+    public function suppliers(): HasMany
+    {
+        return $this->hasMany(Supplier::class);
     }
 }

@@ -64,3 +64,8 @@
 - Firma nested müşteri CRUD (`customers`)
 - Bireysel/kurumsal tür, aydınlatma, açık rıza, pazarlama izni
 - Şube bağlantısı, veri kategorileri, audit
+
+### FAZ 18 — Tedarikçi
+- Firma nested tedarikçi CRUD (`suppliers`)
+- Veri işleme sözleşmesi (DPA), kişisel veri işleme bayrağı
+- Sözleşme tarihleri, şube, audit

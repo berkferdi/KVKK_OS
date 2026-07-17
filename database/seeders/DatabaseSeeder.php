@@ -50,6 +50,8 @@ class DatabaseSeeder extends Seeder
             'personnel.manage',
             'customers.view',
             'customers.manage',
+            'suppliers.view',
+            'suppliers.manage',
             'dashboard.view',
         ];
 
@@ -112,6 +114,8 @@ class DatabaseSeeder extends Seeder
             'personnel.manage',
             'customers.view',
             'customers.manage',
+            'suppliers.view',
+            'suppliers.manage',
             'dashboard.view',
         ]);
 

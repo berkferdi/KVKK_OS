@@ -14,6 +14,7 @@ use App\Http\Controllers\Web\Organization\BranchController;
 use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
+use App\Http\Controllers\Web\Suppliers\SupplierController;
 use App\Http\Middleware\SetTenantFromSession;
 use Illuminate\Support\Facades\Route;
 
@@ -99,6 +100,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('edit');
             Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('update');
             Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.suppliers.')->group(function (): void {
+            Route::get('/suppliers', [SupplierController::class, 'index'])->name('index');
+            Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('create');
+            Route::post('/suppliers', [SupplierController::class, 'store'])->name('store');
+            Route::get('/suppliers/{supplier}', [SupplierController::class, 'show'])->name('show');
+            Route::get('/suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('edit');
+            Route::put('/suppliers/{supplier}', [SupplierController::class, 'update'])->name('update');
+            Route::delete('/suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

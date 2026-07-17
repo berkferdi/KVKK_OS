@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–17**  
-Sıradaki: **18 Tedarikçi**
+Tamamlanan: **01–18**  
+Sıradaki: **19 Ziyaretçi**
