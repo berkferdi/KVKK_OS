@@ -2,7 +2,9 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Inventory\Models\ProcessingActivity;
 use App\Domain\Organization\Enums\CompanyStatus;
+use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
 use Database\Factories\CompanyFactory;
@@ -64,5 +66,21 @@ class Company extends Model
     public function branches(): HasMany
     {
         return $this->hasMany(Branch::class);
+    }
+
+    /**
+     * @return HasMany<ProcessingActivity, $this>
+     */
+    public function processingActivities(): HasMany
+    {
+        return $this->hasMany(ProcessingActivity::class);
+    }
+
+    /**
+     * @return HasMany<RiskAssessment, $this>
+     */
+    public function riskAssessments(): HasMany
+    {
+        return $this->hasMany(RiskAssessment::class);
     }
 }

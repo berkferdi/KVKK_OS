@@ -38,6 +38,10 @@ class DatabaseSeeder extends Seeder
             'permissions.manage',
             'analysis.view',
             'analysis.run',
+            'inventory.view',
+            'inventory.manage',
+            'risk.view',
+            'risk.manage',
             'dashboard.view',
         ];
 
@@ -88,6 +92,10 @@ class DatabaseSeeder extends Seeder
             'branches.manage',
             'analysis.view',
             'analysis.run',
+            'inventory.view',
+            'inventory.manage',
+            'risk.view',
+            'risk.manage',
             'dashboard.view',
         ]);
 

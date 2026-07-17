@@ -42,3 +42,9 @@
 
 ### FAZ 13 — Rule Engine
 - `compliance_rules` DB evaluator; kamera/web/çerez/personel seed kuralları
+
+### FAZ 11 — Veri İşleme Envanteri
+- Firma nested envanter CRUD, hukuki sebep, kategori listeleri
+
+### FAZ 12 — Risk Analizi
+- Risk CRUD, otomatik skor/seviye, envanter ilişkisi

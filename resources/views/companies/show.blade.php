@@ -29,11 +29,17 @@
                     <dt class="col-sm-4">Yetkili</dt><dd class="col-sm-8">{{ $company->authorized_person }} ({{ $company->authorized_title }})</dd>
                     <dt class="col-sm-4">Faaliyet</dt><dd class="col-sm-8">{{ $company->activity_summary ?: '—' }}</dd>
                 </dl>
-                <div class="mt-3">
+                <div class="mt-3 d-flex flex-wrap gap-2">
                     @can('create', [App\Domain\Compliance\Models\AnalysisRun::class, $company])
                         <a href="{{ route('companies.analysis.create', $company) }}" class="btn text-white" style="background:#1f6f5b;">
                             KVKK Analiz Sihirbazı
                         </a>
+                    @endcan
+                    @can('viewAny', App\Domain\Inventory\Models\ProcessingActivity::class)
+                        <a href="{{ route('companies.inventory.index', $company) }}" class="btn btn-outline-primary">Envanter</a>
+                    @endcan
+                    @can('viewAny', App\Domain\Risk\Models\RiskAssessment::class)
+                        <a href="{{ route('companies.risks.index', $company) }}" class="btn btn-outline-primary">Risk Analizi</a>
                     @endcan
                 </div>
             </div>

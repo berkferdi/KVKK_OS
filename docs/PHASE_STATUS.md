@@ -12,10 +12,10 @@
 | 08 | Roller | **tamamlandı** | Spatie teams roller |
 | 09 | Yetkiler | **tamamlandı** | Katalog + ekleme |
 | 10 | KVKK Analiz Sihirbazı | **tamamlandı** | Rule Engine ile çalışır |
-| 11 | Veri İşleme Envanteri | **sıradaki** | |
-| 12 | Risk Analizi | bekliyor | |
+| 11 | Veri İşleme Envanteri | **tamamlandı** | Firma nested CRUD |
+| 12 | Risk Analizi | **tamamlandı** | Skor matrisi |
 | 13 | Rule Engine | **tamamlandı** | DB evaluator + seed kurallar |
-| 14 | Politikalar | bekliyor | |
+| 14 | Politikalar | **sıradaki** | |
 | 15 | Prosedürler | bekliyor | |
 | 16 | Personel | bekliyor | |
 | 17 | Müşteri | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–10 + 13 tamamlandı. Sıradaki: FAZ 11 Envanter.
+**Son güncelleme:** 2026-07-17 — FAZ 01–13 tamamlandı. Sıradaki: FAZ 14 Politikalar.
