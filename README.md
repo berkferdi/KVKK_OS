@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–09** (Analiz → Yetkiler)  
-Sıradaki: **10 KVKK Analiz Sihirbazı** (+ Rule Engine iskeleti)
+Tamamlanan: **01–10 + 13** (Analiz Sihirbazı + Rule Engine)  
+Sıradaki: **11 Veri İşleme Envanteri**

@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             'roles.manage',
             'permissions.view',
             'permissions.manage',
+            'analysis.view',
+            'analysis.run',
             'dashboard.view',
         ];
 
@@ -84,10 +86,14 @@ class DatabaseSeeder extends Seeder
             'companies.update',
             'branches.view',
             'branches.manage',
+            'analysis.view',
+            'analysis.run',
             'dashboard.view',
         ]);
 
         $consultant->assignRole($consultantRole);
+
+        $this->call(ComplianceRuleSeeder::class);
 
         $company = Company::query()->create([
             'tenant_id' => $tenant->id,

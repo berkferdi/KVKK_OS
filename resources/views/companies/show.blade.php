@@ -29,6 +29,13 @@
                     <dt class="col-sm-4">Yetkili</dt><dd class="col-sm-8">{{ $company->authorized_person }} ({{ $company->authorized_title }})</dd>
                     <dt class="col-sm-4">Faaliyet</dt><dd class="col-sm-8">{{ $company->activity_summary ?: '—' }}</dd>
                 </dl>
+                <div class="mt-3">
+                    @can('create', [App\Domain\Compliance\Models\AnalysisRun::class, $company])
+                        <a href="{{ route('companies.analysis.create', $company) }}" class="btn text-white" style="background:#1f6f5b;">
+                            KVKK Analiz Sihirbazı
+                        </a>
+                    @endcan
+                </div>
             </div>
         </div>
     </div>

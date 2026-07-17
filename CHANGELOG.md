@@ -36,3 +36,9 @@
 
 ### FAZ 09 — Yetkiler
 - Yetki kataloğu ve yeni yetki ekleme UI
+
+### FAZ 10 — KVKK Analiz Sihirbazı
+- Firma bazlı analiz koşumu, bulgu listesi, audit
+
+### FAZ 13 — Rule Engine
+- `compliance_rules` DB evaluator; kamera/web/çerez/personel seed kuralları

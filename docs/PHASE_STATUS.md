@@ -11,10 +11,10 @@
 | 07 | Kullanıcı Yönetimi | **tamamlandı** | Tenant kullanıcı CRUD |
 | 08 | Roller | **tamamlandı** | Spatie teams roller |
 | 09 | Yetkiler | **tamamlandı** | Katalog + ekleme |
-| 10 | KVKK Analiz Sihirbazı | **sıradaki** | |
-| 11 | Veri İşleme Envanteri | bekliyor | |
+| 10 | KVKK Analiz Sihirbazı | **tamamlandı** | Rule Engine ile çalışır |
+| 11 | Veri İşleme Envanteri | **sıradaki** | |
 | 12 | Risk Analizi | bekliyor | |
-| 13 | Rule Engine | bekliyor | (sihirbaz ile erken iskelet) |
+| 13 | Rule Engine | **tamamlandı** | DB evaluator + seed kurallar |
 | 14 | Politikalar | bekliyor | |
 | 15 | Prosedürler | bekliyor | |
 | 16 | Personel | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–09 tamamlandı. Sıradaki: FAZ 10 Analiz Sihirbazı (+ Rule Engine iskeleti).
+**Son güncelleme:** 2026-07-17 — FAZ 01–10 + 13 tamamlandı. Sıradaki: FAZ 11 Envanter.

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\Identity\PermissionController;
 use App\Http\Controllers\Web\Identity\RoleController;
@@ -37,4 +38,11 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
     Route::resource('roles', RoleController::class)->except(['show']);
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
     Route::post('/permissions', [PermissionController::class, 'store'])->name('permissions.store');
+
+    Route::get('/companies/{company}/analysis', [AnalysisWizardController::class, 'create'])
+        ->name('companies.analysis.create');
+    Route::post('/companies/{company}/analysis', [AnalysisWizardController::class, 'store'])
+        ->name('companies.analysis.store');
+    Route::get('/analysis/{analysis}', [AnalysisWizardController::class, 'show'])
+        ->name('analysis.show');
 });
