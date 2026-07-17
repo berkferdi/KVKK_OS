@@ -2,6 +2,7 @@
 
 namespace App\Domain\Websites\Models;
 
+use App\Domain\Cookies\Models\SiteCookie;
 use App\Domain\Organization\Models\Company;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
@@ -10,6 +11,7 @@ use Database\Factories\WebsiteFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Website extends Model
@@ -69,5 +71,13 @@ class Website extends Model
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    /**
+     * @return HasMany<SiteCookie, $this>
+     */
+    public function siteCookies(): HasMany
+    {
+        return $this->hasMany(SiteCookie::class);
     }
 }

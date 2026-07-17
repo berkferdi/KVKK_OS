@@ -84,3 +84,8 @@
 - Firma nested web sitesi CRUD (`websites`)
 - Gizlilik politikası URL/tarih, SSL, çerez ve form bayrakları
 - Toplanan veri kategorileri, audit
+
+### FAZ 22 — Çerez
+- Firma nested çerez envanteri CRUD (`site_cookies` / `SiteCookie`)
+- Kategori, rıza, üçüncü taraf, süre; opsiyonel web sitesi bağlantısı
+- Yetkiler: `cookies.view` / `cookies.manage`

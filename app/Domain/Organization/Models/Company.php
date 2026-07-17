@@ -3,6 +3,7 @@
 namespace App\Domain\Organization\Models;
 
 use App\Domain\Cameras\Models\Camera;
+use App\Domain\Cookies\Models\SiteCookie;
 use App\Domain\Customers\Models\Customer;
 use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
@@ -154,5 +155,13 @@ class Company extends Model
     public function websites(): HasMany
     {
         return $this->hasMany(Website::class);
+    }
+
+    /**
+     * @return HasMany<SiteCookie, $this>
+     */
+    public function siteCookies(): HasMany
+    {
+        return $this->hasMany(SiteCookie::class);
     }
 }

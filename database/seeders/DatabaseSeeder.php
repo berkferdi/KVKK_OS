@@ -58,6 +58,8 @@ class DatabaseSeeder extends Seeder
             'cameras.manage',
             'websites.view',
             'websites.manage',
+            'cookies.view',
+            'cookies.manage',
             'dashboard.view',
         ];
 
@@ -128,6 +130,8 @@ class DatabaseSeeder extends Seeder
             'cameras.manage',
             'websites.view',
             'websites.manage',
+            'cookies.view',
+            'cookies.manage',
             'dashboard.view',
         ]);
 

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Cameras\CameraController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
+use App\Http\Controllers\Web\Cookies\SiteCookieController;
 use App\Http\Controllers\Web\Customers\CustomerController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\Documents\PolicyDocumentController;
@@ -143,6 +144,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/websites/{website}/edit', [WebsiteController::class, 'edit'])->name('edit');
             Route::put('/websites/{website}', [WebsiteController::class, 'update'])->name('update');
             Route::delete('/websites/{website}', [WebsiteController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.cookies.')->group(function (): void {
+            Route::get('/cookies', [SiteCookieController::class, 'index'])->name('index');
+            Route::get('/cookies/create', [SiteCookieController::class, 'create'])->name('create');
+            Route::post('/cookies', [SiteCookieController::class, 'store'])->name('store');
+            Route::get('/cookies/{cookie}', [SiteCookieController::class, 'show'])->name('show');
+            Route::get('/cookies/{cookie}/edit', [SiteCookieController::class, 'edit'])->name('edit');
+            Route::put('/cookies/{cookie}', [SiteCookieController::class, 'update'])->name('update');
+            Route::delete('/cookies/{cookie}', [SiteCookieController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

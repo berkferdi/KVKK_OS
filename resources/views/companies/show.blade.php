@@ -65,6 +65,9 @@
                     @can('viewAny', App\Domain\Websites\Models\Website::class)
                         <a href="{{ route('companies.websites.index', $company) }}" class="btn btn-outline-primary">Web Siteleri</a>
                     @endcan
+                    @can('viewAny', App\Domain\Cookies\Models\SiteCookie::class)
+                        <a href="{{ route('companies.cookies.index', $company) }}" class="btn btn-outline-primary">Çerezler</a>
+                    @endcan
                 </div>
             </div>
         </div>

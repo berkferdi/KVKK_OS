@@ -6,6 +6,7 @@ use App\Application\Services\Audit\AuditLogger;
 use App\Application\Services\Cameras\CameraService;
 use App\Application\Services\Compliance\AnalysisWizardService;
 use App\Application\Services\Compliance\RuleEngine;
+use App\Application\Services\Cookies\SiteCookieService;
 use App\Application\Services\Customers\CustomerService;
 use App\Application\Services\Documents\PolicyDocumentService;
 use App\Application\Services\Documents\ProcedureDocumentService;
@@ -22,6 +23,7 @@ use App\Application\Services\Visitors\VisitorService;
 use App\Application\Services\Websites\WebsiteService;
 use App\Domain\Cameras\Models\Camera;
 use App\Domain\Compliance\Models\AnalysisRun;
+use App\Domain\Cookies\Models\SiteCookie;
 use App\Domain\Customers\Models\Customer;
 use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
@@ -35,6 +37,7 @@ use App\Domain\Suppliers\Models\Supplier;
 use App\Domain\Visitors\Models\Visitor;
 use App\Domain\Websites\Models\Website;
 use App\Infrastructure\Repositories\Cameras\CameraRepository;
+use App\Infrastructure\Repositories\Cookies\SiteCookieRepository;
 use App\Infrastructure\Repositories\Customers\CustomerRepository;
 use App\Infrastructure\Repositories\Documents\PolicyDocumentRepository;
 use App\Infrastructure\Repositories\Documents\ProcedureDocumentRepository;
@@ -61,6 +64,7 @@ use App\Policies\ProcedureDocumentPolicy;
 use App\Policies\ProcessingActivityPolicy;
 use App\Policies\RiskAssessmentPolicy;
 use App\Policies\RolePolicy;
+use App\Policies\SiteCookiePolicy;
 use App\Policies\SupplierPolicy;
 use App\Policies\UserPolicy;
 use App\Policies\VisitorPolicy;
@@ -90,6 +94,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(VisitorRepository::class);
         $this->app->singleton(CameraRepository::class);
         $this->app->singleton(WebsiteRepository::class);
+        $this->app->singleton(SiteCookieRepository::class);
         $this->app->singleton(CompanyService::class);
         $this->app->singleton(BranchService::class);
         $this->app->singleton(UserService::class);
@@ -106,6 +111,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(VisitorService::class);
         $this->app->singleton(CameraService::class);
         $this->app->singleton(WebsiteService::class);
+        $this->app->singleton(SiteCookieService::class);
     }
 
     public function boot(): void
@@ -126,6 +132,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Visitor::class, VisitorPolicy::class);
         Gate::policy(Camera::class, CameraPolicy::class);
         Gate::policy(Website::class, WebsitePolicy::class);
+        Gate::policy(SiteCookie::class, SiteCookiePolicy::class);
 
         Gate::before(function ($user, string $ability) {
             if ($user->is_super_admin) {

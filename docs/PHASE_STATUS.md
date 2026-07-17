@@ -23,8 +23,8 @@
 | 19 | Ziyaretçi | **tamamlandı** | |
 | 20 | Kamera | **tamamlandı** | |
 | 21 | Web Sitesi | **tamamlandı** | |
-| 22 | Çerez | **sıradaki** | |
-| 23 | VERBİS | bekliyor | |
+| 22 | Çerez | **tamamlandı** | |
+| 23 | VERBİS | **sıradaki** | |
 | 24 | Başvurular | bekliyor | |
 | 25 | Veri İhlali | bekliyor | |
 | 26 | Denetim | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–21 tamamlandı. Sıradaki: FAZ 22 Çerez.
+**Son güncelleme:** 2026-07-17 — FAZ 01–22 tamamlandı. Sıradaki: FAZ 23 VERBİS.
