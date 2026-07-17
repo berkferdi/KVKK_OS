@@ -22,8 +22,8 @@
 | 18 | Tedarikçi | **tamamlandı** | |
 | 19 | Ziyaretçi | **tamamlandı** | |
 | 20 | Kamera | **tamamlandı** | |
-| 21 | Web Sitesi | **sıradaki** | |
-| 22 | Çerez | bekliyor | |
+| 21 | Web Sitesi | **tamamlandı** | |
+| 22 | Çerez | **sıradaki** | |
 | 23 | VERBİS | bekliyor | |
 | 24 | Başvurular | bekliyor | |
 | 25 | Veri İhlali | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–20 tamamlandı. Sıradaki: FAZ 21 Web Sitesi.
+**Son güncelleme:** 2026-07-17 — FAZ 01–21 tamamlandı. Sıradaki: FAZ 22 Çerez.

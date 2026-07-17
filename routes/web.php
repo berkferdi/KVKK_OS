@@ -17,6 +17,7 @@ use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
 use App\Http\Controllers\Web\Suppliers\SupplierController;
 use App\Http\Controllers\Web\Visitors\VisitorController;
+use App\Http\Controllers\Web\Websites\WebsiteController;
 use App\Http\Middleware\SetTenantFromSession;
 use Illuminate\Support\Facades\Route;
 
@@ -132,6 +133,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/cameras/{camera}/edit', [CameraController::class, 'edit'])->name('edit');
             Route::put('/cameras/{camera}', [CameraController::class, 'update'])->name('update');
             Route::delete('/cameras/{camera}', [CameraController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.websites.')->group(function (): void {
+            Route::get('/websites', [WebsiteController::class, 'index'])->name('index');
+            Route::get('/websites/create', [WebsiteController::class, 'create'])->name('create');
+            Route::post('/websites', [WebsiteController::class, 'store'])->name('store');
+            Route::get('/websites/{website}', [WebsiteController::class, 'show'])->name('show');
+            Route::get('/websites/{website}/edit', [WebsiteController::class, 'edit'])->name('edit');
+            Route::put('/websites/{website}', [WebsiteController::class, 'update'])->name('update');
+            Route::delete('/websites/{website}', [WebsiteController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

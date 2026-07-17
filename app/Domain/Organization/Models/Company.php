@@ -14,6 +14,7 @@ use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
 use App\Domain\Suppliers\Models\Supplier;
 use App\Domain\Visitors\Models\Visitor;
+use App\Domain\Websites\Models\Website;
 use Database\Factories\CompanyFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -145,5 +146,13 @@ class Company extends Model
     public function cameras(): HasMany
     {
         return $this->hasMany(Camera::class);
+    }
+
+    /**
+     * @return HasMany<Website, $this>
+     */
+    public function websites(): HasMany
+    {
+        return $this->hasMany(Website::class);
     }
 }

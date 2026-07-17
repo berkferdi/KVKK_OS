@@ -56,6 +56,8 @@ class DatabaseSeeder extends Seeder
             'visitors.manage',
             'cameras.view',
             'cameras.manage',
+            'websites.view',
+            'websites.manage',
             'dashboard.view',
         ];
 
@@ -124,6 +126,8 @@ class DatabaseSeeder extends Seeder
             'visitors.manage',
             'cameras.view',
             'cameras.manage',
+            'websites.view',
+            'websites.manage',
             'dashboard.view',
         ]);
 

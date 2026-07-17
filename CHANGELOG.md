@@ -79,3 +79,8 @@
 - Firma nested kamera CRUD (`cameras`)
 - Saklama süresi, aydınlatma tabelası, kayıt/ses bayrakları
 - Şube, konum, kapsama alanı, audit
+
+### FAZ 21 — Web Sitesi
+- Firma nested web sitesi CRUD (`websites`)
+- Gizlilik politikası URL/tarih, SSL, çerez ve form bayrakları
+- Toplanan veri kategorileri, audit

@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–20**  
-Sıradaki: **21 Web Sitesi**
+Tamamlanan: **01–21**  
+Sıradaki: **22 Çerez**

@@ -62,6 +62,9 @@
                     @can('viewAny', App\Domain\Cameras\Models\Camera::class)
                         <a href="{{ route('companies.cameras.index', $company) }}" class="btn btn-outline-primary">Kameralar</a>
                     @endcan
+                    @can('viewAny', App\Domain\Websites\Models\Website::class)
+                        <a href="{{ route('companies.websites.index', $company) }}" class="btn btn-outline-primary">Web Siteleri</a>
+                    @endcan
                 </div>
             </div>
         </div>
