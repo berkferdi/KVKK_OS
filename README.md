@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01 Analiz**, **02 Database**, **03 Authentication**, **04 Dashboard (iskelet)**  
-Sıradaki: **05 Firma Yönetimi**
+Tamamlanan: **01–06** (Analiz → Şube)  
+Sıradaki: **07 Kullanıcı Yönetimi**

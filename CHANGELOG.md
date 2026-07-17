@@ -21,3 +21,9 @@
 
 ### FAZ 04 — Dashboard
 - Kimlik doğrulama sonrası temel dashboard iskeleti
+
+### FAZ 05 — Firma Yönetimi
+- Firma CRUD, policy, form request, AdminLTE views, tenant izolasyon testleri
+
+### FAZ 06 — Şube Yönetimi
+- Firmaya nested şube CRUD, tek merkez şube kuralı, audit log

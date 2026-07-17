@@ -6,9 +6,9 @@
 | 02 | Database | **tamamlandı** | DDD + çekirdek şema |
 | 03 | Authentication | **tamamlandı** | Session + JWT + Spatie |
 | 04 | Dashboard | **tamamlandı** | Temel iskelet |
-| 05 | Firma Yönetimi | **sıradaki** | CRUD + policy |
-| 06 | Şube Yönetimi | bekliyor | |
-| 07 | Kullanıcı Yönetimi | bekliyor | |
+| 05 | Firma Yönetimi | **tamamlandı** | CRUD + policy |
+| 06 | Şube Yönetimi | **tamamlandı** | Nested CRUD |
+| 07 | Kullanıcı Yönetimi | **sıradaki** | |
 | 08 | Roller | bekliyor | |
 | 09 | Yetkiler | bekliyor | |
 | 10 | KVKK Analiz Sihirbazı | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–04 tamamlandı. Sıradaki: FAZ 05 Firma Yönetimi.
+**Son güncelleme:** 2026-07-17 — FAZ 01–06 tamamlandı. Sıradaki: FAZ 07 Kullanıcı Yönetimi.
