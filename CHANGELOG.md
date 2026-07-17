@@ -54,3 +54,8 @@
 
 ### FAZ 15 — Prosedürler
 - Firma prosedür CRUD, politikaya bağlanabilir
+
+### FAZ 16 — Personel
+- Firma nested personel CRUD (`employees`)
+- KVKK alanları: aydınlatma, gizlilik taahhüdü, eğitim tarihleri
+- Şube bağlantısı, istihdam türü, sistem erişimi, audit

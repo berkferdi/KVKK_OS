@@ -46,6 +46,8 @@ class DatabaseSeeder extends Seeder
             'policies.manage',
             'procedures.view',
             'procedures.manage',
+            'personnel.view',
+            'personnel.manage',
             'dashboard.view',
         ];
 
@@ -104,6 +106,8 @@ class DatabaseSeeder extends Seeder
             'policies.manage',
             'procedures.view',
             'procedures.manage',
+            'personnel.view',
+            'personnel.manage',
             'dashboard.view',
         ]);
 

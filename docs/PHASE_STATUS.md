@@ -17,8 +17,8 @@
 | 13 | Rule Engine | **tamamlandı** | |
 | 14 | Politikalar | **tamamlandı** | |
 | 15 | Prosedürler | **tamamlandı** | |
-| 16 | Personel | **sıradaki** | |
-| 17 | Müşteri | bekliyor | |
+| 16 | Personel | **tamamlandı** | |
+| 17 | Müşteri | **sıradaki** | |
 | 18 | Tedarikçi | bekliyor | |
 | 19 | Ziyaretçi | bekliyor | |
 | 20 | Kamera | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–15 tamamlandı. Sıradaki: FAZ 16 Personel.
+**Son güncelleme:** 2026-07-17 — FAZ 01–16 tamamlandı. Sıradaki: FAZ 17 Müşteri.

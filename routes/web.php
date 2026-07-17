@@ -11,6 +11,7 @@ use App\Http\Controllers\Web\Identity\UserController;
 use App\Http\Controllers\Web\Inventory\ProcessingActivityController;
 use App\Http\Controllers\Web\Organization\BranchController;
 use App\Http\Controllers\Web\Organization\CompanyController;
+use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
 use App\Http\Middleware\SetTenantFromSession;
 use Illuminate\Support\Facades\Route;
@@ -77,6 +78,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/procedures/{procedure}/edit', [ProcedureDocumentController::class, 'edit'])->name('edit');
             Route::put('/procedures/{procedure}', [ProcedureDocumentController::class, 'update'])->name('update');
             Route::delete('/procedures/{procedure}', [ProcedureDocumentController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.personnel.')->group(function (): void {
+            Route::get('/personnel', [EmployeeController::class, 'index'])->name('index');
+            Route::get('/personnel/create', [EmployeeController::class, 'create'])->name('create');
+            Route::post('/personnel', [EmployeeController::class, 'store'])->name('store');
+            Route::get('/personnel/{employee}', [EmployeeController::class, 'show'])->name('show');
+            Route::get('/personnel/{employee}/edit', [EmployeeController::class, 'edit'])->name('edit');
+            Route::put('/personnel/{employee}', [EmployeeController::class, 'update'])->name('update');
+            Route::delete('/personnel/{employee}', [EmployeeController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

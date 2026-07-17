@@ -12,6 +12,7 @@ use App\Application\Services\Identity\UserService;
 use App\Application\Services\Inventory\ProcessingActivityService;
 use App\Application\Services\Organization\BranchService;
 use App\Application\Services\Organization\CompanyService;
+use App\Application\Services\Personnel\EmployeeService;
 use App\Application\Services\Risk\RiskAssessmentService;
 use App\Application\Services\TenantContext;
 use App\Domain\Compliance\Models\AnalysisRun;
@@ -21,6 +22,7 @@ use App\Domain\Identity\Models\Role;
 use App\Domain\Inventory\Models\ProcessingActivity;
 use App\Domain\Organization\Models\Branch;
 use App\Domain\Organization\Models\Company;
+use App\Domain\Personnel\Models\Employee;
 use App\Domain\Risk\Models\RiskAssessment;
 use App\Infrastructure\Repositories\Documents\PolicyDocumentRepository;
 use App\Infrastructure\Repositories\Documents\ProcedureDocumentRepository;
@@ -29,11 +31,13 @@ use App\Infrastructure\Repositories\Inventory\ProcessingActivityRepository;
 use App\Infrastructure\Repositories\Organization\BranchRepository;
 use App\Infrastructure\Repositories\Organization\CompanyRepository;
 use App\Infrastructure\Repositories\Organization\TenantRepository;
+use App\Infrastructure\Repositories\Personnel\EmployeeRepository;
 use App\Infrastructure\Repositories\Risk\RiskAssessmentRepository;
 use App\Models\User;
 use App\Policies\AnalysisRunPolicy;
 use App\Policies\BranchPolicy;
 use App\Policies\CompanyPolicy;
+use App\Policies\EmployeePolicy;
 use App\Policies\PermissionPolicy;
 use App\Policies\PolicyDocumentPolicy;
 use App\Policies\ProcedureDocumentPolicy;
@@ -60,6 +64,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RiskAssessmentRepository::class);
         $this->app->singleton(PolicyDocumentRepository::class);
         $this->app->singleton(ProcedureDocumentRepository::class);
+        $this->app->singleton(EmployeeRepository::class);
         $this->app->singleton(CompanyService::class);
         $this->app->singleton(BranchService::class);
         $this->app->singleton(UserService::class);
@@ -70,6 +75,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RiskAssessmentService::class);
         $this->app->singleton(PolicyDocumentService::class);
         $this->app->singleton(ProcedureDocumentService::class);
+        $this->app->singleton(EmployeeService::class);
     }
 
     public function boot(): void
@@ -84,6 +90,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(RiskAssessment::class, RiskAssessmentPolicy::class);
         Gate::policy(PolicyDocument::class, PolicyDocumentPolicy::class);
         Gate::policy(ProcedureDocument::class, ProcedureDocumentPolicy::class);
+        Gate::policy(Employee::class, EmployeePolicy::class);
 
         Gate::before(function ($user, string $ability) {
             if ($user->is_super_admin) {

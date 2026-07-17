@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–15**  
-Sıradaki: **16 Personel**
+Tamamlanan: **01–16**  
+Sıradaki: **17 Müşteri**

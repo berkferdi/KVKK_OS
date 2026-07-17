@@ -47,6 +47,9 @@
                     @can('viewAny', App\Domain\Documents\Models\ProcedureDocument::class)
                         <a href="{{ route('companies.procedures.index', $company) }}" class="btn btn-outline-primary">Prosedürler</a>
                     @endcan
+                    @can('viewAny', App\Domain\Personnel\Models\Employee::class)
+                        <a href="{{ route('companies.personnel.index', $company) }}" class="btn btn-outline-primary">Personel</a>
+                    @endcan
                 </div>
             </div>
         </div>

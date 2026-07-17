@@ -6,6 +6,7 @@ use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
 use App\Domain\Inventory\Models\ProcessingActivity;
 use App\Domain\Organization\Enums\CompanyStatus;
+use App\Domain\Personnel\Models\Employee;
 use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
@@ -100,5 +101,13 @@ class Company extends Model
     public function procedureDocuments(): HasMany
     {
         return $this->hasMany(ProcedureDocument::class);
+    }
+
+    /**
+     * @return HasMany<Employee, $this>
+     */
+    public function employees(): HasMany
+    {
+        return $this->hasMany(Employee::class);
     }
 }
