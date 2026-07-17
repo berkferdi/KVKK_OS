@@ -42,6 +42,10 @@ class DatabaseSeeder extends Seeder
             'inventory.manage',
             'risk.view',
             'risk.manage',
+            'policies.view',
+            'policies.manage',
+            'procedures.view',
+            'procedures.manage',
             'dashboard.view',
         ];
 
@@ -96,6 +100,10 @@ class DatabaseSeeder extends Seeder
             'inventory.manage',
             'risk.view',
             'risk.manage',
+            'policies.view',
+            'policies.manage',
+            'procedures.view',
+            'procedures.manage',
             'dashboard.view',
         ]);
 

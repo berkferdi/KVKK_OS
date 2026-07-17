@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–13**  
-Sıradaki: **14 Politikalar**
+Tamamlanan: **01–15**  
+Sıradaki: **16 Personel**

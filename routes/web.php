@@ -3,6 +3,8 @@
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Documents\PolicyDocumentController;
+use App\Http\Controllers\Web\Documents\ProcedureDocumentController;
 use App\Http\Controllers\Web\Identity\PermissionController;
 use App\Http\Controllers\Web\Identity\RoleController;
 use App\Http\Controllers\Web\Identity\UserController;
@@ -55,6 +57,26 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/risks/{risk}/edit', [RiskAssessmentController::class, 'edit'])->name('edit');
             Route::put('/risks/{risk}', [RiskAssessmentController::class, 'update'])->name('update');
             Route::delete('/risks/{risk}', [RiskAssessmentController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.policies.')->group(function (): void {
+            Route::get('/policies', [PolicyDocumentController::class, 'index'])->name('index');
+            Route::get('/policies/create', [PolicyDocumentController::class, 'create'])->name('create');
+            Route::post('/policies', [PolicyDocumentController::class, 'store'])->name('store');
+            Route::get('/policies/{policy}', [PolicyDocumentController::class, 'show'])->name('show');
+            Route::get('/policies/{policy}/edit', [PolicyDocumentController::class, 'edit'])->name('edit');
+            Route::put('/policies/{policy}', [PolicyDocumentController::class, 'update'])->name('update');
+            Route::delete('/policies/{policy}', [PolicyDocumentController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.procedures.')->group(function (): void {
+            Route::get('/procedures', [ProcedureDocumentController::class, 'index'])->name('index');
+            Route::get('/procedures/create', [ProcedureDocumentController::class, 'create'])->name('create');
+            Route::post('/procedures', [ProcedureDocumentController::class, 'store'])->name('store');
+            Route::get('/procedures/{procedure}', [ProcedureDocumentController::class, 'show'])->name('show');
+            Route::get('/procedures/{procedure}/edit', [ProcedureDocumentController::class, 'edit'])->name('edit');
+            Route::put('/procedures/{procedure}', [ProcedureDocumentController::class, 'update'])->name('update');
+            Route::delete('/procedures/{procedure}', [ProcedureDocumentController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

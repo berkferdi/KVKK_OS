@@ -48,3 +48,9 @@
 
 ### FAZ 12 — Risk Analizi
 - Risk CRUD, otomatik skor/seviye, envanter ilişkisi
+
+### FAZ 14 — Politikalar
+- Firma politika CRUD (kategori, versiyon, içerik)
+
+### FAZ 15 — Prosedürler
+- Firma prosedür CRUD, politikaya bağlanabilir

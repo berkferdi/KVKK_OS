@@ -2,6 +2,8 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Documents\Models\PolicyDocument;
+use App\Domain\Documents\Models\ProcedureDocument;
 use App\Domain\Inventory\Models\ProcessingActivity;
 use App\Domain\Organization\Enums\CompanyStatus;
 use App\Domain\Risk\Models\RiskAssessment;
@@ -82,5 +84,21 @@ class Company extends Model
     public function riskAssessments(): HasMany
     {
         return $this->hasMany(RiskAssessment::class);
+    }
+
+    /**
+     * @return HasMany<PolicyDocument, $this>
+     */
+    public function policyDocuments(): HasMany
+    {
+        return $this->hasMany(PolicyDocument::class);
+    }
+
+    /**
+     * @return HasMany<ProcedureDocument, $this>
+     */
+    public function procedureDocuments(): HasMany
+    {
+        return $this->hasMany(ProcedureDocument::class);
     }
 }

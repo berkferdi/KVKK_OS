@@ -2,22 +2,22 @@
 
 | Faz | Ad | Durum | Not |
 |-----|-----|-------|-----|
-| 01 | Analiz | **tamamlandı** | docs/faz-01 |
-| 02 | Database | **tamamlandı** | DDD + çekirdek şema |
-| 03 | Authentication | **tamamlandı** | Session + JWT + Spatie |
-| 04 | Dashboard | **tamamlandı** | Temel iskelet |
-| 05 | Firma Yönetimi | **tamamlandı** | CRUD + policy |
-| 06 | Şube Yönetimi | **tamamlandı** | Nested CRUD |
-| 07 | Kullanıcı Yönetimi | **tamamlandı** | Tenant kullanıcı CRUD |
-| 08 | Roller | **tamamlandı** | Spatie teams roller |
-| 09 | Yetkiler | **tamamlandı** | Katalog + ekleme |
-| 10 | KVKK Analiz Sihirbazı | **tamamlandı** | Rule Engine ile çalışır |
-| 11 | Veri İşleme Envanteri | **tamamlandı** | Firma nested CRUD |
-| 12 | Risk Analizi | **tamamlandı** | Skor matrisi |
-| 13 | Rule Engine | **tamamlandı** | DB evaluator + seed kurallar |
-| 14 | Politikalar | **sıradaki** | |
-| 15 | Prosedürler | bekliyor | |
-| 16 | Personel | bekliyor | |
+| 01 | Analiz | **tamamlandı** | |
+| 02 | Database | **tamamlandı** | |
+| 03 | Authentication | **tamamlandı** | |
+| 04 | Dashboard | **tamamlandı** | |
+| 05 | Firma Yönetimi | **tamamlandı** | |
+| 06 | Şube Yönetimi | **tamamlandı** | |
+| 07 | Kullanıcı Yönetimi | **tamamlandı** | |
+| 08 | Roller | **tamamlandı** | |
+| 09 | Yetkiler | **tamamlandı** | |
+| 10 | KVKK Analiz Sihirbazı | **tamamlandı** | |
+| 11 | Veri İşleme Envanteri | **tamamlandı** | |
+| 12 | Risk Analizi | **tamamlandı** | |
+| 13 | Rule Engine | **tamamlandı** | |
+| 14 | Politikalar | **tamamlandı** | |
+| 15 | Prosedürler | **tamamlandı** | |
+| 16 | Personel | **sıradaki** | |
 | 17 | Müşteri | bekliyor | |
 | 18 | Tedarikçi | bekliyor | |
 | 19 | Ziyaretçi | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–13 tamamlandı. Sıradaki: FAZ 14 Politikalar.
+**Son güncelleme:** 2026-07-17 — FAZ 01–15 tamamlandı. Sıradaki: FAZ 16 Personel.

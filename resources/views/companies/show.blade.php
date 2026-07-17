@@ -41,6 +41,12 @@
                     @can('viewAny', App\Domain\Risk\Models\RiskAssessment::class)
                         <a href="{{ route('companies.risks.index', $company) }}" class="btn btn-outline-primary">Risk Analizi</a>
                     @endcan
+                    @can('viewAny', App\Domain\Documents\Models\PolicyDocument::class)
+                        <a href="{{ route('companies.policies.index', $company) }}" class="btn btn-outline-primary">Politikalar</a>
+                    @endcan
+                    @can('viewAny', App\Domain\Documents\Models\ProcedureDocument::class)
+                        <a href="{{ route('companies.procedures.index', $company) }}" class="btn btn-outline-primary">Prosedürler</a>
+                    @endcan
                 </div>
             </div>
         </div>
