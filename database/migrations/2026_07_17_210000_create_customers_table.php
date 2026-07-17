@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('customers', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('branch_id')->nullable()->constrained()->nullOnDelete();
+            $table->uuid('uuid')->unique();
+            $table->string('name');
+            $table->string('customer_code', 64)->nullable();
+            $table->string('customer_type', 32)->default('individual')->index();
+            $table->string('contact_person')->nullable();
+            $table->string('tax_number', 32)->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone', 64)->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('district')->nullable();
+            $table->date('privacy_notice_signed_at')->nullable();
+            $table->date('consent_obtained_at')->nullable();
+            $table->boolean('marketing_consent')->default(false);
+            $table->text('data_categories')->nullable();
+            $table->text('notes')->nullable();
+            $table->string('source', 32)->default('manual');
+            $table->string('status', 32)->default('active')->index();
+            $table->json('metadata')->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['tenant_id', 'company_id']);
+            $table->index(['company_id', 'status']);
+            $table->index(['company_id', 'name']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('customers');
+    }
+};

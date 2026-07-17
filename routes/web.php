@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
+use App\Http\Controllers\Web\Customers\CustomerController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\Documents\PolicyDocumentController;
 use App\Http\Controllers\Web\Documents\ProcedureDocumentController;
@@ -88,6 +89,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/personnel/{employee}/edit', [EmployeeController::class, 'edit'])->name('edit');
             Route::put('/personnel/{employee}', [EmployeeController::class, 'update'])->name('update');
             Route::delete('/personnel/{employee}', [EmployeeController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.customers.')->group(function (): void {
+            Route::get('/customers', [CustomerController::class, 'index'])->name('index');
+            Route::get('/customers/create', [CustomerController::class, 'create'])->name('create');
+            Route::post('/customers', [CustomerController::class, 'store'])->name('store');
+            Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('show');
+            Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('edit');
+            Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('update');
+            Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

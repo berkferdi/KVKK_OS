@@ -59,3 +59,8 @@
 - Firma nested personel CRUD (`employees`)
 - KVKK alanları: aydınlatma, gizlilik taahhüdü, eğitim tarihleri
 - Şube bağlantısı, istihdam türü, sistem erişimi, audit
+
+### FAZ 17 — Müşteri
+- Firma nested müşteri CRUD (`customers`)
+- Bireysel/kurumsal tür, aydınlatma, açık rıza, pazarlama izni
+- Şube bağlantısı, veri kategorileri, audit

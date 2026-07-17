@@ -18,8 +18,8 @@
 | 14 | Politikalar | **tamamlandı** | |
 | 15 | Prosedürler | **tamamlandı** | |
 | 16 | Personel | **tamamlandı** | |
-| 17 | Müşteri | **sıradaki** | |
-| 18 | Tedarikçi | bekliyor | |
+| 17 | Müşteri | **tamamlandı** | |
+| 18 | Tedarikçi | **sıradaki** | |
 | 19 | Ziyaretçi | bekliyor | |
 | 20 | Kamera | bekliyor | |
 | 21 | Web Sitesi | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-17 — FAZ 01–16 tamamlandı. Sıradaki: FAZ 17 Müşteri.
+**Son güncelleme:** 2026-07-17 — FAZ 01–17 tamamlandı. Sıradaki: FAZ 18 Tedarikçi.

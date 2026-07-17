@@ -2,6 +2,7 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Customers\Models\Customer;
 use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
 use App\Domain\Inventory\Models\ProcessingActivity;
@@ -109,5 +110,13 @@ class Company extends Model
     public function employees(): HasMany
     {
         return $this->hasMany(Employee::class);
+    }
+
+    /**
+     * @return HasMany<Customer, $this>
+     */
+    public function customers(): HasMany
+    {
+        return $this->hasMany(Customer::class);
     }
 }

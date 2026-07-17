@@ -50,6 +50,9 @@
                     @can('viewAny', App\Domain\Personnel\Models\Employee::class)
                         <a href="{{ route('companies.personnel.index', $company) }}" class="btn btn-outline-primary">Personel</a>
                     @endcan
+                    @can('viewAny', App\Domain\Customers\Models\Customer::class)
+                        <a href="{{ route('companies.customers.index', $company) }}" class="btn btn-outline-primary">Müşteriler</a>
+                    @endcan
                 </div>
             </div>
         </div>

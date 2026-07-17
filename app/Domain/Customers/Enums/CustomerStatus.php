@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Domain\Customers\Enums;
+
+enum CustomerStatus: string
+{
+    case Active = 'active';
+    case Inactive = 'inactive';
+    case Archived = 'archived';
+}
