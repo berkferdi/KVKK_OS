@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Cameras\CameraController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\Customers\CustomerController;
 use App\Http\Controllers\Web\DashboardController;
@@ -121,6 +122,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/visitors/{visitor}/edit', [VisitorController::class, 'edit'])->name('edit');
             Route::put('/visitors/{visitor}', [VisitorController::class, 'update'])->name('update');
             Route::delete('/visitors/{visitor}', [VisitorController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.cameras.')->group(function (): void {
+            Route::get('/cameras', [CameraController::class, 'index'])->name('index');
+            Route::get('/cameras/create', [CameraController::class, 'create'])->name('create');
+            Route::post('/cameras', [CameraController::class, 'store'])->name('store');
+            Route::get('/cameras/{camera}', [CameraController::class, 'show'])->name('show');
+            Route::get('/cameras/{camera}/edit', [CameraController::class, 'edit'])->name('edit');
+            Route::put('/cameras/{camera}', [CameraController::class, 'update'])->name('update');
+            Route::delete('/cameras/{camera}', [CameraController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

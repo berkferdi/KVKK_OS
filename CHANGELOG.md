@@ -74,3 +74,8 @@
 - Firma nested ziyaretçi CRUD (`visitors`)
 - Giriş/çıkış, aydınlatma, kart ve fotoğraf bayrakları
 - Şube bağlantısı, durum (expected/checked_in/out), audit
+
+### FAZ 20 — Kamera
+- Firma nested kamera CRUD (`cameras`)
+- Saklama süresi, aydınlatma tabelası, kayıt/ses bayrakları
+- Şube, konum, kapsama alanı, audit

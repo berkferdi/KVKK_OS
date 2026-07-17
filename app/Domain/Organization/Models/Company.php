@@ -2,6 +2,7 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Cameras\Models\Camera;
 use App\Domain\Customers\Models\Customer;
 use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
@@ -136,5 +137,13 @@ class Company extends Model
     public function visitors(): HasMany
     {
         return $this->hasMany(Visitor::class);
+    }
+
+    /**
+     * @return HasMany<Camera, $this>
+     */
+    public function cameras(): HasMany
+    {
+        return $this->hasMany(Camera::class);
     }
 }

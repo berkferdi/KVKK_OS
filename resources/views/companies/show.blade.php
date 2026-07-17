@@ -59,6 +59,9 @@
                     @can('viewAny', App\Domain\Visitors\Models\Visitor::class)
                         <a href="{{ route('companies.visitors.index', $company) }}" class="btn btn-outline-primary">Ziyaretçiler</a>
                     @endcan
+                    @can('viewAny', App\Domain\Cameras\Models\Camera::class)
+                        <a href="{{ route('companies.cameras.index', $company) }}" class="btn btn-outline-primary">Kameralar</a>
+                    @endcan
                 </div>
             </div>
         </div>
