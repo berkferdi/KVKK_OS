@@ -106,7 +106,11 @@ class DocumentGenerationService
 
     public function delete(GeneratedDocument $document): bool
     {
-        $old = ['title' => $document->title, 'status' => $document->status?->value];
+        $status = $document->status;
+        $old = [
+            'title' => $document->title,
+            'status' => $status instanceof GenerationStatus ? $status->value : null,
+        ];
         $deleted = $this->generations->delete($document);
         if ($deleted) {
             $this->auditLogger->log('document.generation_deleted', $document, $old, null, $document->tenant_id);

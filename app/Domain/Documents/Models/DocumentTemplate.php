@@ -56,7 +56,7 @@ class DocumentTemplate extends Model
         preg_match_all('/\{\{\s*([a-z0-9_]+)\s*\}\}/i', (string) $this->body, $matches);
 
         /** @var list<string> $keys */
-        $keys = array_values(array_unique($matches[1] ?? []));
+        $keys = array_values(array_unique($matches[1]));
 
         return $keys;
     }

@@ -54,14 +54,18 @@ class GeneratedDocumentController extends Controller
             return back()->withErrors(['document_template_id' => $e->getMessage()]);
         }
 
-        $failed = $document->status === GenerationStatus::Failed;
-        $message = $failed
-            ? 'Belge üretilemedi: eksik placeholder alanları var.'
-            : 'Belge üretildi.';
+        $status = $document->status;
+        $failed = $status instanceof GenerationStatus && $status === GenerationStatus::Failed;
+
+        if ($failed) {
+            return redirect()
+                ->route('companies.generated-documents.show', [$company, $document])
+                ->with('error', 'Belge üretilemedi: eksik placeholder alanları var.');
+        }
 
         return redirect()
             ->route('companies.generated-documents.show', [$company, $document])
-            ->with($failed ? 'error' : 'success', $message);
+            ->with('success', 'Belge üretildi.');
     }
 
     public function show(Company $company, GeneratedDocument $generatedDocument): View
