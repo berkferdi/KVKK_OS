@@ -77,6 +77,7 @@ class DatabaseSeeder extends Seeder
             'ai.view',
             'ai.generate',
             'notifications.view',
+            'backups.manage',
             'dashboard.view',
         ];
 

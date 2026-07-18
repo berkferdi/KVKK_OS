@@ -152,3 +152,8 @@
 - Database + mail bildirimleri; navbar zili ve `/notifications`
 - Analiz tamamlanınca bildirim; `notifications:dispatch-dues` vade taraması
 - Yetki: `notifications.view`
+
+### FAZ 35 — Backup
+- `backup:run` ile ZIP + `database.sql`; günlük schedule 02:00
+- Admin UI: liste / oluştur / indir / sil; retention `BACKUP_KEEP`
+- Yetki: `backups.manage`

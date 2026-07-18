@@ -91,6 +91,14 @@
                             </a>
                         </li>
                     @endcan
+                    @can('backups.manage')
+                        <li class="nav-item">
+                            <a href="{{ route('backups.index') }}" class="nav-link {{ request()->routeIs('backups.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-database"></i>
+                                <p>Yedekler</p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </nav>
         </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Web\Ai\AiGenerationController;
 use App\Http\Controllers\Web\Applications\DataSubjectApplicationController;
 use App\Http\Controllers\Web\Audits\ComplianceAuditController;
 use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Backup\BackupController;
 use App\Http\Controllers\Web\Breaches\DataBreachController;
 use App\Http\Controllers\Web\Cameras\CameraController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
@@ -49,6 +50,11 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read-all');
     Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+
+    Route::get('/backups', [BackupController::class, 'index'])->name('backups.index');
+    Route::post('/backups', [BackupController::class, 'store'])->name('backups.store');
+    Route::get('/backups/{backup}/download', [BackupController::class, 'download'])->name('backups.download');
+    Route::delete('/backups/{backup}', [BackupController::class, 'destroy'])->name('backups.destroy');
 
     Route::resource('companies', CompanyController::class);
 

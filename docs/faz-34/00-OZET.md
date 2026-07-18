@@ -24,4 +24,4 @@ Database + mail kanallı bildirim temeli. Analiz tamamlanınca anlık bildirim; 
 - Queue: `ShouldQueue` (testte `sync`)
 
 ## Sonraki faz
-FAZ 35 — Backup
+FAZ 35 — Backup (tamamlandı) → FAZ 36 Deployment

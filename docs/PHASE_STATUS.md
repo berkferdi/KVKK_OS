@@ -36,7 +36,7 @@
 | 32 | AI Engine | **tamamlandı** | Heuristic/OpenAI sürücü, belge taslağı + bulgu özeti |
 | 33 | API | **tamamlandı** | JWT + X-Tenant-Id; firma/şube/analiz REST |
 | 34 | Bildirimler | **tamamlandı** | DB+mail; analiz + vade taraması; navbar zili |
-| 35 | Backup | **sıradaki** | |
-| 36 | Deployment | bekliyor | |
+| 35 | Backup | **tamamlandı** | ZIP+SQL dump; schedule; süper admin UI |
+| 36 | Deployment | **sıradaki** | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–34 tamamlandı. Sıradaki: FAZ 35 Backup.
+**Son güncelleme:** 2026-07-18 — FAZ 01–35 tamamlandı. Sıradaki: FAZ 36 Deployment.
