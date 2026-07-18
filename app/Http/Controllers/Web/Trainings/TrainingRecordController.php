@@ -62,7 +62,7 @@ class TrainingRecordController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $training);
-        abort_unless($training->company_id === $company->id, 404);
+        abort_unless((int) $training->company_id === (int) $company->id, 404);
         $training->load('branch');
 
         return view('trainings.show', compact('company', 'training'));
@@ -72,7 +72,7 @@ class TrainingRecordController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $training);
-        abort_unless($training->company_id === $company->id, 404);
+        abort_unless((int) $training->company_id === (int) $company->id, 404);
 
         return view('trainings.edit', [
             'company' => $company,
@@ -92,7 +92,7 @@ class TrainingRecordController extends Controller
         Company $company,
         TrainingRecord $training,
     ): RedirectResponse {
-        abort_unless($training->company_id === $company->id, 404);
+        abort_unless((int) $training->company_id === (int) $company->id, 404);
         $this->trainings->update($training, $request->validated());
 
         return redirect()
@@ -104,7 +104,7 @@ class TrainingRecordController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $training);
-        abort_unless($training->company_id === $company->id, 404);
+        abort_unless((int) $training->company_id === (int) $company->id, 404);
         $this->trainings->delete($training);
 
         return redirect()

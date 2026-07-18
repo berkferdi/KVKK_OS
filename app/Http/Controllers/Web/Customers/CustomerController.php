@@ -60,7 +60,7 @@ class CustomerController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $customer);
-        abort_unless($customer->company_id === $company->id, 404);
+        abort_unless((int) $customer->company_id === (int) $company->id, 404);
         $customer->load('branch');
 
         return view('customers.show', compact('company', 'customer'));
@@ -70,7 +70,7 @@ class CustomerController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $customer);
-        abort_unless($customer->company_id === $company->id, 404);
+        abort_unless((int) $customer->company_id === (int) $company->id, 404);
 
         return view('customers.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class CustomerController extends Controller
         Company $company,
         Customer $customer,
     ): RedirectResponse {
-        abort_unless($customer->company_id === $company->id, 404);
+        abort_unless((int) $customer->company_id === (int) $company->id, 404);
         $this->customers->update($customer, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class CustomerController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $customer);
-        abort_unless($customer->company_id === $company->id, 404);
+        abort_unless((int) $customer->company_id === (int) $company->id, 404);
         $this->customers->delete($customer);
 
         return redirect()

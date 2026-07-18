@@ -53,7 +53,7 @@ class WebsiteController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $website);
-        abort_unless($website->company_id === $company->id, 404);
+        abort_unless((int) $website->company_id === (int) $company->id, 404);
 
         return view('websites.show', compact('company', 'website'));
     }
@@ -62,7 +62,7 @@ class WebsiteController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $website);
-        abort_unless($website->company_id === $company->id, 404);
+        abort_unless((int) $website->company_id === (int) $company->id, 404);
 
         return view('websites.edit', [
             'company' => $company,
@@ -76,7 +76,7 @@ class WebsiteController extends Controller
         Company $company,
         Website $website,
     ): RedirectResponse {
-        abort_unless($website->company_id === $company->id, 404);
+        abort_unless((int) $website->company_id === (int) $company->id, 404);
         $this->websites->update($website, $request->validated());
 
         return redirect()
@@ -88,7 +88,7 @@ class WebsiteController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $website);
-        abort_unless($website->company_id === $company->id, 404);
+        abort_unless((int) $website->company_id === (int) $company->id, 404);
         $this->websites->delete($website);
 
         return redirect()

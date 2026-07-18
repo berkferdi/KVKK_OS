@@ -40,14 +40,14 @@ class BranchController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $branch);
-        abort_unless($branch->company_id === $company->id, 404);
+        abort_unless((int) $branch->company_id === (int) $company->id, 404);
 
         return view('branches.edit', compact('company', 'branch'));
     }
 
     public function update(UpdateBranchRequest $request, Company $company, Branch $branch): RedirectResponse
     {
-        abort_unless($branch->company_id === $company->id, 404);
+        abort_unless((int) $branch->company_id === (int) $company->id, 404);
 
         $this->branchService->update($branch, $request->validated());
 
@@ -60,7 +60,7 @@ class BranchController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $branch);
-        abort_unless($branch->company_id === $company->id, 404);
+        abort_unless((int) $branch->company_id === (int) $company->id, 404);
 
         $this->branchService->delete($branch);
 

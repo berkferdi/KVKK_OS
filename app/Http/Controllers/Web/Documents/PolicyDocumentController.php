@@ -55,7 +55,7 @@ class PolicyDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $policy);
-        abort_unless($policy->company_id === $company->id, 404);
+        abort_unless((int) $policy->company_id === (int) $company->id, 404);
 
         return view('policies.show', compact('company', 'policy'));
     }
@@ -64,7 +64,7 @@ class PolicyDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $policy);
-        abort_unless($policy->company_id === $company->id, 404);
+        abort_unless((int) $policy->company_id === (int) $company->id, 404);
 
         return view('policies.edit', [
             'company' => $company,
@@ -79,7 +79,7 @@ class PolicyDocumentController extends Controller
         Company $company,
         PolicyDocument $policy,
     ): RedirectResponse {
-        abort_unless($policy->company_id === $company->id, 404);
+        abort_unless((int) $policy->company_id === (int) $company->id, 404);
         $this->policies->update($policy, $request->validated());
 
         return redirect()
@@ -91,7 +91,7 @@ class PolicyDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $policy);
-        abort_unless($policy->company_id === $company->id, 404);
+        abort_unless((int) $policy->company_id === (int) $company->id, 404);
         $this->policies->delete($policy);
 
         return redirect()

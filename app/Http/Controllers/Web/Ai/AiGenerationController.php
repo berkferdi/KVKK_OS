@@ -86,7 +86,7 @@ class AiGenerationController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $ai);
-        abort_unless($ai->company_id === $company->id, 404);
+        abort_unless((int) $ai->company_id === (int) $company->id, 404);
         $ai->load(['template', 'analysisRun']);
 
         return view('ai.show', [
@@ -100,7 +100,7 @@ class AiGenerationController extends Controller
         $this->authorize('view', $company);
         $this->authorize('create', [AiGeneration::class, $company]);
         $this->authorize('view', $analysis);
-        abort_unless($analysis->company_id === $company->id, 404);
+        abort_unless((int) $analysis->company_id === (int) $company->id, 404);
 
         try {
             $generation = $this->ai->summarizeFindings($company, $analysis, request()->user());

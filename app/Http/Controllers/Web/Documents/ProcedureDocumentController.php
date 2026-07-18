@@ -60,7 +60,7 @@ class ProcedureDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $procedure);
-        abort_unless($procedure->company_id === $company->id, 404);
+        abort_unless((int) $procedure->company_id === (int) $company->id, 404);
         $procedure->load('policyDocument');
 
         return view('procedures.show', compact('company', 'procedure'));
@@ -70,7 +70,7 @@ class ProcedureDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $procedure);
-        abort_unless($procedure->company_id === $company->id, 404);
+        abort_unless((int) $procedure->company_id === (int) $company->id, 404);
 
         return view('procedures.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class ProcedureDocumentController extends Controller
         Company $company,
         ProcedureDocument $procedure,
     ): RedirectResponse {
-        abort_unless($procedure->company_id === $company->id, 404);
+        abort_unless((int) $procedure->company_id === (int) $company->id, 404);
         $this->procedures->update($procedure, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class ProcedureDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $procedure);
-        abort_unless($procedure->company_id === $company->id, 404);
+        abort_unless((int) $procedure->company_id === (int) $company->id, 404);
         $this->procedures->delete($procedure);
 
         return redirect()

@@ -62,7 +62,7 @@ class ComplianceAuditController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $audit);
-        abort_unless($audit->company_id === $company->id, 404);
+        abort_unless((int) $audit->company_id === (int) $company->id, 404);
         $audit->load('branch');
 
         return view('audits.show', compact('company', 'audit'));
@@ -72,7 +72,7 @@ class ComplianceAuditController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $audit);
-        abort_unless($audit->company_id === $company->id, 404);
+        abort_unless((int) $audit->company_id === (int) $company->id, 404);
 
         return view('audits.edit', [
             'company' => $company,
@@ -92,7 +92,7 @@ class ComplianceAuditController extends Controller
         Company $company,
         ComplianceAudit $audit,
     ): RedirectResponse {
-        abort_unless($audit->company_id === $company->id, 404);
+        abort_unless((int) $audit->company_id === (int) $company->id, 404);
         $this->audits->update($audit, $request->validated());
 
         return redirect()
@@ -104,7 +104,7 @@ class ComplianceAuditController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $audit);
-        abort_unless($audit->company_id === $company->id, 404);
+        abort_unless((int) $audit->company_id === (int) $company->id, 404);
         $this->audits->delete($audit);
 
         return redirect()

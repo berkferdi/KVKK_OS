@@ -58,7 +58,7 @@ class VisitorController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $visitor);
-        abort_unless($visitor->company_id === $company->id, 404);
+        abort_unless((int) $visitor->company_id === (int) $company->id, 404);
         $visitor->load('branch');
 
         return view('visitors.show', compact('company', 'visitor'));
@@ -68,7 +68,7 @@ class VisitorController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $visitor);
-        abort_unless($visitor->company_id === $company->id, 404);
+        abort_unless((int) $visitor->company_id === (int) $company->id, 404);
 
         return view('visitors.edit', [
             'company' => $company,
@@ -86,7 +86,7 @@ class VisitorController extends Controller
         Company $company,
         Visitor $visitor,
     ): RedirectResponse {
-        abort_unless($visitor->company_id === $company->id, 404);
+        abort_unless((int) $visitor->company_id === (int) $company->id, 404);
         $this->visitors->update($visitor, $request->validated());
 
         return redirect()
@@ -98,7 +98,7 @@ class VisitorController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $visitor);
-        abort_unless($visitor->company_id === $company->id, 404);
+        abort_unless((int) $visitor->company_id === (int) $company->id, 404);
         $this->visitors->delete($visitor);
 
         return redirect()

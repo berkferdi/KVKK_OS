@@ -60,7 +60,7 @@ class CameraController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $camera);
-        abort_unless($camera->company_id === $company->id, 404);
+        abort_unless((int) $camera->company_id === (int) $company->id, 404);
         $camera->load('branch');
 
         return view('cameras.show', compact('company', 'camera'));
@@ -70,7 +70,7 @@ class CameraController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $camera);
-        abort_unless($camera->company_id === $company->id, 404);
+        abort_unless((int) $camera->company_id === (int) $company->id, 404);
 
         return view('cameras.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class CameraController extends Controller
         Company $company,
         Camera $camera,
     ): RedirectResponse {
-        abort_unless($camera->company_id === $company->id, 404);
+        abort_unless((int) $camera->company_id === (int) $company->id, 404);
         $this->cameras->update($camera, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class CameraController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $camera);
-        abort_unless($camera->company_id === $company->id, 404);
+        abort_unless((int) $camera->company_id === (int) $company->id, 404);
         $this->cameras->delete($camera);
 
         return redirect()

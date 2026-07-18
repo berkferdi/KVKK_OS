@@ -56,7 +56,7 @@ class ProcessingActivityController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $activity);
-        abort_unless($activity->company_id === $company->id, 404);
+        abort_unless((int) $activity->company_id === (int) $company->id, 404);
 
         $activity->load(['branch', 'riskAssessments']);
 
@@ -67,7 +67,7 @@ class ProcessingActivityController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $activity);
-        abort_unless($activity->company_id === $company->id, 404);
+        abort_unless((int) $activity->company_id === (int) $company->id, 404);
 
         return view('inventory.edit', [
             'company' => $company,
@@ -83,7 +83,7 @@ class ProcessingActivityController extends Controller
         Company $company,
         ProcessingActivity $activity,
     ): RedirectResponse {
-        abort_unless($activity->company_id === $company->id, 404);
+        abort_unless((int) $activity->company_id === (int) $company->id, 404);
         $this->activities->update($activity, $request->validated());
 
         return redirect()
@@ -95,7 +95,7 @@ class ProcessingActivityController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $activity);
-        abort_unless($activity->company_id === $company->id, 404);
+        abort_unless((int) $activity->company_id === (int) $company->id, 404);
 
         $this->activities->delete($activity);
 

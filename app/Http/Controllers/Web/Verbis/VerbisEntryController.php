@@ -47,7 +47,7 @@ class VerbisEntryController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $entry);
-        abort_unless($entry->company_id === $company->id, 404);
+        abort_unless((int) $entry->company_id === (int) $company->id, 404);
         $entry->load('processingActivity');
 
         return view('verbis.entries.show', compact('company', 'entry'));
@@ -57,7 +57,7 @@ class VerbisEntryController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $entry);
-        abort_unless($entry->company_id === $company->id, 404);
+        abort_unless((int) $entry->company_id === (int) $company->id, 404);
 
         return view('verbis.entries.edit', [
             'company' => $company,
@@ -75,7 +75,7 @@ class VerbisEntryController extends Controller
         Company $company,
         VerbisEntry $entry,
     ): RedirectResponse {
-        abort_unless($entry->company_id === $company->id, 404);
+        abort_unless((int) $entry->company_id === (int) $company->id, 404);
         $this->entries->update($entry, $request->validated());
 
         return redirect()
@@ -87,7 +87,7 @@ class VerbisEntryController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $entry);
-        abort_unless($entry->company_id === $company->id, 404);
+        abort_unless((int) $entry->company_id === (int) $company->id, 404);
         $this->entries->delete($entry);
 
         return redirect()
