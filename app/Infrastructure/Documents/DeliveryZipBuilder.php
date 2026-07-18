@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Documents;
 
+use App\Domain\Documents\Enums\TemplateCategory;
 use App\Domain\Documents\Models\GeneratedDocument;
 use App\Domain\Documents\Support\DeliveryFolderLayout;
 use App\Domain\Organization\Models\Company;
@@ -43,7 +44,10 @@ class DeliveryZipBuilder
 
         $documentCount = 0;
         foreach ($documents as $document) {
-            $folder = DeliveryFolderLayout::folderForCategory($document->template?->category);
+            $category = $document->template?->category;
+            $folder = DeliveryFolderLayout::folderForCategory(
+                $category instanceof TemplateCategory ? $category : null
+            );
             $baseName = $this->safeFilename((string) ($document->code ?: $document->title), (int) $document->version);
 
             if ($document->file_path && Storage::disk('local')->exists($document->file_path)) {
