@@ -17,6 +17,8 @@ use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
 use App\Http\Controllers\Web\Suppliers\SupplierController;
+use App\Http\Controllers\Web\Verbis\VerbisController;
+use App\Http\Controllers\Web\Verbis\VerbisEntryController;
 use App\Http\Controllers\Web\Visitors\VisitorController;
 use App\Http\Controllers\Web\Websites\WebsiteController;
 use App\Http\Middleware\SetTenantFromSession;
@@ -154,6 +156,21 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/cookies/{cookie}/edit', [SiteCookieController::class, 'edit'])->name('edit');
             Route::put('/cookies/{cookie}', [SiteCookieController::class, 'update'])->name('update');
             Route::delete('/cookies/{cookie}', [SiteCookieController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.verbis.')->group(function (): void {
+            Route::get('/verbis', [VerbisController::class, 'index'])->name('index');
+            Route::get('/verbis/registration/edit', [VerbisController::class, 'editRegistration'])->name('registration.edit');
+            Route::put('/verbis/registration/{registration}', [VerbisController::class, 'updateRegistration'])->name('registration.update');
+
+            Route::name('entries.')->group(function (): void {
+                Route::get('/verbis/entries/create', [VerbisEntryController::class, 'create'])->name('create');
+                Route::post('/verbis/entries', [VerbisEntryController::class, 'store'])->name('store');
+                Route::get('/verbis/entries/{entry}', [VerbisEntryController::class, 'show'])->name('show');
+                Route::get('/verbis/entries/{entry}/edit', [VerbisEntryController::class, 'edit'])->name('edit');
+                Route::put('/verbis/entries/{entry}', [VerbisEntryController::class, 'update'])->name('update');
+                Route::delete('/verbis/entries/{entry}', [VerbisEntryController::class, 'destroy'])->name('destroy');
+            });
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

@@ -89,3 +89,8 @@
 - Firma nested çerez envanteri CRUD (`site_cookies` / `SiteCookie`)
 - Kategori, rıza, üçüncü taraf, süre; opsiyonel web sitesi bağlantısı
 - Yetkiler: `cookies.view` / `cookies.manage`
+
+### FAZ 23 — VERBİS
+- Firma VERBİS sicil kaydı (`verbis_registrations`) + kayıt kalemleri (`verbis_entries`)
+- Muafiyet, irtibat, sicil no; envanter bağlantılı kalemler
+- Yetkiler: `verbis.view` / `verbis.manage`

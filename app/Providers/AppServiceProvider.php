@@ -19,6 +19,8 @@ use App\Application\Services\Personnel\EmployeeService;
 use App\Application\Services\Risk\RiskAssessmentService;
 use App\Application\Services\Suppliers\SupplierService;
 use App\Application\Services\TenantContext;
+use App\Application\Services\Verbis\VerbisEntryService;
+use App\Application\Services\Verbis\VerbisRegistrationService;
 use App\Application\Services\Visitors\VisitorService;
 use App\Application\Services\Websites\WebsiteService;
 use App\Domain\Cameras\Models\Camera;
@@ -34,6 +36,8 @@ use App\Domain\Organization\Models\Company;
 use App\Domain\Personnel\Models\Employee;
 use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Suppliers\Models\Supplier;
+use App\Domain\Verbis\Models\VerbisEntry;
+use App\Domain\Verbis\Models\VerbisRegistration;
 use App\Domain\Visitors\Models\Visitor;
 use App\Domain\Websites\Models\Website;
 use App\Infrastructure\Repositories\Cameras\CameraRepository;
@@ -49,6 +53,8 @@ use App\Infrastructure\Repositories\Organization\TenantRepository;
 use App\Infrastructure\Repositories\Personnel\EmployeeRepository;
 use App\Infrastructure\Repositories\Risk\RiskAssessmentRepository;
 use App\Infrastructure\Repositories\Suppliers\SupplierRepository;
+use App\Infrastructure\Repositories\Verbis\VerbisEntryRepository;
+use App\Infrastructure\Repositories\Verbis\VerbisRegistrationRepository;
 use App\Infrastructure\Repositories\Visitors\VisitorRepository;
 use App\Infrastructure\Repositories\Websites\WebsiteRepository;
 use App\Models\User;
@@ -67,6 +73,7 @@ use App\Policies\RolePolicy;
 use App\Policies\SiteCookiePolicy;
 use App\Policies\SupplierPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\VerbisPolicy;
 use App\Policies\VisitorPolicy;
 use App\Policies\WebsitePolicy;
 use Illuminate\Support\Facades\Gate;
@@ -95,6 +102,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CameraRepository::class);
         $this->app->singleton(WebsiteRepository::class);
         $this->app->singleton(SiteCookieRepository::class);
+        $this->app->singleton(VerbisRegistrationRepository::class);
+        $this->app->singleton(VerbisEntryRepository::class);
         $this->app->singleton(CompanyService::class);
         $this->app->singleton(BranchService::class);
         $this->app->singleton(UserService::class);
@@ -112,6 +121,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(CameraService::class);
         $this->app->singleton(WebsiteService::class);
         $this->app->singleton(SiteCookieService::class);
+        $this->app->singleton(VerbisRegistrationService::class);
+        $this->app->singleton(VerbisEntryService::class);
     }
 
     public function boot(): void
@@ -133,6 +144,8 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Camera::class, CameraPolicy::class);
         Gate::policy(Website::class, WebsitePolicy::class);
         Gate::policy(SiteCookie::class, SiteCookiePolicy::class);
+        Gate::policy(VerbisEntry::class, VerbisPolicy::class);
+        Gate::policy(VerbisRegistration::class, VerbisPolicy::class);
 
         Gate::before(function ($user, string $ability) {
             if ($user->is_super_admin) {

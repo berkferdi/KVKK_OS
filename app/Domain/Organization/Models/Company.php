@@ -14,6 +14,8 @@ use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
 use App\Domain\Suppliers\Models\Supplier;
+use App\Domain\Verbis\Models\VerbisEntry;
+use App\Domain\Verbis\Models\VerbisRegistration;
 use App\Domain\Visitors\Models\Visitor;
 use App\Domain\Websites\Models\Website;
 use Database\Factories\CompanyFactory;
@@ -163,5 +165,21 @@ class Company extends Model
     public function siteCookies(): HasMany
     {
         return $this->hasMany(SiteCookie::class);
+    }
+
+    /**
+     * @return HasMany<VerbisRegistration, $this>
+     */
+    public function verbisRegistrations(): HasMany
+    {
+        return $this->hasMany(VerbisRegistration::class);
+    }
+
+    /**
+     * @return HasMany<VerbisEntry, $this>
+     */
+    public function verbisEntries(): HasMany
+    {
+        return $this->hasMany(VerbisEntry::class);
     }
 }

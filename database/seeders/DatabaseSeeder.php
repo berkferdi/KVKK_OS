@@ -60,6 +60,8 @@ class DatabaseSeeder extends Seeder
             'websites.manage',
             'cookies.view',
             'cookies.manage',
+            'verbis.view',
+            'verbis.manage',
             'dashboard.view',
         ];
 
@@ -132,6 +134,8 @@ class DatabaseSeeder extends Seeder
             'websites.manage',
             'cookies.view',
             'cookies.manage',
+            'verbis.view',
+            'verbis.manage',
             'dashboard.view',
         ]);
 

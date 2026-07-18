@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–22**  
-Sıradaki: **23 VERBİS**
+Tamamlanan: **01–23**  
+Sıradaki: **24 Başvurular**
