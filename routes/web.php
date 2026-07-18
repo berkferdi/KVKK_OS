@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\Applications\DataSubjectApplicationController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Cameras\CameraController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
@@ -171,6 +172,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
                 Route::put('/verbis/entries/{entry}', [VerbisEntryController::class, 'update'])->name('update');
                 Route::delete('/verbis/entries/{entry}', [VerbisEntryController::class, 'destroy'])->name('destroy');
             });
+        });
+
+        Route::name('companies.applications.')->group(function (): void {
+            Route::get('/applications', [DataSubjectApplicationController::class, 'index'])->name('index');
+            Route::get('/applications/create', [DataSubjectApplicationController::class, 'create'])->name('create');
+            Route::post('/applications', [DataSubjectApplicationController::class, 'store'])->name('store');
+            Route::get('/applications/{application}', [DataSubjectApplicationController::class, 'show'])->name('show');
+            Route::get('/applications/{application}/edit', [DataSubjectApplicationController::class, 'edit'])->name('edit');
+            Route::put('/applications/{application}', [DataSubjectApplicationController::class, 'update'])->name('update');
+            Route::delete('/applications/{application}', [DataSubjectApplicationController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

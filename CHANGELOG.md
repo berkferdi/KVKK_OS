@@ -94,3 +94,8 @@
 - Firma VERBİS sicil kaydı (`verbis_registrations`) + kayıt kalemleri (`verbis_entries`)
 - Muafiyet, irtibat, sicil no; envanter bağlantılı kalemler
 - Yetkiler: `verbis.view` / `verbis.manage`
+
+### FAZ 24 — Başvurular
+- Firma nested ilgili kişi başvurusu CRUD (`data_subject_applications`)
+- Talep türü, kanal, otomatik +30 gün son yanıt tarihi, gecikme bayrağı
+- Yetkiler: `applications.view` / `applications.manage`

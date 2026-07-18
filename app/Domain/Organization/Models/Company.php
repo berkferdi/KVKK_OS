@@ -2,6 +2,7 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Applications\Models\DataSubjectApplication;
 use App\Domain\Cameras\Models\Camera;
 use App\Domain\Cookies\Models\SiteCookie;
 use App\Domain\Customers\Models\Customer;
@@ -181,5 +182,13 @@ class Company extends Model
     public function verbisEntries(): HasMany
     {
         return $this->hasMany(VerbisEntry::class);
+    }
+
+    /**
+     * @return HasMany<DataSubjectApplication, $this>
+     */
+    public function dataSubjectApplications(): HasMany
+    {
+        return $this->hasMany(DataSubjectApplication::class);
     }
 }

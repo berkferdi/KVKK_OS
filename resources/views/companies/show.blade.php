@@ -71,6 +71,9 @@
                     @can('viewAny', App\Domain\Verbis\Models\VerbisEntry::class)
                         <a href="{{ route('companies.verbis.index', $company) }}" class="btn btn-outline-primary">VERBİS</a>
                     @endcan
+                    @can('viewAny', App\Domain\Applications\Models\DataSubjectApplication::class)
+                        <a href="{{ route('companies.applications.index', $company) }}" class="btn btn-outline-primary">Başvurular</a>
+                    @endcan
                 </div>
             </div>
         </div>
