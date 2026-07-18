@@ -26,7 +26,7 @@
     <div class="col-12">
         <label class="form-label" for="body">Şablon gövdesi *</label>
         <textarea name="body" id="body" rows="12" class="form-control font-monospace" required placeholder="@{{firma_unvani}}, @{{adres}}, @{{mersis}} ...">{{ old('body', $template?->body) }}</textarea>
-        <div class="form-text">Placeholder formatı: <code>{{'{{'}}firma_unvani{{'}}'}}</code>, <code>{{'{{'}}adres{{'}}'}}</code>, <code>{{'{{'}}mersis{{'}}'}}</code></div>
+        <div class="form-text">Placeholder formatı: <code>@{{firma_unvani}}</code>, <code>@{{adres}}</code>, <code>@{{mersis}}</code></div>
     </div>
     <div class="col-12">
         <div class="form-check">

@@ -18,7 +18,7 @@
         </select>
         @error('document_template_id')<div class="text-danger small mt-1">{{ $message }}</div>@enderror
     </div>
-    <p class="text-muted small mb-0">Firma alanlarından <code>{{'{{'}}firma_unvani{{'}}'}}</code> vb. placeholder’lar doldurulur. Eksik alan varsa üretim başarısız kaydedilir.</p>
+    <p class="text-muted small mb-0">Firma alanlarından <code>@{{firma_unvani}}</code> vb. placeholder’lar doldurulur. Eksik alan varsa üretim başarısız kaydedilir.</p>
     <div class="mt-4 d-flex gap-2">
         <button class="btn text-white" style="background:#1f6f5b;" type="submit">Üret</button>
         <a href="{{ route('companies.generated-documents.index', $company) }}" class="btn btn-outline-secondary">İptal</a>
