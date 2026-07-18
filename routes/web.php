@@ -20,6 +20,7 @@ use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Controllers\Web\Personnel\EmployeeController;
 use App\Http\Controllers\Web\Risk\RiskAssessmentController;
 use App\Http\Controllers\Web\Suppliers\SupplierController;
+use App\Http\Controllers\Web\Trainings\TrainingRecordController;
 use App\Http\Controllers\Web\Verbis\VerbisController;
 use App\Http\Controllers\Web\Verbis\VerbisEntryController;
 use App\Http\Controllers\Web\Visitors\VisitorController;
@@ -204,6 +205,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/audits/{audit}/edit', [ComplianceAuditController::class, 'edit'])->name('edit');
             Route::put('/audits/{audit}', [ComplianceAuditController::class, 'update'])->name('update');
             Route::delete('/audits/{audit}', [ComplianceAuditController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.trainings.')->group(function (): void {
+            Route::get('/trainings', [TrainingRecordController::class, 'index'])->name('index');
+            Route::get('/trainings/create', [TrainingRecordController::class, 'create'])->name('create');
+            Route::post('/trainings', [TrainingRecordController::class, 'store'])->name('store');
+            Route::get('/trainings/{training}', [TrainingRecordController::class, 'show'])->name('show');
+            Route::get('/trainings/{training}/edit', [TrainingRecordController::class, 'edit'])->name('edit');
+            Route::put('/trainings/{training}', [TrainingRecordController::class, 'update'])->name('update');
+            Route::delete('/trainings/{training}', [TrainingRecordController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

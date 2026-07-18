@@ -28,8 +28,8 @@
 | 24 | Başvurular | **tamamlandı** | |
 | 25 | Veri İhlali | **tamamlandı** | 72 saat kurum bildirim vadesi |
 | 26 | Denetim | **tamamlandı** | Uyum denetimleri, tamamlanınca +1 yıl sonraki vade |
-| 27 | Eğitim | **sıradaki** | |
-| 28 | Belge Motoru | bekliyor | |
+| 27 | Eğitim | **tamamlandı** | Eğitim kayıtları, tamamlanınca +1 yıl sonraki vade |
+| 28 | Belge Motoru | **sıradaki** | |
 | 29 | Word | bekliyor | |
 | 30 | PDF | bekliyor | |
 | 31 | ZIP | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–26 tamamlandı. Sıradaki: FAZ 27 Eğitim.
+**Son güncelleme:** 2026-07-18 — FAZ 01–27 tamamlandı. Sıradaki: FAZ 28 Belge Motoru.

@@ -17,6 +17,7 @@ use App\Domain\Risk\Models\RiskAssessment;
 use App\Domain\Shared\Concerns\BelongsToTenant;
 use App\Domain\Shared\Concerns\HasUuid;
 use App\Domain\Suppliers\Models\Supplier;
+use App\Domain\Trainings\Models\TrainingRecord;
 use App\Domain\Verbis\Models\VerbisEntry;
 use App\Domain\Verbis\Models\VerbisRegistration;
 use App\Domain\Visitors\Models\Visitor;
@@ -208,5 +209,13 @@ class Company extends Model
     public function complianceAudits(): HasMany
     {
         return $this->hasMany(ComplianceAudit::class);
+    }
+
+    /**
+     * @return HasMany<TrainingRecord, $this>
+     */
+    public function trainingRecords(): HasMany
+    {
+        return $this->hasMany(TrainingRecord::class);
     }
 }

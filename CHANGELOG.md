@@ -109,3 +109,8 @@
 - Firma nested uyum denetimi CRUD (`compliance_audits`)
 - Tür, sonuç, plan/takvim; tamamlanınca otomatik +1 yıl sonraki denetim vadesi
 - Yetkiler: `audits.view` / `audits.manage`
+
+### FAZ 27 — Eğitim
+- Firma nested eğitim kaydı CRUD (`training_records`)
+- Tür, yöntem, katılımcı; tamamlanınca otomatik +1 yıl sonraki eğitim vadesi
+- Yetkiler: `trainings.view` / `trainings.manage`
