@@ -4,6 +4,11 @@
 @section('page_subtitle', 'Belge Motoru')
 @section('page_actions')
     @can('create', App\Domain\Documents\Models\DocumentTemplate::class)
+        <form method="POST" action="{{ route('document-templates.refresh-seed') }}" class="d-inline"
+              onsubmit="return confirm('Seed kaynaklı varsayılan şablonlar güncel tam metinlerle yenilenecek. Elle özelleştirdiğiniz şablonlara dokunulmaz. Devam?')">
+            @csrf
+            <button type="submit" class="btn btn-sm btn-outline-secondary">Varsayılanları Yenile</button>
+        </form>
         <a href="{{ route('document-templates.create') }}" class="btn btn-sm text-white" style="background:#1f6f5b;">Yeni Şablon</a>
     @endcan
 @endsection

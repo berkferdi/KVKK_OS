@@ -27,7 +27,7 @@ class DocumentTemplateSeeder extends Seeder
     /**
      * @return list<array{code: string, title: string, category: TemplateCategory, description: string, body: string}>
      */
-    private function templateDefinitions(): array
+    public function templateDefinitions(): array
     {
         return [
             [
@@ -215,7 +215,7 @@ TXT,
     /**
      * @param  list<array{code: string, title: string, category: TemplateCategory, description: string, body: string}>  $templates
      */
-    private function seedForTenant(Tenant $tenant, array $templates): void
+    public function seedForTenant(Tenant $tenant, array $templates): void
     {
         foreach ($templates as $data) {
             $template = DocumentTemplate::query()->firstOrNew([

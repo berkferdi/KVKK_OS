@@ -18,7 +18,7 @@
         <dt class="col-sm-3">Placeholder’lar</dt>
         <dd class="col-sm-9">
             @forelse ($template->placeholderKeys() as $key)
-                <code class="me-1">{{ '{{'.$key.'}}' }}</code>
+                <code class="me-1">{{ '{'.'{'.$key.'}'.'}' }}</code>
             @empty
                 —
             @endforelse

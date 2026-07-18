@@ -6,7 +6,9 @@ use App\Application\Services\Audit\AuditLogger;
 use App\Application\Services\TenantContext;
 use App\Domain\Documents\Enums\TemplateCategory;
 use App\Domain\Documents\Models\DocumentTemplate;
+use App\Domain\Organization\Models\Tenant;
 use App\Infrastructure\Repositories\Documents\DocumentTemplateRepository;
+use Database\Seeders\DocumentTemplateSeeder;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -16,6 +18,7 @@ class DocumentTemplateService
         private readonly DocumentTemplateRepository $templates,
         private readonly AuditLogger $auditLogger,
         private readonly TenantContext $tenantContext,
+        private readonly DocumentTemplateSeeder $templateSeeder,
     ) {}
 
     /**
@@ -88,5 +91,41 @@ class DocumentTemplateService
         }
 
         return $deleted;
+    }
+
+    /**
+     * Seed kaynaklı varsayılan şablonları (elle özelleştirilmiş olanlara dokunmadan) yeniler.
+     */
+    public function refreshSeedTemplates(): int
+    {
+        $tenantId = $this->tenantContext->id();
+        if ($tenantId === null) {
+            return 0;
+        }
+
+        $tenant = Tenant::query()->find($tenantId);
+        if (! $tenant instanceof Tenant) {
+            return 0;
+        }
+
+        $before = DocumentTemplate::query()
+            ->where('tenant_id', $tenant->id)
+            ->where('source', 'seed')
+            ->count();
+
+        $this->templateSeeder->seedForTenant($tenant, $this->templateSeeder->templateDefinitions());
+
+        $after = DocumentTemplate::query()
+            ->where('tenant_id', $tenant->id)
+            ->where('source', 'seed')
+            ->count();
+
+        $this->auditLogger->log('document_template.seed_refreshed', $tenant, [
+            'count_before' => $before,
+        ], [
+            'count_after' => $after,
+        ], $tenant->id);
+
+        return $after;
     }
 }
