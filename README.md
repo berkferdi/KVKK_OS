@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–24**  
-Sıradaki: **25 Veri İhlali**
+Tamamlanan: **01–25**  
+Sıradaki: **26 Denetim**

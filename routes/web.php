@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\Applications\DataSubjectApplicationController;
 use App\Http\Controllers\Web\Auth\LoginController;
+use App\Http\Controllers\Web\Breaches\DataBreachController;
 use App\Http\Controllers\Web\Cameras\CameraController;
 use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\Cookies\SiteCookieController;
@@ -182,6 +183,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/applications/{application}/edit', [DataSubjectApplicationController::class, 'edit'])->name('edit');
             Route::put('/applications/{application}', [DataSubjectApplicationController::class, 'update'])->name('update');
             Route::delete('/applications/{application}', [DataSubjectApplicationController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.breaches.')->group(function (): void {
+            Route::get('/breaches', [DataBreachController::class, 'index'])->name('index');
+            Route::get('/breaches/create', [DataBreachController::class, 'create'])->name('create');
+            Route::post('/breaches', [DataBreachController::class, 'store'])->name('store');
+            Route::get('/breaches/{breach}', [DataBreachController::class, 'show'])->name('show');
+            Route::get('/breaches/{breach}/edit', [DataBreachController::class, 'edit'])->name('edit');
+            Route::put('/breaches/{breach}', [DataBreachController::class, 'update'])->name('update');
+            Route::delete('/breaches/{breach}', [DataBreachController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

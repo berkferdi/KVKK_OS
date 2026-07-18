@@ -74,6 +74,9 @@
                     @can('viewAny', App\Domain\Applications\Models\DataSubjectApplication::class)
                         <a href="{{ route('companies.applications.index', $company) }}" class="btn btn-outline-primary">Başvurular</a>
                     @endcan
+                    @can('viewAny', App\Domain\Breaches\Models\DataBreach::class)
+                        <a href="{{ route('companies.breaches.index', $company) }}" class="btn btn-outline-primary">Veri İhlalleri</a>
+                    @endcan
                 </div>
             </div>
         </div>

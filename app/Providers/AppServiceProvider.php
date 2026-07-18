@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Application\Services\Applications\DataSubjectApplicationService;
 use App\Application\Services\Audit\AuditLogger;
+use App\Application\Services\Breaches\DataBreachService;
 use App\Application\Services\Cameras\CameraService;
 use App\Application\Services\Compliance\AnalysisWizardService;
 use App\Application\Services\Compliance\RuleEngine;
@@ -25,6 +26,7 @@ use App\Application\Services\Verbis\VerbisRegistrationService;
 use App\Application\Services\Visitors\VisitorService;
 use App\Application\Services\Websites\WebsiteService;
 use App\Domain\Applications\Models\DataSubjectApplication;
+use App\Domain\Breaches\Models\DataBreach;
 use App\Domain\Cameras\Models\Camera;
 use App\Domain\Compliance\Models\AnalysisRun;
 use App\Domain\Cookies\Models\SiteCookie;
@@ -43,6 +45,7 @@ use App\Domain\Verbis\Models\VerbisRegistration;
 use App\Domain\Visitors\Models\Visitor;
 use App\Domain\Websites\Models\Website;
 use App\Infrastructure\Repositories\Applications\DataSubjectApplicationRepository;
+use App\Infrastructure\Repositories\Breaches\DataBreachRepository;
 use App\Infrastructure\Repositories\Cameras\CameraRepository;
 use App\Infrastructure\Repositories\Cookies\SiteCookieRepository;
 use App\Infrastructure\Repositories\Customers\CustomerRepository;
@@ -66,6 +69,7 @@ use App\Policies\BranchPolicy;
 use App\Policies\CameraPolicy;
 use App\Policies\CompanyPolicy;
 use App\Policies\CustomerPolicy;
+use App\Policies\DataBreachPolicy;
 use App\Policies\DataSubjectApplicationPolicy;
 use App\Policies\EmployeePolicy;
 use App\Policies\PermissionPolicy;
@@ -109,6 +113,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(VerbisRegistrationRepository::class);
         $this->app->singleton(VerbisEntryRepository::class);
         $this->app->singleton(DataSubjectApplicationRepository::class);
+        $this->app->singleton(DataBreachRepository::class);
         $this->app->singleton(CompanyService::class);
         $this->app->singleton(BranchService::class);
         $this->app->singleton(UserService::class);
@@ -129,6 +134,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(VerbisRegistrationService::class);
         $this->app->singleton(VerbisEntryService::class);
         $this->app->singleton(DataSubjectApplicationService::class);
+        $this->app->singleton(DataBreachService::class);
     }
 
     public function boot(): void
@@ -153,6 +159,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(VerbisEntry::class, VerbisPolicy::class);
         Gate::policy(VerbisRegistration::class, VerbisPolicy::class);
         Gate::policy(DataSubjectApplication::class, DataSubjectApplicationPolicy::class);
+        Gate::policy(DataBreach::class, DataBreachPolicy::class);
 
         Gate::before(function ($user, string $ability) {
             if ($user->is_super_admin) {

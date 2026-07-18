@@ -64,6 +64,8 @@ class DatabaseSeeder extends Seeder
             'verbis.manage',
             'applications.view',
             'applications.manage',
+            'breaches.view',
+            'breaches.manage',
             'dashboard.view',
         ];
 
@@ -140,6 +142,8 @@ class DatabaseSeeder extends Seeder
             'verbis.manage',
             'applications.view',
             'applications.manage',
+            'breaches.view',
+            'breaches.manage',
             'dashboard.view',
         ]);
 
