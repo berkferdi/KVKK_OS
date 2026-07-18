@@ -1,0 +1,168 @@
+# Changelog
+
+## [0.1.0] — 2026-07-17
+
+### FAZ 01 — Analiz
+- Ürün gereksinimleri, domain model, güvenlik, yol haritası ve ADR’ler eklendi (`docs/`).
+
+### FAZ 02 — Database
+- Laravel 12 iskeleti, DDD klasör yapısı
+- Tablolar: `tenants`, `tenant_user`, `companies`, `branches`, `audit_logs`
+- Users genişletildi (uuid, soft delete, super admin)
+- Spatie Permission (teams = `tenant_id`)
+- BaseRepository, TenantScope, TenantContext, AuditLogger, CompanyService
+- Seed + factory’ler
+
+### FAZ 03 — Authentication
+- Web session login/logout (rate limit, audit)
+- JWT API auth (`/api/v1/auth/*`)
+- Tenant session middleware
+- Login UI (AdminLTE / Bootstrap 5.3)
+
+### FAZ 04 — Dashboard
+- Kimlik doğrulama sonrası temel dashboard iskeleti
+
+### FAZ 05 — Firma Yönetimi
+- Firma CRUD, policy, form request, AdminLTE views, tenant izolasyon testleri
+
+### FAZ 06 — Şube Yönetimi
+- Firmaya nested şube CRUD, tek merkez şube kuralı, audit log
+
+### FAZ 07 — Kullanıcı Yönetimi
+- Tenant kullanıcı CRUD, rol atama, self-delete engeli, audit
+
+### FAZ 08 — Roller
+- Spatie tenant roller CRUD + permission sync
+
+### FAZ 09 — Yetkiler
+- Yetki kataloğu ve yeni yetki ekleme UI
+
+### FAZ 10 — KVKK Analiz Sihirbazı
+- Firma bazlı analiz koşumu, bulgu listesi, audit
+
+### FAZ 13 — Rule Engine
+- `compliance_rules` DB evaluator; kamera/web/çerez/personel seed kuralları
+
+### FAZ 11 — Veri İşleme Envanteri
+- Firma nested envanter CRUD, hukuki sebep, kategori listeleri
+
+### FAZ 12 — Risk Analizi
+- Risk CRUD, otomatik skor/seviye, envanter ilişkisi
+
+### FAZ 14 — Politikalar
+- Firma politika CRUD (kategori, versiyon, içerik)
+
+### FAZ 15 — Prosedürler
+- Firma prosedür CRUD, politikaya bağlanabilir
+
+### FAZ 16 — Personel
+- Firma nested personel CRUD (`employees`)
+- KVKK alanları: aydınlatma, gizlilik taahhüdü, eğitim tarihleri
+- Şube bağlantısı, istihdam türü, sistem erişimi, audit
+
+### FAZ 17 — Müşteri
+- Firma nested müşteri CRUD (`customers`)
+- Bireysel/kurumsal tür, aydınlatma, açık rıza, pazarlama izni
+- Şube bağlantısı, veri kategorileri, audit
+
+### FAZ 18 — Tedarikçi
+- Firma nested tedarikçi CRUD (`suppliers`)
+- Veri işleme sözleşmesi (DPA), kişisel veri işleme bayrağı
+- Sözleşme tarihleri, şube, audit
+
+### FAZ 19 — Ziyaretçi
+- Firma nested ziyaretçi CRUD (`visitors`)
+- Giriş/çıkış, aydınlatma, kart ve fotoğraf bayrakları
+- Şube bağlantısı, durum (expected/checked_in/out), audit
+
+### FAZ 20 — Kamera
+- Firma nested kamera CRUD (`cameras`)
+- Saklama süresi, aydınlatma tabelası, kayıt/ses bayrakları
+- Şube, konum, kapsama alanı, audit
+
+### FAZ 21 — Web Sitesi
+- Firma nested web sitesi CRUD (`websites`)
+- Gizlilik politikası URL/tarih, SSL, çerez ve form bayrakları
+- Toplanan veri kategorileri, audit
+
+### FAZ 22 — Çerez
+- Firma nested çerez envanteri CRUD (`site_cookies` / `SiteCookie`)
+- Kategori, rıza, üçüncü taraf, süre; opsiyonel web sitesi bağlantısı
+- Yetkiler: `cookies.view` / `cookies.manage`
+
+### FAZ 23 — VERBİS
+- Firma VERBİS sicil kaydı (`verbis_registrations`) + kayıt kalemleri (`verbis_entries`)
+- Muafiyet, irtibat, sicil no; envanter bağlantılı kalemler
+- Yetkiler: `verbis.view` / `verbis.manage`
+
+### FAZ 24 — Başvurular
+- Firma nested ilgili kişi başvurusu CRUD (`data_subject_applications`)
+- Talep türü, kanal, otomatik +30 gün son yanıt tarihi, gecikme bayrağı
+- Yetkiler: `applications.view` / `applications.manage`
+
+### FAZ 25 — Veri İhlali
+- Firma nested veri ihlali CRUD (`data_breaches`)
+- Tip, önem, durum; otomatik 72 saat kurum bildirim vadesi
+- Yetkiler: `breaches.view` / `breaches.manage`
+
+### FAZ 26 — Denetim
+- Firma nested uyum denetimi CRUD (`compliance_audits`)
+- Tür, sonuç, plan/takvim; tamamlanınca otomatik +1 yıl sonraki denetim vadesi
+- Yetkiler: `audits.view` / `audits.manage`
+
+### FAZ 27 — Eğitim
+- Firma nested eğitim kaydı CRUD (`training_records`)
+- Tür, yöntem, katılımcı; tamamlanınca otomatik +1 yıl sonraki eğitim vadesi
+- Yetkiler: `trainings.view` / `trainings.manage`
+
+### FAZ 28 — Belge Motoru
+- Şablon kataloğu (`document_templates`) + üretilen belgeler (`generated_documents`)
+- Placeholder çözümü (`{{firma_unvani}}` vb.), metin render ve önizleme
+- Eksik placeholder → failed; başarılı üretimde önceki sürüm superseded
+- Yetkiler: `templates.view` / `templates.manage`
+- Seed şablonları tam hukuki metin (kamera/web/gizlilik/çerez); kamera alanları envanterden (`kamera_sayisi`, `kamera_alanlari`, `kamera_saklama_gun`)
+- `documents:refresh-templates` / UI “Varsayılanları Yenile” ile seed şablon yenileme
+- Word/PDF çıktısında sade hukuki belge stili (KVKK 360 yok; üstte firma adı; küçük punto)
+- Şablon show sayfasında `{{placeholder}}` Blade ParseError düzeltmesi
+
+### FAZ 29 — Word
+- `phpoffice/phpword` ile `.docx` üretimi
+- Başarılı belge üretiminde otomatik Word dosyası; indirme endpoint’i
+- `failed` belgeler indirilemez; silmede dosya temizliği
+
+### FAZ 30 — PDF
+- `mpdf/mpdf` ile `.pdf` üretimi (`pdf_path`)
+- Başarılı belge üretiminde otomatik PDF; indirme endpoint’i
+- Word ve PDF yolları ayrı; silmede her iki dosya temizliği
+
+### FAZ 31 — ZIP
+- Firma teslim paketi (`delivery_packages`) — 01–15 klasör yapısı
+- Üretilmiş Word/PDF dosyalarını kategori klasörlerine paketler
+- MANIFEST.txt; önceki paketleri superseded yapar
+- Yetkiler: `packages.view` / `packages.manage`
+
+### FAZ 32 — AI Engine
+- `AiClientInterface` + heuristic (varsayılan) / OpenAI sürücüleri
+- `ai_generations`: belge taslağı ve analiz bulgu özeti
+- PII-safe prompt (vergi/MERSİS/e-posta/telefon yok; hassas satırlar temizlenir)
+- Yetkiler: `ai.view` / `ai.generate`
+
+### FAZ 33 — API
+- JWT API kiracı middleware: `X-Tenant-Id` (uuid)
+- REST: firmalar CRUD, şube listesi, analiz çalıştır/göster
+- JSON Resources; `/auth/me` kiracı listesi döner
+
+### FAZ 34 — Bildirimler
+- Database + mail bildirimleri; navbar zili ve `/notifications`
+- Analiz tamamlanınca bildirim; `notifications:dispatch-dues` vade taraması
+- Yetki: `notifications.view`
+
+### FAZ 35 — Backup
+- `backup:run` ile ZIP + `database.sql`; günlük schedule 02:00
+- Admin UI: liste / oluştur / indir / sil; retention `BACKUP_KEEP`
+- Yetki: `backups.manage`
+
+### FAZ 36 — Deployment
+- Docker Compose (app/nginx/mysql/redis/queue/scheduler) + multi-stage Dockerfile
+- GitHub Actions CI (Pint, PHPStan, PHPUnit)
+- `deploy:check`, `GET /up`, runbook `docs/faz-36/DEPLOYMENT.md`
