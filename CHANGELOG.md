@@ -157,3 +157,8 @@
 - `backup:run` ile ZIP + `database.sql`; günlük schedule 02:00
 - Admin UI: liste / oluştur / indir / sil; retention `BACKUP_KEEP`
 - Yetki: `backups.manage`
+
+### FAZ 36 — Deployment
+- Docker Compose (app/nginx/mysql/redis/queue/scheduler) + multi-stage Dockerfile
+- GitHub Actions CI (Pint, PHPStan, PHPUnit)
+- `deploy:check`, `GET /up`, runbook `docs/faz-36/DEPLOYMENT.md`

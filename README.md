@@ -14,17 +14,19 @@ Profesyonel, çok kiracılı KVKK yönetim yazılımı. Danışman firma bilgile
 - JWT (`php-open-source-saver/jwt-auth`)
 - PHPStan (Larastan), Pint, PHPUnit
 
-## Hızlı başlangıç
+## Hızlı başlangıç (SQLite)
 
 ```bash
 composer install
 cp .env.example .env
 php artisan key:generate
 php artisan jwt:secret
-touch database/database.sqlite   # veya MySQL ayarlayın
+touch database/database.sqlite
 php artisan migrate --seed
 php artisan serve
 ```
+
+veya: `make demo`
 
 ### Demo hesaplar (seeder)
 
@@ -33,17 +35,19 @@ php artisan serve
 | Super Admin | admin@kvkk360.test | password |
 | Danışman | danisman@kvkk360.test | password |
 
-## Mimari
-
-DDD + Service Layer + Repository. Detay: `docs/architecture/`, faz durumu: `docs/PHASE_STATUS.md`.
-
-## Kalite
+## Docker (üretim iskeleti)
 
 ```bash
-composer test
-vendor/bin/pint --test
-vendor/bin/phpstan analyse
+cp .env.example .env
+php artisan key:generate
+php artisan jwt:secret
+make up
+curl -sf http://localhost:8080/up
+docker compose exec app php artisan deploy:check
+docker compose exec app php artisan db:seed --force
 ```
+
+Detay: [`docs/faz-36/DEPLOYMENT.md`](docs/faz-36/DEPLOYMENT.md)
 
 ## API (JWT)
 
@@ -59,7 +63,29 @@ Kimlik doğrulama sonrası tenant için `X-Tenant-Id: <tenant-uuid>` başlığı
 - `POST /api/v1/companies/{uuid}/analysis`
 - `GET /api/v1/analysis/{uuid}`
 
+## Mimari
+
+DDD + Service Layer + Repository. Detay: `docs/architecture/`, faz durumu: `docs/PHASE_STATUS.md`.
+
+## Kalite
+
+```bash
+composer test
+vendor/bin/pint --test
+vendor/bin/phpstan analyse
+# veya: make ci
+```
+
+CI: `.github/workflows/ci.yml`
+
+## Production checklist
+
+- `APP_ENV=production`, `APP_DEBUG=false`
+- `APP_KEY` + `JWT_SECRET`
+- Queue worker + scheduler
+- `php artisan deploy:check`
+- Health probe: `GET /up`
+
 ## Faz durumu
 
-Tamamlanan: **01–35**  
-Sıradaki: **36 Deployment**
+Tamamlanan: **01–36** (yol haritası kapandı)

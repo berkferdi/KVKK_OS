@@ -68,6 +68,7 @@ app/
 - `OPENAI_API_KEY`, `JWT_SECRET`, Redis, queue `redis`
 - Belge şablon path: `storage/app/templates`
 
-## Docker (FAZ 36’ya kadar iskelet)
+## Docker (FAZ 36)
 
-`docker-compose.yml`: app, nginx, mysql, redis, queue worker, scheduler.
+`docker-compose.yml`: app (PHP-FPM), nginx, mysql, redis, queue worker, scheduler.  
+Runbook: `docs/faz-36/DEPLOYMENT.md`. Health: `GET /up`. Kontrol: `php artisan deploy:check`.

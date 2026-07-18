@@ -37,6 +37,6 @@
 | 33 | API | **tamamlandı** | JWT + X-Tenant-Id; firma/şube/analiz REST |
 | 34 | Bildirimler | **tamamlandı** | DB+mail; analiz + vade taraması; navbar zili |
 | 35 | Backup | **tamamlandı** | ZIP+SQL dump; schedule; süper admin UI |
-| 36 | Deployment | **sıradaki** | |
+| 36 | Deployment | **tamamlandı** | Docker Compose, CI, deploy:check, runbook |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–35 tamamlandı. Sıradaki: FAZ 36 Deployment.
+**Son güncelleme:** 2026-07-18 — FAZ 01–36 tamamlandı. Yol haritası kapandı.

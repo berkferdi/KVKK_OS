@@ -17,4 +17,4 @@ Platform düzeyinde veritabanı yedeği. ZIP içinde `database.sql` + `meta.json
 - Tam restore UI bu fazda yok (SQL arşivi indirilir)
 
 ## Sonraki faz
-FAZ 36 — Deployment
+FAZ 36 — Deployment (tamamlandı; yol haritası kapandı)
