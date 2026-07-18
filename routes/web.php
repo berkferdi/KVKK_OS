@@ -225,6 +225,7 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::post('/generated-documents', [GeneratedDocumentController::class, 'store'])->name('store');
             Route::get('/generated-documents/{generated_document}', [GeneratedDocumentController::class, 'show'])->name('show');
             Route::get('/generated-documents/{generated_document}/download', [GeneratedDocumentController::class, 'download'])->name('download');
+            Route::get('/generated-documents/{generated_document}/download-pdf', [GeneratedDocumentController::class, 'downloadPdf'])->name('download-pdf');
             Route::delete('/generated-documents/{generated_document}', [GeneratedDocumentController::class, 'destroy'])->name('destroy');
         });
 

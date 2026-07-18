@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–29**  
-Sıradaki: **30 PDF**
+Tamamlanan: **01–30**  
+Sıradaki: **31 ZIP**

@@ -41,7 +41,7 @@ class DocumentTemplateService
     {
         $data['tenant_id'] = $data['tenant_id'] ?? $this->tenantContext->id();
         $data['source'] = $data['source'] ?? 'manual';
-        $data['output_formats'] = $data['output_formats'] ?? ['text', 'docx'];
+        $data['output_formats'] = $data['output_formats'] ?? ['text', 'docx', 'pdf'];
         $data['is_active'] = (bool) ($data['is_active'] ?? true);
         $data['version'] = (int) ($data['version'] ?? 1);
 

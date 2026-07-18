@@ -5,6 +5,7 @@
 @section('page_actions')
     @if($document->status->value !== 'failed')
         <a href="{{ route('companies.generated-documents.download', [$company, $document]) }}" class="btn btn-sm text-white" style="background:#1f6f5b;">Word İndir</a>
+        <a href="{{ route('companies.generated-documents.download-pdf', [$company, $document]) }}" class="btn btn-sm btn-outline-danger">PDF İndir</a>
     @endif
     <form method="POST" action="{{ route('companies.generated-documents.destroy', [$company, $document]) }}" class="d-inline" onsubmit="return confirm('Silinsin mi?')">
         @csrf @method('DELETE')
@@ -17,7 +18,8 @@
     <dl class="row mb-0">
         <dt class="col-sm-3">Şablon</dt><dd class="col-sm-9"><code>{{ $document->code }}</code> — {{ $document->template?->title }}</dd>
         <dt class="col-sm-3">Durum / Sürüm</dt><dd class="col-sm-9">{{ $document->status->value }} / v{{ $document->version }}</dd>
-        <dt class="col-sm-3">Format</dt><dd class="col-sm-9">{{ $document->format }} @if($document->file_path)<span class="text-muted small">({{ $document->file_path }})</span>@endif</dd>
+        <dt class="col-sm-3">Word</dt><dd class="col-sm-9">{{ $document->file_path ?: '—' }}</dd>
+        <dt class="col-sm-3">PDF</dt><dd class="col-sm-9">{{ $document->pdf_path ?: '—' }}</dd>
         <dt class="col-sm-3">Üretim</dt><dd class="col-sm-9">{{ $document->generated_at?->format('d.m.Y H:i') ?: '—' }}</dd>
         @if (! empty($document->missing_placeholders))
             <dt class="col-sm-3">Eksik alanlar</dt>

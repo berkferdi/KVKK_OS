@@ -125,3 +125,8 @@
 - `phpoffice/phpword` ile `.docx` üretimi
 - Başarılı belge üretiminde otomatik Word dosyası; indirme endpoint’i
 - `failed` belgeler indirilemez; silmede dosya temizliği
+
+### FAZ 30 — PDF
+- `mpdf/mpdf` ile `.pdf` üretimi (`pdf_path`)
+- Başarılı belge üretiminde otomatik PDF; indirme endpoint’i
+- Word ve PDF yolları ayrı; silmede her iki dosya temizliği

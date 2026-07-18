@@ -29,7 +29,7 @@ class DocumentTemplateFactory extends Factory
             'description' => 'Demo şablon',
             'body' => "Belge: {{firma_unvani}}\nAdres: {{adres}}\nMERSİS: {{mersis}}",
             'storage_path' => null,
-            'output_formats' => ['text', 'docx'],
+            'output_formats' => ['text', 'docx', 'pdf'],
             'version' => 1,
             'is_active' => true,
             'source' => 'manual',

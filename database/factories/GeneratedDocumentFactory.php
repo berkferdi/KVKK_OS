@@ -34,6 +34,7 @@ class GeneratedDocumentFactory extends Factory
             'source' => 'manual',
             'format' => 'text',
             'file_path' => null,
+            'pdf_path' => null,
             'mime_type' => 'text/plain',
             'version' => 1,
             'generated_at' => now(),

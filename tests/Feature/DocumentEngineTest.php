@@ -38,10 +38,13 @@ class DocumentEngineTest extends TestCase
         $this->assertSame([], $document->missing_placeholders);
         $this->assertSame('docx', $document->format);
         $this->assertNotNull($document->file_path);
+        $this->assertNotNull($document->pdf_path);
         Storage::disk('local')->assertExists((string) $document->file_path);
+        Storage::disk('local')->assertExists((string) $document->pdf_path);
         $response->assertRedirect(route('companies.generated-documents.show', [$company, $document]));
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.generated']);
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.word_exported']);
+        $this->assertDatabaseHas('audit_logs', ['action' => 'document.pdf_exported']);
     }
 
     public function test_consultant_can_download_generated_word_document(): void
@@ -66,6 +69,30 @@ class DocumentEngineTest extends TestCase
         $response->assertHeader('content-disposition');
         $this->assertStringContainsString('.docx', (string) $response->headers->get('content-disposition'));
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.word_downloaded']);
+    }
+
+    public function test_consultant_can_download_generated_pdf_document(): void
+    {
+        Storage::fake('local');
+        [$user, $tenant, $company, $template] = $this->seedConsultantContext();
+
+        $this->actingAs($user)
+            ->withSession(['tenant_id' => $tenant->id])
+            ->post(route('companies.generated-documents.store', $company), [
+                'document_template_id' => $template->id,
+            ]);
+
+        $document = GeneratedDocument::query()->where('document_template_id', $template->id)->first();
+        $this->assertNotNull($document);
+
+        $response = $this->actingAs($user)
+            ->withSession(['tenant_id' => $tenant->id])
+            ->get(route('companies.generated-documents.download-pdf', [$company, $document]));
+
+        $response->assertOk();
+        $response->assertHeader('content-disposition');
+        $this->assertStringContainsString('.pdf', (string) $response->headers->get('content-disposition'));
+        $this->assertDatabaseHas('audit_logs', ['action' => 'document.pdf_downloaded']);
     }
 
     public function test_generation_fails_when_required_placeholders_missing(): void

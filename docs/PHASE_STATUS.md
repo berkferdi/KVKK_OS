@@ -31,12 +31,12 @@
 | 27 | Eğitim | **tamamlandı** | Eğitim kayıtları, tamamlanınca +1 yıl sonraki vade |
 | 28 | Belge Motoru | **tamamlandı** | Şablon + placeholder + metin üretim/önizleme |
 | 29 | Word | **tamamlandı** | PHPWord ile .docx üretim ve indirme |
-| 30 | PDF | **sıradaki** | |
-| 31 | ZIP | bekliyor | |
+| 30 | PDF | **tamamlandı** | mPDF ile .pdf üretim ve indirme |
+| 31 | ZIP | **sıradaki** | |
 | 32 | AI Engine | bekliyor | |
 | 33 | API | bekliyor | |
 | 34 | Bildirimler | bekliyor | |
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–29 tamamlandı. Sıradaki: FAZ 30 PDF.
+**Son güncelleme:** 2026-07-18 — FAZ 01–30 tamamlandı. Sıradaki: FAZ 31 ZIP.

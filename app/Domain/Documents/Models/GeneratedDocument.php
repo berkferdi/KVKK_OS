@@ -32,6 +32,7 @@ class GeneratedDocument extends Model
         'source',
         'format',
         'file_path',
+        'pdf_path',
         'mime_type',
         'version',
         'generated_at',

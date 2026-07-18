@@ -25,6 +25,7 @@
                         <a href="{{ route('companies.generated-documents.show', [$company, $document]) }}" class="btn btn-sm btn-outline-primary">Görüntüle</a>
                         @if($document->status->value !== 'failed')
                             <a href="{{ route('companies.generated-documents.download', [$company, $document]) }}" class="btn btn-sm btn-outline-success">Word</a>
+                            <a href="{{ route('companies.generated-documents.download-pdf', [$company, $document]) }}" class="btn btn-sm btn-outline-danger">PDF</a>
                         @endif
                     </td>
                 </tr>

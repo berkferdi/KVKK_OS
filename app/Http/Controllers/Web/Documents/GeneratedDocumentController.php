@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Documents;
 
 use App\Application\Services\Documents\DocumentGenerationService;
 use App\Application\Services\Documents\DocumentTemplateService;
+use App\Application\Services\Documents\PdfExportService;
 use App\Application\Services\Documents\WordExportService;
 use App\Domain\Documents\Enums\GenerationStatus;
 use App\Domain\Documents\Models\DocumentTemplate;
@@ -23,6 +24,7 @@ class GeneratedDocumentController extends Controller
         private readonly DocumentGenerationService $generations,
         private readonly DocumentTemplateService $templates,
         private readonly WordExportService $wordExport,
+        private readonly PdfExportService $pdfExport,
     ) {}
 
     public function index(Company $company): View
@@ -99,6 +101,27 @@ class GeneratedDocumentController extends Controller
 
         try {
             return $this->wordExport->download($generatedDocument);
+        } catch (InvalidArgumentException|RuntimeException $e) {
+            return redirect()
+                ->route('companies.generated-documents.show', [$company, $generatedDocument])
+                ->with('error', $e->getMessage());
+        }
+    }
+
+    public function downloadPdf(Company $company, GeneratedDocument $generatedDocument): StreamedResponse|RedirectResponse
+    {
+        $this->authorize('view', $company);
+        $this->authorize('view', $generatedDocument);
+        abort_unless($generatedDocument->company_id === $company->id, 404);
+
+        if ($generatedDocument->status === GenerationStatus::Failed) {
+            return redirect()
+                ->route('companies.generated-documents.show', [$company, $generatedDocument])
+                ->with('error', 'Başarısız belgeler PDF olarak indirilemez.');
+        }
+
+        try {
+            return $this->pdfExport->download($generatedDocument);
         } catch (InvalidArgumentException|RuntimeException $e) {
             return redirect()
                 ->route('companies.generated-documents.show', [$company, $generatedDocument])

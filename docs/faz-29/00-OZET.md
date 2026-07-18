@@ -16,4 +16,4 @@ Belge motoru çıktılarına PHPWord ile `.docx` üretimi ve indirme.
 - Silmede Word dosyası da kaldırılır
 
 ## Sonraki faz
-FAZ 30 — PDF
+FAZ 30 — PDF (tamamlandı) → FAZ 31 ZIP
