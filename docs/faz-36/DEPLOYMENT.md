@@ -65,3 +65,12 @@ Push/PR → `.github/workflows/ci.yml` (Pint, PHPStan, PHPUnit).
 docker compose exec app php artisan backup:run
 ```
 Arşivler `storage/app/private/backups` (compose volume: `app-storage`).
+
+## 7) Belge şablonlarını yenileme
+Seed kaynaklı şablon gövdelerini güncellemek için:
+```bash
+php artisan documents:refresh-templates
+```
+cPanel’de SSH yoksa geçici olarak `public/refresh_templates_once.php` yükleyip
+`?token=KVKK360_REFRESH_TEMPLATES` ile bir kez çalıştırın; ardından dosyayı silin.
+Elle düzenlenmiş (`source != seed`) şablonlar ezilmez.

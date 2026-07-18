@@ -120,6 +120,8 @@
 - Placeholder çözümü (`{{firma_unvani}}` vb.), metin render ve önizleme
 - Eksik placeholder → failed; başarılı üretimde önceki sürüm superseded
 - Yetkiler: `templates.view` / `templates.manage`
+- Seed şablonları tam hukuki metin (kamera/web/gizlilik/çerez); kamera alanları envanterden (`kamera_sayisi`, `kamera_alanlari`, `kamera_saklama_gun`)
+- `documents:refresh-templates` ile seed şablon yenileme
 
 ### FAZ 29 — Word
 - `phpoffice/phpword` ile `.docx` üretimi
