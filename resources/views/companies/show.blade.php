@@ -83,6 +83,9 @@
                     @can('viewAny', App\Domain\Trainings\Models\TrainingRecord::class)
                         <a href="{{ route('companies.trainings.index', $company) }}" class="btn btn-outline-primary">Eğitimler</a>
                     @endcan
+                    @can('viewAny', App\Domain\Documents\Models\GeneratedDocument::class)
+                        <a href="{{ route('companies.generated-documents.index', $company) }}" class="btn btn-outline-primary">Üretilen Belgeler</a>
+                    @endcan
                 </div>
             </div>
         </div>

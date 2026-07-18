@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–27**  
-Sıradaki: **28 Belge Motoru**
+Tamamlanan: **01–28**  
+Sıradaki: **29 Word**

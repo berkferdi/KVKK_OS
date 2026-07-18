@@ -8,6 +8,7 @@ use App\Domain\Breaches\Models\DataBreach;
 use App\Domain\Cameras\Models\Camera;
 use App\Domain\Cookies\Models\SiteCookie;
 use App\Domain\Customers\Models\Customer;
+use App\Domain\Documents\Models\GeneratedDocument;
 use App\Domain\Documents\Models\PolicyDocument;
 use App\Domain\Documents\Models\ProcedureDocument;
 use App\Domain\Inventory\Models\ProcessingActivity;
@@ -217,5 +218,13 @@ class Company extends Model
     public function trainingRecords(): HasMany
     {
         return $this->hasMany(TrainingRecord::class);
+    }
+
+    /**
+     * @return HasMany<GeneratedDocument, $this>
+     */
+    public function generatedDocuments(): HasMany
+    {
+        return $this->hasMany(GeneratedDocument::class);
     }
 }

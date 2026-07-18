@@ -70,6 +70,8 @@ class DatabaseSeeder extends Seeder
             'audits.manage',
             'trainings.view',
             'trainings.manage',
+            'templates.view',
+            'templates.manage',
             'dashboard.view',
         ];
 
@@ -152,12 +154,15 @@ class DatabaseSeeder extends Seeder
             'audits.manage',
             'trainings.view',
             'trainings.manage',
+            'templates.view',
+            'templates.manage',
             'dashboard.view',
         ]);
 
         $consultant->assignRole($consultantRole);
 
         $this->call(ComplianceRuleSeeder::class);
+        $this->call(DocumentTemplateSeeder::class);
 
         $company = Company::query()->create([
             'tenant_id' => $tenant->id,

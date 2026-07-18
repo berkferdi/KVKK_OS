@@ -60,6 +60,12 @@
                             <p>Yetkiler</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('document-templates.index') }}" class="nav-link {{ request()->routeIs('document-templates.*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-file-alt"></i>
+                            <p>Belge Şablonları</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>

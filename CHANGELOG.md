@@ -114,3 +114,9 @@
 - Firma nested eğitim kaydı CRUD (`training_records`)
 - Tür, yöntem, katılımcı; tamamlanınca otomatik +1 yıl sonraki eğitim vadesi
 - Yetkiler: `trainings.view` / `trainings.manage`
+
+### FAZ 28 — Belge Motoru
+- Şablon kataloğu (`document_templates`) + üretilen belgeler (`generated_documents`)
+- Placeholder çözümü (`{{firma_unvani}}` vb.), metin render ve önizleme
+- Eksik placeholder → failed; başarılı üretimde önceki sürüm superseded
+- Yetkiler: `templates.view` / `templates.manage`

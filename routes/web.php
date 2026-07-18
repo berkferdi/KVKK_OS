@@ -9,6 +9,8 @@ use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\Cookies\SiteCookieController;
 use App\Http\Controllers\Web\Customers\CustomerController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Documents\DocumentTemplateController;
+use App\Http\Controllers\Web\Documents\GeneratedDocumentController;
 use App\Http\Controllers\Web\Documents\PolicyDocumentController;
 use App\Http\Controllers\Web\Documents\ProcedureDocumentController;
 use App\Http\Controllers\Web\Identity\PermissionController;
@@ -217,10 +219,19 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::delete('/trainings/{training}', [TrainingRecordController::class, 'destroy'])->name('destroy');
         });
 
+        Route::name('companies.generated-documents.')->group(function (): void {
+            Route::get('/generated-documents', [GeneratedDocumentController::class, 'index'])->name('index');
+            Route::get('/generated-documents/create', [GeneratedDocumentController::class, 'create'])->name('create');
+            Route::post('/generated-documents', [GeneratedDocumentController::class, 'store'])->name('store');
+            Route::get('/generated-documents/{generated_document}', [GeneratedDocumentController::class, 'show'])->name('show');
+            Route::delete('/generated-documents/{generated_document}', [GeneratedDocumentController::class, 'destroy'])->name('destroy');
+        });
+
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');
         Route::post('/analysis', [AnalysisWizardController::class, 'store'])->name('companies.analysis.store');
     });
 
+    Route::resource('document-templates', DocumentTemplateController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class)->except(['show']);
     Route::get('/permissions', [PermissionController::class, 'index'])->name('permissions.index');
