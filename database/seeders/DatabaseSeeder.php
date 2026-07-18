@@ -66,6 +66,8 @@ class DatabaseSeeder extends Seeder
             'applications.manage',
             'breaches.view',
             'breaches.manage',
+            'audits.view',
+            'audits.manage',
             'dashboard.view',
         ];
 
@@ -144,6 +146,8 @@ class DatabaseSeeder extends Seeder
             'applications.manage',
             'breaches.view',
             'breaches.manage',
+            'audits.view',
+            'audits.manage',
             'dashboard.view',
         ]);
 

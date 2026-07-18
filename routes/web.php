@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Web\Applications\DataSubjectApplicationController;
+use App\Http\Controllers\Web\Audits\ComplianceAuditController;
 use App\Http\Controllers\Web\Auth\LoginController;
 use App\Http\Controllers\Web\Breaches\DataBreachController;
 use App\Http\Controllers\Web\Cameras\CameraController;
@@ -193,6 +194,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/breaches/{breach}/edit', [DataBreachController::class, 'edit'])->name('edit');
             Route::put('/breaches/{breach}', [DataBreachController::class, 'update'])->name('update');
             Route::delete('/breaches/{breach}', [DataBreachController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.audits.')->group(function (): void {
+            Route::get('/audits', [ComplianceAuditController::class, 'index'])->name('index');
+            Route::get('/audits/create', [ComplianceAuditController::class, 'create'])->name('create');
+            Route::post('/audits', [ComplianceAuditController::class, 'store'])->name('store');
+            Route::get('/audits/{audit}', [ComplianceAuditController::class, 'show'])->name('show');
+            Route::get('/audits/{audit}/edit', [ComplianceAuditController::class, 'edit'])->name('edit');
+            Route::put('/audits/{audit}', [ComplianceAuditController::class, 'update'])->name('update');
+            Route::delete('/audits/{audit}', [ComplianceAuditController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

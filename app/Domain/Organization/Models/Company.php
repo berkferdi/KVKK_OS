@@ -3,6 +3,7 @@
 namespace App\Domain\Organization\Models;
 
 use App\Domain\Applications\Models\DataSubjectApplication;
+use App\Domain\Audits\Models\ComplianceAudit;
 use App\Domain\Breaches\Models\DataBreach;
 use App\Domain\Cameras\Models\Camera;
 use App\Domain\Cookies\Models\SiteCookie;
@@ -199,5 +200,13 @@ class Company extends Model
     public function dataBreaches(): HasMany
     {
         return $this->hasMany(DataBreach::class);
+    }
+
+    /**
+     * @return HasMany<ComplianceAudit, $this>
+     */
+    public function complianceAudits(): HasMany
+    {
+        return $this->hasMany(ComplianceAudit::class);
     }
 }

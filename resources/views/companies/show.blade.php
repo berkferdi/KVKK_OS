@@ -77,6 +77,9 @@
                     @can('viewAny', App\Domain\Breaches\Models\DataBreach::class)
                         <a href="{{ route('companies.breaches.index', $company) }}" class="btn btn-outline-primary">Veri İhlalleri</a>
                     @endcan
+                    @can('viewAny', App\Domain\Audits\Models\ComplianceAudit::class)
+                        <a href="{{ route('companies.audits.index', $company) }}" class="btn btn-outline-primary">Denetimler</a>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -104,3 +104,8 @@
 - Firma nested veri ihlali CRUD (`data_breaches`)
 - Tip, önem, durum; otomatik 72 saat kurum bildirim vadesi
 - Yetkiler: `breaches.view` / `breaches.manage`
+
+### FAZ 26 — Denetim
+- Firma nested uyum denetimi CRUD (`compliance_audits`)
+- Tür, sonuç, plan/takvim; tamamlanınca otomatik +1 yıl sonraki denetim vadesi
+- Yetkiler: `audits.view` / `audits.manage`
