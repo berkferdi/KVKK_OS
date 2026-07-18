@@ -142,3 +142,8 @@
 - `ai_generations`: belge taslağı ve analiz bulgu özeti
 - PII-safe prompt (vergi/MERSİS/e-posta/telefon yok; hassas satırlar temizlenir)
 - Yetkiler: `ai.view` / `ai.generate`
+
+### FAZ 33 — API
+- JWT API kiracı middleware: `X-Tenant-Id` (uuid)
+- REST: firmalar CRUD, şube listesi, analiz çalıştır/göster
+- JSON Resources; `/auth/me` kiracı listesi döner

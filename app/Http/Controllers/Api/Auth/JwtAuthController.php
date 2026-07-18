@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Application\Services\Audit\AuditLogger;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Resources\TenantResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,7 @@ class JwtAuthController extends Controller
     {
         /** @var User $user */
         $user = $this->apiGuard()->user();
+        $user->load('tenants');
 
         return response()->json([
             'data' => [
@@ -54,6 +56,7 @@ class JwtAuthController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'is_super_admin' => $user->is_super_admin,
+                'tenants' => TenantResource::collection($user->tenants),
             ],
         ]);
     }

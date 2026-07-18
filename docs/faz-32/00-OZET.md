@@ -22,4 +22,4 @@ OpenAI’yi servis katmanı arkasına alan AI Engine temeli. Varsayılan `heuris
 - Üretimler audit log’a yazılır
 
 ## Sonraki faz
-FAZ 33 — API
+FAZ 33 — API (tamamlandı) → FAZ 34 Bildirimler

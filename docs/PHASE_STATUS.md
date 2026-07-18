@@ -34,9 +34,9 @@
 | 30 | PDF | **tamamlandı** | mPDF ile .pdf üretim ve indirme |
 | 31 | ZIP | **tamamlandı** | Teslim klasörü ZIP paketleme |
 | 32 | AI Engine | **tamamlandı** | Heuristic/OpenAI sürücü, belge taslağı + bulgu özeti |
-| 33 | API | **sıradaki** | |
-| 34 | Bildirimler | bekliyor | |
+| 33 | API | **tamamlandı** | JWT + X-Tenant-Id; firma/şube/analiz REST |
+| 34 | Bildirimler | **sıradaki** | |
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–32 tamamlandı. Sıradaki: FAZ 33 API.
+**Son güncelleme:** 2026-07-18 — FAZ 01–33 tamamlandı. Sıradaki: FAZ 34 Bildirimler.

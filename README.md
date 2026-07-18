@@ -47,12 +47,19 @@ vendor/bin/phpstan analyse
 
 ## API (JWT)
 
+Kimlik doğrulama sonrası tenant için `X-Tenant-Id: <tenant-uuid>` başlığı gönderin (yoksa ilk üyelik kullanılır).
+
 - `POST /api/v1/auth/login`
-- `GET /api/v1/auth/me`
+- `GET /api/v1/auth/me` — kullanıcı + kiracılar
 - `POST /api/v1/auth/logout`
 - `POST /api/v1/auth/refresh`
+- `GET|POST /api/v1/companies`
+- `GET|PUT|PATCH|DELETE /api/v1/companies/{uuid}`
+- `GET /api/v1/companies/{uuid}/branches`
+- `POST /api/v1/companies/{uuid}/analysis`
+- `GET /api/v1/analysis/{uuid}`
 
 ## Faz durumu
 
-Tamamlanan: **01–32**  
-Sıradaki: **33 API**
+Tamamlanan: **01–33**  
+Sıradaki: **34 Bildirimler**

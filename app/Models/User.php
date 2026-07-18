@@ -19,6 +19,12 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory, HasRoles, HasUuid, Notifiable, SoftDeletes;
 
     /**
+     * Spatie Permission guard — roles/permissions are seeded for "web".
+     * Keep this fixed so JWT (api guard) checks still resolve web permissions.
+     */
+    protected string $guard_name = 'web';
+
+    /**
      * @var list<string>
      */
     protected $fillable = [
