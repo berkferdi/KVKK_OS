@@ -130,3 +130,9 @@
 - `mpdf/mpdf` ile `.pdf` üretimi (`pdf_path`)
 - Başarılı belge üretiminde otomatik PDF; indirme endpoint’i
 - Word ve PDF yolları ayrı; silmede her iki dosya temizliği
+
+### FAZ 31 — ZIP
+- Firma teslim paketi (`delivery_packages`) — 01–15 klasör yapısı
+- Üretilmiş Word/PDF dosyalarını kategori klasörlerine paketler
+- MANIFEST.txt; önceki paketleri superseded yapar
+- Yetkiler: `packages.view` / `packages.manage`

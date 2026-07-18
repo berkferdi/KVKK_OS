@@ -18,4 +18,4 @@ Belge motoru çıktılarına mPDF ile `.pdf` üretimi ve indirme.
 - Word (`file_path`) ile PDF (`pdf_path`) ayrı tutulur
 
 ## Sonraki faz
-FAZ 31 — ZIP
+FAZ 31 — ZIP (tamamlandı) → FAZ 32 AI Engine

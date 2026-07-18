@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\Compliance\AnalysisWizardController;
 use App\Http\Controllers\Web\Cookies\SiteCookieController;
 use App\Http\Controllers\Web\Customers\CustomerController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\Documents\DeliveryPackageController;
 use App\Http\Controllers\Web\Documents\DocumentTemplateController;
 use App\Http\Controllers\Web\Documents\GeneratedDocumentController;
 use App\Http\Controllers\Web\Documents\PolicyDocumentController;
@@ -227,6 +228,14 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::get('/generated-documents/{generated_document}/download', [GeneratedDocumentController::class, 'download'])->name('download');
             Route::get('/generated-documents/{generated_document}/download-pdf', [GeneratedDocumentController::class, 'downloadPdf'])->name('download-pdf');
             Route::delete('/generated-documents/{generated_document}', [GeneratedDocumentController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::name('companies.delivery-packages.')->group(function (): void {
+            Route::get('/delivery-packages', [DeliveryPackageController::class, 'index'])->name('index');
+            Route::post('/delivery-packages', [DeliveryPackageController::class, 'store'])->name('store');
+            Route::get('/delivery-packages/{delivery_package}', [DeliveryPackageController::class, 'show'])->name('show');
+            Route::get('/delivery-packages/{delivery_package}/download', [DeliveryPackageController::class, 'download'])->name('download');
+            Route::delete('/delivery-packages/{delivery_package}', [DeliveryPackageController::class, 'destroy'])->name('destroy');
         });
 
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');

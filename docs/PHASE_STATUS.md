@@ -32,11 +32,11 @@
 | 28 | Belge Motoru | **tamamlandı** | Şablon + placeholder + metin üretim/önizleme |
 | 29 | Word | **tamamlandı** | PHPWord ile .docx üretim ve indirme |
 | 30 | PDF | **tamamlandı** | mPDF ile .pdf üretim ve indirme |
-| 31 | ZIP | **sıradaki** | |
-| 32 | AI Engine | bekliyor | |
+| 31 | ZIP | **tamamlandı** | Teslim klasörü ZIP paketleme |
+| 32 | AI Engine | **sıradaki** | |
 | 33 | API | bekliyor | |
 | 34 | Bildirimler | bekliyor | |
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–30 tamamlandı. Sıradaki: FAZ 31 ZIP.
+**Son güncelleme:** 2026-07-18 — FAZ 01–31 tamamlandı. Sıradaki: FAZ 32 AI Engine.

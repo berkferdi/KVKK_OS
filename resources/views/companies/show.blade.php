@@ -86,6 +86,9 @@
                     @can('viewAny', App\Domain\Documents\Models\GeneratedDocument::class)
                         <a href="{{ route('companies.generated-documents.index', $company) }}" class="btn btn-outline-primary">Üretilen Belgeler</a>
                     @endcan
+                    @can('viewAny', App\Domain\Documents\Models\DeliveryPackage::class)
+                        <a href="{{ route('companies.delivery-packages.index', $company) }}" class="btn btn-outline-primary">Teslim Paketi</a>
+                    @endcan
                 </div>
             </div>
         </div>

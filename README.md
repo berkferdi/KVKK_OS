@@ -54,5 +54,5 @@ vendor/bin/phpstan analyse
 
 ## Faz durumu
 
-Tamamlanan: **01–30**  
-Sıradaki: **31 ZIP**
+Tamamlanan: **01–31**  
+Sıradaki: **32 AI Engine**
