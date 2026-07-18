@@ -101,7 +101,7 @@ class ComplianceAuditService
             return $data;
         }
 
-        $completed = $data['completed_at'] ?? $existing?->completed_at ?? now();
+        $completed = $data['completed_at'] ?? ($existing !== null ? $existing->completed_at : null) ?? now();
         $data['completed_at'] = $data['completed_at'] ?? Carbon::parse($completed)->toDateTimeString();
         $data['next_audit_due_at'] = Carbon::parse($completed)->addYear()->toDateTimeString();
 
