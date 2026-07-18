@@ -11,20 +11,18 @@ use Throwable;
 
 class WordDocumentWriter
 {
-    private const ACCENT = '1F6F5B';
-
-    private const INK = '1A1A1A';
+    private const INK = '111111';
 
     public function __construct(
         private readonly DocumentBodyLayout $layout = new DocumentBodyLayout,
     ) {}
 
     /**
-     * Write rendered content into a styled .docx file.
+     * Write rendered content into a plain legal-style .docx file.
      *
      * @return string Absolute path written
      */
-    public function write(string $title, string $content, string $absolutePath): string
+    public function write(string $title, string $content, string $absolutePath, ?string $companyName = null): string
     {
         $directory = dirname($absolutePath);
         if (! is_dir($directory) && ! mkdir($directory, 0755, true) && ! is_dir($directory)) {
@@ -37,87 +35,82 @@ class WordDocumentWriter
         } catch (Throwable) {
             // Dil sabiti ortamda yoksa varsayılan ile devam et.
         }
-        $phpWord->setDefaultFontName('Times New Roman');
-        $phpWord->setDefaultFontSize(11);
-
-        $phpWord->addTitleStyle(1, [
-            'name' => 'Times New Roman',
-            'size' => 16,
-            'bold' => true,
-            'color' => '143D34',
-        ], [
-            'alignment' => Jc::CENTER,
-            'spaceAfter' => 240,
-        ]);
+        $phpWord->setDefaultFontName('Arial');
+        $phpWord->setDefaultFontSize(10);
 
         $section = $phpWord->addSection([
-            'marginTop' => 1000,
-            'marginBottom' => 1000,
+            'marginTop' => 850,
+            'marginBottom' => 850,
             'marginLeft' => 1134,
             'marginRight' => 1134,
         ]);
 
-        $header = $section->addHeader();
-        $headerTable = $header->addTable(['width' => 100 * 50, 'unit' => 'pct']);
-        $headerTable->addRow();
-        $headerTable->addCell(5000)->addText('KVKK 360', [
-            'size' => 9,
-            'bold' => true,
-            'color' => self::ACCENT,
-        ]);
-        $headerTable->addCell(5000)->addText(now()->format('d.m.Y'), [
-            'size' => 8,
-            'color' => '666666',
-        ], ['alignment' => Jc::END]);
-        $header->addTextBreak(0);
-        $header->addLine(['weight' => 1.5, 'width' => 450, 'height' => 0, 'color' => self::ACCENT]);
+        $company = $companyName ?: $this->layout->extractCompanyName($content);
+        if (is_string($company) && trim($company) !== '') {
+            $header = $section->addHeader();
+            $header->addText(trim($company), [
+                'size' => 8,
+                'color' => '555555',
+            ]);
+        }
 
         $footer = $section->addFooter();
-        $footer->addLine(['weight' => 0.5, 'width' => 450, 'height' => 0, 'color' => 'D0D7D4']);
-        $footerTable = $footer->addTable(['width' => 100 * 50, 'unit' => 'pct']);
-        $footerTable->addRow();
-        $footerTable->addCell(7000)->addText(
-            'Kişisel Verilerin Korunması Kanunu kapsamında bilgilendirme belgesi',
-            ['size' => 8, 'color' => '666666'],
-        );
-        $footerTable->addCell(3000)->addPreserveText('Sayfa {PAGE} / {NUMPAGES}', [
+        $footer->addPreserveText('{PAGE}', [
             'size' => 8,
-            'color' => '666666',
+            'color' => '777777',
         ], ['alignment' => Jc::END]);
 
-        $section->addTitle($title, 1);
+        $blocks = $this->layout->blocks($content, $title);
+        $hasTitle = false;
+        foreach ($blocks as $block) {
+            if ($block['type'] === 'title') {
+                $hasTitle = true;
+                break;
+            }
+        }
+        if (! $hasTitle && trim($title) !== '') {
+            array_unshift($blocks, ['type' => 'title', 'text' => $title]);
+        }
 
-        foreach ($this->layout->blocks($content) as $block) {
+        foreach ($blocks as $block) {
             match ($block['type']) {
-                'blank' => $section->addTextBreak(1),
-                'heading' => $section->addText($block['text'], [
+                'blank' => $section->addTextBreak(0),
+                'title' => $section->addText(mb_strtoupper($block['text'], 'UTF-8'), [
                     'bold' => true,
                     'size' => 12,
-                    'color' => self::ACCENT,
+                    'color' => self::INK,
                 ], [
-                    'spaceBefore' => 200,
-                    'spaceAfter' => 80,
+                    'alignment' => Jc::CENTER,
+                    'spaceAfter' => 160,
+                ]),
+                'heading' => $section->addText($block['text'], [
+                    'bold' => true,
+                    'size' => 10,
+                    'color' => self::INK,
+                ], [
+                    'spaceBefore' => 140,
+                    'spaceAfter' => 40,
                 ]),
                 'meta' => $section->addText($block['text'], [
-                    'size' => 10,
-                    'color' => '333333',
+                    'size' => 9,
+                    'color' => '222222',
                 ], [
-                    'spaceAfter' => 40,
+                    'spaceAfter' => 20,
                 ]),
                 'signature' => $section->addText($block['text'], [
                     'bold' => true,
-                    'size' => 11,
-                    'color' => '143D34',
+                    'size' => 10,
+                    'color' => self::INK,
                 ], [
-                    'spaceBefore' => 280,
-                    'spaceAfter' => 80,
+                    'spaceBefore' => 200,
+                    'spaceAfter' => 40,
                 ]),
                 default => $section->addText($block['text'], [
-                    'size' => 11,
+                    'size' => 10,
                     'color' => self::INK,
                 ], [
                     'alignment' => Jc::BOTH,
-                    'spaceAfter' => 120,
+                    'spaceAfter' => 80,
                     'lineHeight' => 1.15,
                 ]),
             };

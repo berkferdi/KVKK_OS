@@ -122,7 +122,7 @@
 - Yetkiler: `templates.view` / `templates.manage`
 - Seed şablonları tam hukuki metin (kamera/web/gizlilik/çerez); kamera alanları envanterden (`kamera_sayisi`, `kamera_alanlari`, `kamera_saklama_gun`)
 - `documents:refresh-templates` / UI “Varsayılanları Yenile” ile seed şablon yenileme
-- Word/PDF çıktısında başlık, bölüm, üstbilgi/altbilgi ve sayfa numarası tasarımı
+- Word/PDF çıktısında sade hukuki belge stili (KVKK 360 yok; üstte firma adı; küçük punto)
 - Şablon show sayfasında `{{placeholder}}` Blade ParseError düzeltmesi
 
 ### FAZ 29 — Word

@@ -36,8 +36,6 @@ class DocumentTemplateSeeder extends Seeder
                 'category' => TemplateCategory::Camera,
                 'description' => 'Kamera sistemleri için KVKK aydınlatma metni (tam metin)',
                 'body' => <<<'TXT'
-KAMERA AYDINLATMA METNİ
-
 KAMERA KAYITLARINA İLİŞKİN 6698 SAYILI KİŞİSEL VERİLERİN KORUNMASI KANUNU KAPSAMINDAKİ AYDINLATMA METNİ
 
 Veri Sorumlusu: {{firma_unvani}}
@@ -48,39 +46,31 @@ Vergi No: {{vergi_no}} ({{vergi_dairesi}})
 
 {{firma_unvani}} bina girişlerinde ve bina içerisinde yapılan kişisel veri işleme faaliyetleri, Türkiye Cumhuriyeti Anayasası’na, 6698 sayılı Kişisel Verilerin Korunması Kanunu’na (KVKK) ve ilgili diğer mevzuata uygun bir biçimde yürütülmektedir.
 
-Kamera ile İzleme Faaliyetinin Yasal Dayanağı ve Kişisel Verilerin Toplanma Yöntemi
-
+1. Yasal Dayanak ve Toplama Yöntemi
 Söz konusu kişisel veriler; işyeri, çalışan, ziyaretçi ve tesis güvenliğinin sağlanması amacıyla, KVKK’nın 5. maddesinde yer alan “veri sorumlusunun hukuki yükümlülüğünü yerine getirebilmesi için zorunlu olması” ve “ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla, veri sorumlusunun meşru menfaatleri için veri işlenmesinin zorunlu olması” hukuki sebeplerine dayanarak otomatik yolla işlenmektedir.
 
 {{firma_unvani}} hizmet alanında bulunan {{kamera_alanlari}} bölgelerinde toplam {{kamera_sayisi}} adet güvenlik kamerası vasıtasıyla ve bina/tesis güvenliğinin sağlanması amacıyla görüntü kaydı yapılmaktadır. Kayıt işlemi {{firma_unvani}} tarafından denetlenmektedir.
 
-KVK Hukukuna Göre Güvenlik Kamerası ile İzleme Faaliyeti Yürütülmesi
-
+2. Güvenlik Kamerası ile İzleme Faaliyeti
 {{firma_unvani}}, bina ve tesis güvenliğinin sağlanması amacıyla, yürürlükte bulunan ilgili mevzuatta öngörülen amaçlarla ve KVK Kanunu’nda sayılan kişisel veri işleme şartlarına uygun olarak güvenlik kamerası izleme faaliyetinde bulunmaktadır.
 
-Kamera ile İzleme Faaliyetinin Duyurulması
+3. İzleme Faaliyetinin Duyurulması
+KVK Kanunu’nun 10. maddesine uygun olarak kişisel veri sahibi aydınlatılmaktadır. {{firma_unvani}}, kamera ile izleme faaliyetine ilişkin olarak birden fazla yöntem ile bildirimde bulunmaktadır. Bu kapsamda izlemenin yapıldığı alanların girişlerine bildirim yazısı asılmaktadır.
 
-KVK Kanunu’nun 10. maddesine uygun olarak kişisel veri sahibi aydınlatılmaktadır. {{firma_unvani}}, kamera ile izleme faaliyetine ilişkin olarak birden fazla yöntem ile bildirimde bulunmaktadır. Böylelikle kişisel veri sahibinin temel hak ve özgürlüklerine zarar verilmesinin engellenmesi, şeffaflığın ve kişisel veri sahibinin aydınlatılmasının sağlanması amaçlanmaktadır. Bu kapsamda izlemenin yapıldığı alanların girişlerine bildirim yazısı asılmaktadır.
+4. İzleme Amacı ve İşleme Esasları
+{{firma_unvani}}, KVK Kanunu’nun 4. maddesine uygun olarak kişisel verileri işlendikleri amaçla bağlantılı, sınırlı ve ölçülü bir biçimde işlemektedir. Kapalı devre kamera ile izleme faaliyetinin sürdürülmesindeki amaç; işyeri güvenliğinin sağlanması, hırsızlık ve vandalizmin önlenmesi, olası olayların tespiti ve çalışan/ziyaretçi güvenliğinin korunması ile sınırlıdır. Kişinin mahremiyetine güvenlik amaçlarını aşan şekilde müdahale sonucu doğurabilecek alanlarda (örneğin soyunma odaları, tuvaletler ve benzeri mahrem alanlar) izleme yapılmamaktadır.
 
-Kamera ile İzleme Faaliyetinin Yürütülme Amacı ve İşlenmesi
-
-{{firma_unvani}}, KVK Kanunu’nun 4. maddesine uygun olarak kişisel verileri işlendikleri amaçla bağlantılı, sınırlı ve ölçülü bir biçimde işlemektedir. Kapalı devre kamera ile izleme faaliyetinin sürdürülmesindeki amaç; işyeri güvenliğinin sağlanması, hırsızlık ve vandalizmin önlenmesi, olası olayların tespiti ve çalışan/ziyaretçi güvenliğinin korunması ile sınırlıdır. Bu doğrultuda güvenlik kameralarının izleme alanları, sayısı ve izleme süreleri güvenlik amacına ulaşmak için yeterli ve bu amaçla sınırlı olarak uygulamaya alınmaktadır. Kişinin mahremiyetine güvenlik amaçlarını aşan şekilde müdahale sonucu doğurabilecek alanlarda (örneğin soyunma odaları, tuvaletler ve benzeri mahrem alanlar) izleme yapılmamaktadır.
-
-Elde Edilen Verilerin Güvenliğinin Sağlanması
-
+5. Verilerin Güvenliği
 {{firma_unvani}} tarafından KVK Kanunu’nun 12. maddesine uygun olarak, kamera ile izleme faaliyeti sonucunda elde edilen kişisel verilerin güvenliğinin sağlanması için gerekli teknik ve idari tedbirler alınmaktadır.
 
-Kamera ile İzleme Faaliyeti ile Elde Edilen Kişisel Verilerin Muhafaza Süresi
+6. Muhafaza Süresi
+{{firma_unvani}} tarafından kamera ile elde edilen kişisel verilerin saklanma süresi {{kamera_saklama_gun}} gündür. Saklama süresinin sonunda kayıtlar silinir, yok edilir veya anonim hale getirilir.
 
-{{firma_unvani}} tarafından kamera ile elde edilen kişisel verilerin saklanma süresi {{kamera_saklama_gun}} gündür. Saklama süresinin sonunda kayıtlar silinir, yok edilir veya anonim hale getirilir; hukuki yükümlülük veya meşru menfaat kapsamında daha uzun süre saklanması gereken kayıtlar ilgili süre boyunca muhafaza edilebilir.
+7. Aktarım
+İzleme sonucunda elde edilen bilgilere sınırlı sayıda yetkili çalışanın erişimi bulunmaktadır. Kamera görüntüleri, {{firma_unvani}} bina/tesis güvenliğinin sağlanması amacıyla mevzuata uygun olarak yetkili kamu kurumlarına KVK Kanunu’nun 8. maddesinde belirtilen kişisel veri işleme şartları ve amaçları çerçevesinde aktarılabilmektedir. Söz konusu kişisel veriler hukuki uyuşmazlıkların giderilmesi veya ilgili mevzuatı gereği talep halinde adli makamlar veya ilgili kolluk kuvvetlerine aktarılabilecektir.
 
-Elde Edilen Kişisel Verilerin Hangi Amaçlarla Kimlere Aktarılacağı
-
-İzleme sonucunda elde edilen bilgilere sınırlı sayıda yetkili çalışanın erişimi bulunmaktadır. Kamera görüntüleri, {{firma_unvani}} bina/tesis güvenliğinin sağlanması amacıyla mevzuata uygun olarak yetkili kamu kurumlarına KVK Kanunu’nun 8. maddesinde belirtilen kişisel veri işleme şartları ve amaçları çerçevesinde aktarılabilmektedir. Kayıtlara erişimi olan sınırlı sayıda kişi gizlilik taahhütnamesi ile eriştiği verilerin gizliliğini koruyacağını beyan etmektedir. Söz konusu kişisel veriler hukuki uyuşmazlıkların giderilmesi veya ilgili mevzuatı gereği talep halinde adli makamlar veya ilgili kolluk kuvvetlerine aktarılabilecektir.
-
-İlgili Kişinin Hakları
-
-KVKK’nın 11. maddesi uyarınca ilgili kişi; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme, eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme, KVKK’nın 7. maddesinde öngörülen şartlar çerçevesinde silinmesini veya yok edilmesini isteme ve bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, otomatik sistemler ile analiz edilmesi suretiyle aleyhine bir sonucun ortaya çıkmasına itiraz etme ve kanuna aykırı işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme haklarına sahiptir.
+8. İlgili Kişinin Hakları
+KVKK’nın 11. maddesi uyarınca ilgili kişi; kişisel verilerinin işlenip işlenmediğini öğrenme, işlenmişse buna ilişkin bilgi talep etme, işlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme, eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme, KVKK’nın 7. maddesinde öngörülen şartlar çerçevesinde silinmesini veya yok edilmesini isteme, bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, otomatik sistemler ile analiz edilmesi suretiyle aleyhine bir sonucun ortaya çıkmasına itiraz etme ve kanuna aykırı işlenmesi sebebiyle zarara uğraması hâlinde zararın giderilmesini talep etme haklarına sahiptir.
 
 Başvurular {{eposta}} adresine veya {{adres}} adresine yazılı olarak iletilebilir.
 
@@ -95,8 +85,6 @@ TXT,
                 'body' => <<<'TXT'
 WEB SİTESİ AYDINLATMA METNİ
 
-6698 SAYILI KİŞİSEL VERİLERİN KORUNMASI KANUNU KAPSAMINDA AYDINLATMA METNİ
-
 Veri Sorumlusu: {{firma_unvani}}
 Ticaret Unvanı: {{ticaret_unvani}}
 Adres: {{adres}}, {{ilce}} / {{sehir}}
@@ -106,28 +94,22 @@ Vergi No: {{vergi_no}} ({{vergi_dairesi}})
 
 {{firma_unvani}} (“Şirket”) olarak web sitemizi ziyaret eden ilgili kişileri, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında bilgilendirmek amacıyla işbu aydınlatma metnini hazırlamıştır.
 
-İşlenen Kişisel Veriler
-
+1. İşlenen Kişisel Veriler
 Web sitemizin ziyaret edilmesi sırasında; kimlik, iletişim, işlem güvenliği, pazarlama ve müşteri işlem verileri ile çerezler aracılığıyla elde edilen trafik verileri işlenebilmektedir.
 
-Kişisel Verilerin İşlenme Amaçları
-
+2. İşlenme Amaçları
 Kişisel verileriniz; site işlevselliğinin sağlanması, kullanıcı deneyiminin iyileştirilmesi, bilgi güvenliğinin temini, yasal yükümlülüklerin yerine getirilmesi, talep ve şikayetlerin karşılanması ve meşru menfaatlerimizin korunması amaçlarıyla işlenmektedir.
 
-Hukuki Sebepler
-
+3. Hukuki Sebepler
 Kişisel verileriniz KVKK’nın 5. ve 6. maddelerinde belirtilen; kanunlarda açıkça öngörülmesi, sözleşmenin kurulması veya ifası, hukuki yükümlülüğün yerine getirilmesi, ilgili kişinin temel hak ve özgürlüklerine zarar vermemek kaydıyla meşru menfaat ve açık rıza hukuki sebeplerine dayanılarak işlenmektedir.
 
-Aktarım
-
+4. Aktarım
 Kişisel verileriniz, yukarıda belirtilen amaçlarla sınırlı olarak hizmet alınan tedarikçilere, yetkili kamu kurum ve kuruluşlarına ve kanunen yetkili özel kişilere aktarılabilecektir.
 
-Saklama Süresi
-
+5. Saklama Süresi
 Kişisel verileriniz, işlendikleri amaç için gerekli olan süre boyunca ve ilgili mevzuatta öngörülen zamanaşımı süreleri boyunca saklanır; süre sonunda silinir, yok edilir veya anonim hale getirilir.
 
-İlgili Kişi Hakları
-
+6. İlgili Kişi Hakları
 KVKK’nın 11. maddesi kapsamındaki haklarınızı {{eposta}} üzerinden veya {{adres}} adresine yazılı başvuru ile kullanabilirsiniz.
 
 Yetkili: {{yetkili}} ({{yetkili_unvan}})
@@ -183,27 +165,26 @@ TXT,
 
 {{firma_unvani}} (“Şirket”) web sitesinde kullanılan çerezlere ilişkin bilgilendirme metnidir.
 
-Veri Sorumlusu
-{{firma_unvani}}
+Veri Sorumlusu: {{firma_unvani}}
 Adres: {{adres}}, {{ilce}} / {{sehir}}
 MERSİS: {{mersis}}
 İletişim: {{eposta}}
 
-Çerez Nedir?
+1. Çerez Nedir?
 Çerezler, ziyaret ettiğiniz internet siteleri tarafından tarayıcınıza veya cihazınıza kaydedilen küçük metin dosyalarıdır.
 
-Kullanılan Çerez Türleri
-- Zorunlu çerezler: Sitenin temel işlevleri için gereklidir.
-- Performans / analitik çerezler: Site kullanımının ölçülmesi amacıyla kullanılabilir.
-- İşlevsel çerezler: Tercihlerinizin hatırlanması için kullanılabilir.
+2. Kullanılan Çerez Türleri
+Zorunlu çerezler: Sitenin temel işlevleri için gereklidir.
+Performans / analitik çerezler: Site kullanımının ölçülmesi amacıyla kullanılabilir.
+İşlevsel çerezler: Tercihlerinizin hatırlanması için kullanılabilir.
 
-Hukuki Sebep ve Amaç
+3. Hukuki Sebep ve Amaç
 Zorunlu çerezler meşru menfaat / hizmetin sunulması kapsamında; diğer çerezler ise ilgili kişinin açık rızasına dayanılarak kullanılabilir. Amaç; site güvenliği, performans ölçümü ve kullanıcı deneyiminin iyileştirilmesidir.
 
-Çerezleri Yönetme
+4. Çerezleri Yönetme
 Tarayıcı ayarlarından çerezleri silebilir veya engelleyebilirsiniz. Bazı çerezlerin engellenmesi site işlevlerini etkileyebilir.
 
-Haklarınız
+5. Haklarınız
 KVKK md. 11 kapsamındaki haklarınız için {{eposta}} adresine başvurabilirsiniz.
 
 Yetkili: {{yetkili}} ({{yetkili_unvan}})
