@@ -120,3 +120,8 @@
 - Placeholder çözümü (`{{firma_unvani}}` vb.), metin render ve önizleme
 - Eksik placeholder → failed; başarılı üretimde önceki sürüm superseded
 - Yetkiler: `templates.view` / `templates.manage`
+
+### FAZ 29 — Word
+- `phpoffice/phpword` ile `.docx` üretimi
+- Başarılı belge üretiminde otomatik Word dosyası; indirme endpoint’i
+- `failed` belgeler indirilemez; silmede dosya temizliği

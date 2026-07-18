@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Documents;
 
 use App\Application\Services\Documents\DocumentGenerationService;
 use App\Application\Services\Documents\DocumentTemplateService;
+use App\Application\Services\Documents\WordExportService;
 use App\Domain\Documents\Enums\GenerationStatus;
 use App\Domain\Documents\Models\DocumentTemplate;
 use App\Domain\Documents\Models\GeneratedDocument;
@@ -13,12 +14,15 @@ use App\Http\Requests\Documents\StoreGeneratedDocumentRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use InvalidArgumentException;
+use RuntimeException;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class GeneratedDocumentController extends Controller
 {
     public function __construct(
         private readonly DocumentGenerationService $generations,
         private readonly DocumentTemplateService $templates,
+        private readonly WordExportService $wordExport,
     ) {}
 
     public function index(Company $company): View
@@ -79,6 +83,27 @@ class GeneratedDocumentController extends Controller
             'company' => $company,
             'document' => $generatedDocument,
         ]);
+    }
+
+    public function download(Company $company, GeneratedDocument $generatedDocument): StreamedResponse|RedirectResponse
+    {
+        $this->authorize('view', $company);
+        $this->authorize('view', $generatedDocument);
+        abort_unless($generatedDocument->company_id === $company->id, 404);
+
+        if ($generatedDocument->status === GenerationStatus::Failed) {
+            return redirect()
+                ->route('companies.generated-documents.show', [$company, $generatedDocument])
+                ->with('error', 'Başarısız belgeler Word olarak indirilemez.');
+        }
+
+        try {
+            return $this->wordExport->download($generatedDocument);
+        } catch (InvalidArgumentException|RuntimeException $e) {
+            return redirect()
+                ->route('companies.generated-documents.show', [$company, $generatedDocument])
+                ->with('error', $e->getMessage());
+        }
     }
 
     public function destroy(Company $company, GeneratedDocument $generatedDocument): RedirectResponse

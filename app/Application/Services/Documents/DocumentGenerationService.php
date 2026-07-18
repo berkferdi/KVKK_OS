@@ -18,6 +18,7 @@ class DocumentGenerationService
         private readonly GeneratedDocumentRepository $generations,
         private readonly PlaceholderResolver $placeholders,
         private readonly DocumentRenderer $renderer,
+        private readonly WordExportService $wordExport,
         private readonly AuditLogger $auditLogger,
     ) {}
 
@@ -96,9 +97,12 @@ class DocumentGenerationService
             'metadata' => [],
         ]);
 
+        $document = $this->wordExport->export($document);
+
         $this->auditLogger->log('document.generated', $document, null, [
             'template_code' => $template->code,
             'version' => $document->version,
+            'format' => $document->format,
         ], $company->tenant_id);
 
         return $document;
@@ -111,6 +115,7 @@ class DocumentGenerationService
             'title' => $document->title,
             'status' => $status instanceof GenerationStatus ? $status->value : null,
         ];
+        $this->wordExport->deleteFile($document);
         $deleted = $this->generations->delete($document);
         if ($deleted) {
             $this->auditLogger->log('document.generation_deleted', $document, $old, null, $document->tenant_id);

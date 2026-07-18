@@ -30,8 +30,8 @@
 | 26 | Denetim | **tamamlandı** | Uyum denetimleri, tamamlanınca +1 yıl sonraki vade |
 | 27 | Eğitim | **tamamlandı** | Eğitim kayıtları, tamamlanınca +1 yıl sonraki vade |
 | 28 | Belge Motoru | **tamamlandı** | Şablon + placeholder + metin üretim/önizleme |
-| 29 | Word | **sıradaki** | |
-| 30 | PDF | bekliyor | |
+| 29 | Word | **tamamlandı** | PHPWord ile .docx üretim ve indirme |
+| 30 | PDF | **sıradaki** | |
 | 31 | ZIP | bekliyor | |
 | 32 | AI Engine | bekliyor | |
 | 33 | API | bekliyor | |
@@ -39,4 +39,4 @@
 | 35 | Backup | bekliyor | |
 | 36 | Deployment | bekliyor | |
 
-**Son güncelleme:** 2026-07-18 — FAZ 01–28 tamamlandı. Sıradaki: FAZ 29 Word.
+**Son güncelleme:** 2026-07-18 — FAZ 01–29 tamamlandı. Sıradaki: FAZ 30 PDF.

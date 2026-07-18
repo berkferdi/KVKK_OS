@@ -11,6 +11,7 @@ use App\Domain\Organization\Models\Company;
 use App\Domain\Organization\Models\Tenant;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
@@ -20,6 +21,7 @@ class DocumentEngineTest extends TestCase
 
     public function test_consultant_can_generate_document_from_template(): void
     {
+        Storage::fake('local');
         [$user, $tenant, $company, $template] = $this->seedConsultantContext();
 
         $response = $this->actingAs($user)
@@ -34,8 +36,36 @@ class DocumentEngineTest extends TestCase
         $this->assertStringContainsString('Örnek Teknoloji A.Ş.', (string) $document->rendered_content);
         $this->assertStringContainsString('0123456789012345', (string) $document->rendered_content);
         $this->assertSame([], $document->missing_placeholders);
+        $this->assertSame('docx', $document->format);
+        $this->assertNotNull($document->file_path);
+        Storage::disk('local')->assertExists((string) $document->file_path);
         $response->assertRedirect(route('companies.generated-documents.show', [$company, $document]));
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.generated']);
+        $this->assertDatabaseHas('audit_logs', ['action' => 'document.word_exported']);
+    }
+
+    public function test_consultant_can_download_generated_word_document(): void
+    {
+        Storage::fake('local');
+        [$user, $tenant, $company, $template] = $this->seedConsultantContext();
+
+        $this->actingAs($user)
+            ->withSession(['tenant_id' => $tenant->id])
+            ->post(route('companies.generated-documents.store', $company), [
+                'document_template_id' => $template->id,
+            ]);
+
+        $document = GeneratedDocument::query()->where('document_template_id', $template->id)->first();
+        $this->assertNotNull($document);
+
+        $response = $this->actingAs($user)
+            ->withSession(['tenant_id' => $tenant->id])
+            ->get(route('companies.generated-documents.download', [$company, $document]));
+
+        $response->assertOk();
+        $response->assertHeader('content-disposition');
+        $this->assertStringContainsString('.docx', (string) $response->headers->get('content-disposition'));
+        $this->assertDatabaseHas('audit_logs', ['action' => 'document.word_downloaded']);
     }
 
     public function test_generation_fails_when_required_placeholders_missing(): void

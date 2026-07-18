@@ -21,7 +21,12 @@
                     <td>v{{ $document->version }}</td>
                     <td><span class="badge text-bg-secondary">{{ $document->status->value }}</span></td>
                     <td>{{ $document->generated_at?->format('d.m.Y H:i') ?: '—' }}</td>
-                    <td class="text-end"><a href="{{ route('companies.generated-documents.show', [$company, $document]) }}" class="btn btn-sm btn-outline-primary">Görüntüle</a></td>
+                    <td class="text-end">
+                        <a href="{{ route('companies.generated-documents.show', [$company, $document]) }}" class="btn btn-sm btn-outline-primary">Görüntüle</a>
+                        @if($document->status->value !== 'failed')
+                            <a href="{{ route('companies.generated-documents.download', [$company, $document]) }}" class="btn btn-sm btn-outline-success">Word</a>
+                        @endif
+                    </td>
                 </tr>
             @empty
                 <tr><td colspan="6" class="text-center text-muted py-4">Üretilen belge yok.</td></tr>

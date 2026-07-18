@@ -18,4 +18,4 @@ Placeholder tabanlı belge motoru temeli: şablon kataloğu, firma alanlarından
 - Başarılı üretimde aynı şablon+firma için önceki `generated` kayıtlar `superseded` olur
 
 ## Sonraki faz
-FAZ 29 — Word (PHPWord / .docx)
+FAZ 29 — Word (tamamlandı) → FAZ 30 PDF
