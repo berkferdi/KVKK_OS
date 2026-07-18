@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Application\Services\Ai\AiEngineService;
+use App\Application\Services\Ai\PromptBuilder;
 use App\Application\Services\Applications\DataSubjectApplicationService;
 use App\Application\Services\Audit\AuditLogger;
 use App\Application\Services\Audits\ComplianceAuditService;
@@ -15,10 +17,10 @@ use App\Application\Services\Documents\DeliveryPackageService;
 use App\Application\Services\Documents\DocumentGenerationService;
 use App\Application\Services\Documents\DocumentRenderer;
 use App\Application\Services\Documents\DocumentTemplateService;
+use App\Application\Services\Documents\PdfExportService;
 use App\Application\Services\Documents\PlaceholderResolver;
 use App\Application\Services\Documents\PolicyDocumentService;
 use App\Application\Services\Documents\ProcedureDocumentService;
-use App\Application\Services\Documents\PdfExportService;
 use App\Application\Services\Documents\WordExportService;
 use App\Application\Services\Identity\RoleService;
 use App\Application\Services\Identity\UserService;
@@ -34,6 +36,8 @@ use App\Application\Services\Verbis\VerbisEntryService;
 use App\Application\Services\Verbis\VerbisRegistrationService;
 use App\Application\Services\Visitors\VisitorService;
 use App\Application\Services\Websites\WebsiteService;
+use App\Domain\Ai\Contracts\AiClientInterface;
+use App\Domain\Ai\Models\AiGeneration;
 use App\Domain\Applications\Models\DataSubjectApplication;
 use App\Domain\Audits\Models\ComplianceAudit;
 use App\Domain\Breaches\Models\DataBreach;
@@ -58,15 +62,18 @@ use App\Domain\Verbis\Models\VerbisEntry;
 use App\Domain\Verbis\Models\VerbisRegistration;
 use App\Domain\Visitors\Models\Visitor;
 use App\Domain\Websites\Models\Website;
+use App\Infrastructure\Documents\DeliveryZipBuilder;
+use App\Infrastructure\Documents\PdfDocumentWriter;
+use App\Infrastructure\Documents\WordDocumentWriter;
+use App\Infrastructure\External\Ai\HeuristicAiClient;
+use App\Infrastructure\External\OpenAI\OpenAiClient;
+use App\Infrastructure\Repositories\Ai\AiGenerationRepository;
 use App\Infrastructure\Repositories\Applications\DataSubjectApplicationRepository;
 use App\Infrastructure\Repositories\Audits\ComplianceAuditRepository;
 use App\Infrastructure\Repositories\Breaches\DataBreachRepository;
 use App\Infrastructure\Repositories\Cameras\CameraRepository;
 use App\Infrastructure\Repositories\Cookies\SiteCookieRepository;
 use App\Infrastructure\Repositories\Customers\CustomerRepository;
-use App\Infrastructure\Documents\DeliveryZipBuilder;
-use App\Infrastructure\Documents\PdfDocumentWriter;
-use App\Infrastructure\Documents\WordDocumentWriter;
 use App\Infrastructure\Repositories\Documents\DeliveryPackageRepository;
 use App\Infrastructure\Repositories\Documents\DocumentTemplateRepository;
 use App\Infrastructure\Repositories\Documents\GeneratedDocumentRepository;
@@ -86,6 +93,7 @@ use App\Infrastructure\Repositories\Verbis\VerbisRegistrationRepository;
 use App\Infrastructure\Repositories\Visitors\VisitorRepository;
 use App\Infrastructure\Repositories\Websites\WebsiteRepository;
 use App\Models\User;
+use App\Policies\AiGenerationPolicy;
 use App\Policies\AnalysisRunPolicy;
 use App\Policies\BranchPolicy;
 use App\Policies\CameraPolicy;
@@ -133,6 +141,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(DocumentTemplateRepository::class);
         $this->app->singleton(GeneratedDocumentRepository::class);
         $this->app->singleton(DeliveryPackageRepository::class);
+        $this->app->singleton(AiGenerationRepository::class);
         $this->app->singleton(EmployeeRepository::class);
         $this->app->singleton(CustomerRepository::class);
         $this->app->singleton(SupplierRepository::class);
@@ -166,6 +175,18 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(DocumentTemplateService::class);
         $this->app->singleton(DocumentGenerationService::class);
         $this->app->singleton(DeliveryPackageService::class);
+        $this->app->singleton(PromptBuilder::class);
+        $this->app->singleton(HeuristicAiClient::class);
+        $this->app->singleton(OpenAiClient::class);
+        $this->app->bind(AiClientInterface::class, function ($app) {
+            $driver = (string) config('ai.driver', 'heuristic');
+            if ($driver === 'openai' && filled(config('ai.openai.key'))) {
+                return $app->make(OpenAiClient::class);
+            }
+
+            return $app->make(HeuristicAiClient::class);
+        });
+        $this->app->singleton(AiEngineService::class);
         $this->app->singleton(EmployeeService::class);
         $this->app->singleton(CustomerService::class);
         $this->app->singleton(SupplierService::class);
@@ -196,6 +217,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(DocumentTemplate::class, DocumentTemplatePolicy::class);
         Gate::policy(GeneratedDocument::class, GeneratedDocumentPolicy::class);
         Gate::policy(DeliveryPackage::class, DeliveryPackagePolicy::class);
+        Gate::policy(AiGeneration::class, AiGenerationPolicy::class);
         Gate::policy(Employee::class, EmployeePolicy::class);
         Gate::policy(Customer::class, CustomerPolicy::class);
         Gate::policy(Supplier::class, SupplierPolicy::class);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\Ai\AiGenerationController;
 use App\Http\Controllers\Web\Applications\DataSubjectApplicationController;
 use App\Http\Controllers\Web\Audits\ComplianceAuditController;
 use App\Http\Controllers\Web\Auth\LoginController;
@@ -238,8 +239,16 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
             Route::delete('/delivery-packages/{delivery_package}', [DeliveryPackageController::class, 'destroy'])->name('destroy');
         });
 
+        Route::name('companies.ai.')->group(function (): void {
+            Route::get('/ai', [AiGenerationController::class, 'index'])->name('index');
+            Route::get('/ai/create', [AiGenerationController::class, 'create'])->name('create');
+            Route::post('/ai', [AiGenerationController::class, 'store'])->name('store');
+            Route::get('/ai/{ai}', [AiGenerationController::class, 'show'])->name('show');
+        });
+
         Route::get('/analysis', [AnalysisWizardController::class, 'create'])->name('companies.analysis.create');
         Route::post('/analysis', [AnalysisWizardController::class, 'store'])->name('companies.analysis.store');
+        Route::post('/analysis/{analysis}/ai-summary', [AiGenerationController::class, 'summarizeRun'])->name('companies.analysis.ai-summary');
     });
 
     Route::resource('document-templates', DocumentTemplateController::class);

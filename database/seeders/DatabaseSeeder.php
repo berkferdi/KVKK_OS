@@ -74,6 +74,8 @@ class DatabaseSeeder extends Seeder
             'templates.manage',
             'packages.view',
             'packages.manage',
+            'ai.view',
+            'ai.generate',
             'dashboard.view',
         ];
 
@@ -160,6 +162,8 @@ class DatabaseSeeder extends Seeder
             'templates.manage',
             'packages.view',
             'packages.manage',
+            'ai.view',
+            'ai.generate',
             'dashboard.view',
         ]);
 

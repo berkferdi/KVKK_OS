@@ -89,6 +89,9 @@
                     @can('viewAny', App\Domain\Documents\Models\DeliveryPackage::class)
                         <a href="{{ route('companies.delivery-packages.index', $company) }}" class="btn btn-outline-primary">Teslim Paketi</a>
                     @endcan
+                    @can('viewAny', App\Domain\Ai\Models\AiGeneration::class)
+                        <a href="{{ route('companies.ai.index', $company) }}" class="btn btn-outline-primary">AI Engine</a>
+                    @endcan
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Domain\Organization\Models;
 
+use App\Domain\Ai\Models\AiGeneration;
 use App\Domain\Applications\Models\DataSubjectApplication;
 use App\Domain\Audits\Models\ComplianceAudit;
 use App\Domain\Breaches\Models\DataBreach;
@@ -235,5 +236,13 @@ class Company extends Model
     public function deliveryPackages(): HasMany
     {
         return $this->hasMany(DeliveryPackage::class);
+    }
+
+    /**
+     * @return HasMany<AiGeneration, $this>
+     */
+    public function aiGenerations(): HasMany
+    {
+        return $this->hasMany(AiGeneration::class);
     }
 }

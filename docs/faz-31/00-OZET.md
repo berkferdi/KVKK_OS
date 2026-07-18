@@ -18,4 +18,4 @@ Firma bazlı KVKK teslim klasörünün (01–15) ZIP paketi olarak üretilmesi v
 - `15 Teslim Dosyası/MANIFEST.txt` içerik özeti içerir
 
 ## Sonraki faz
-FAZ 32 — AI Engine
+FAZ 32 — AI Engine (tamamlandı) → FAZ 33 API

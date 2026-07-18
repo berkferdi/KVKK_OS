@@ -136,3 +136,9 @@
 - Üretilmiş Word/PDF dosyalarını kategori klasörlerine paketler
 - MANIFEST.txt; önceki paketleri superseded yapar
 - Yetkiler: `packages.view` / `packages.manage`
+
+### FAZ 32 — AI Engine
+- `AiClientInterface` + heuristic (varsayılan) / OpenAI sürücüleri
+- `ai_generations`: belge taslağı ve analiz bulgu özeti
+- PII-safe prompt (vergi/MERSİS/e-posta/telefon yok; hassas satırlar temizlenir)
+- Yetkiler: `ai.view` / `ai.generate`
