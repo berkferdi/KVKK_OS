@@ -22,4 +22,4 @@ JWT korumalı REST API yüzeyi. Kiracı çözümü session yerine `X-Tenant-Id` 
 - Policy ve Spatie team id web ile aynı
 
 ## Sonraki faz
-FAZ 34 — Bildirimler
+FAZ 34 — Bildirimler (tamamlandı) → FAZ 35 Backup

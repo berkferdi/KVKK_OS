@@ -11,6 +11,18 @@
             </li>
         </ul>
         <ul class="navbar-nav ms-auto align-items-center">
+            @can('notifications.view')
+                <li class="nav-item me-2">
+                    <a href="{{ route('notifications.index') }}" class="nav-link position-relative" title="Bildirimler">
+                        <i class="far fa-bell"></i>
+                        @if (($unreadNotificationsCount ?? 0) > 0)
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill text-bg-danger" style="font-size:0.65rem;">
+                                {{ $unreadNotificationsCount > 99 ? '99+' : $unreadNotificationsCount }}
+                            </span>
+                        @endif
+                    </a>
+                </li>
+            @endcan
             <li class="nav-item me-3 d-none d-md-block">
                 <span class="text-muted small">{{ auth()->user()->name }}</span>
             </li>
@@ -66,6 +78,19 @@
                             <p>Belge Şablonları</p>
                         </a>
                     </li>
+                    @can('notifications.view')
+                        <li class="nav-item">
+                            <a href="{{ route('notifications.index') }}" class="nav-link {{ request()->routeIs('notifications.*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-bell"></i>
+                                <p>
+                                    Bildirimler
+                                    @if (($unreadNotificationsCount ?? 0) > 0)
+                                        <span class="badge badge-danger right">{{ $unreadNotificationsCount }}</span>
+                                    @endif
+                                </p>
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </nav>
         </div>

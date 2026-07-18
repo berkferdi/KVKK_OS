@@ -3,6 +3,7 @@
 namespace App\Application\Services\Compliance;
 
 use App\Application\Services\Audit\AuditLogger;
+use App\Application\Services\Notifications\NotificationService;
 use App\Domain\Compliance\Enums\AnalysisRunStatus;
 use App\Domain\Compliance\Enums\FindingSeverity;
 use App\Domain\Compliance\Models\AnalysisFinding;
@@ -17,11 +18,12 @@ class AnalysisWizardService
     public function __construct(
         private readonly RuleEngine $ruleEngine,
         private readonly AuditLogger $auditLogger,
+        private readonly NotificationService $notifications,
     ) {}
 
     public function run(Company $company, ?User $actor = null): AnalysisRun
     {
-        return DB::transaction(function () use ($company, $actor): AnalysisRun {
+        $run = DB::transaction(function () use ($company, $actor): AnalysisRun {
             /** @var AnalysisRun $run */
             $run = AnalysisRun::query()->create([
                 'tenant_id' => $company->tenant_id,
@@ -86,5 +88,11 @@ class AnalysisWizardService
                 throw $e;
             }
         });
+
+        if ($run->status === AnalysisRunStatus::Completed) {
+            $this->notifications->notifyAnalysisCompleted($run, $actor);
+        }
+
+        return $run;
     }
 }

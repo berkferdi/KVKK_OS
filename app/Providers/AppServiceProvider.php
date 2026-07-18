@@ -25,6 +25,8 @@ use App\Application\Services\Documents\WordExportService;
 use App\Application\Services\Identity\RoleService;
 use App\Application\Services\Identity\UserService;
 use App\Application\Services\Inventory\ProcessingActivityService;
+use App\Application\Services\Notifications\DueReminderService;
+use App\Application\Services\Notifications\NotificationService;
 use App\Application\Services\Organization\BranchService;
 use App\Application\Services\Organization\CompanyService;
 use App\Application\Services\Personnel\EmployeeService;
@@ -120,6 +122,7 @@ use App\Policies\VerbisPolicy;
 use App\Policies\VisitorPolicy;
 use App\Policies\WebsitePolicy;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
 
@@ -187,6 +190,8 @@ class AppServiceProvider extends ServiceProvider
             return $app->make(HeuristicAiClient::class);
         });
         $this->app->singleton(AiEngineService::class);
+        $this->app->singleton(NotificationService::class);
+        $this->app->singleton(DueReminderService::class);
         $this->app->singleton(EmployeeService::class);
         $this->app->singleton(CustomerService::class);
         $this->app->singleton(SupplierService::class);
@@ -238,6 +243,15 @@ class AppServiceProvider extends ServiceProvider
             }
 
             return null;
+        });
+
+        View::composer('layouts.admin', function ($view): void {
+            $user = auth()->user();
+            $unread = 0;
+            if ($user !== null && ($user->is_super_admin || $user->can('notifications.view'))) {
+                $unread = app(NotificationService::class)->unreadCount($user);
+            }
+            $view->with('unreadNotificationsCount', $unread);
         });
     }
 }

@@ -19,6 +19,7 @@ use App\Http\Controllers\Web\Identity\PermissionController;
 use App\Http\Controllers\Web\Identity\RoleController;
 use App\Http\Controllers\Web\Identity\UserController;
 use App\Http\Controllers\Web\Inventory\ProcessingActivityController;
+use App\Http\Controllers\Web\Notifications\NotificationController;
 use App\Http\Controllers\Web\Organization\BranchController;
 use App\Http\Controllers\Web\Organization\CompanyController;
 use App\Http\Controllers\Web\Personnel\EmployeeController;
@@ -44,6 +45,10 @@ Route::middleware('guest')->group(function (): void {
 Route::middleware(['auth', SetTenantFromSession::class])->group(function (): void {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllRead'])->name('notifications.read-all');
+    Route::post('/notifications/{notification}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
 
     Route::resource('companies', CompanyController::class);
 

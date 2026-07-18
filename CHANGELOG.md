@@ -147,3 +147,8 @@
 - JWT API kiracı middleware: `X-Tenant-Id` (uuid)
 - REST: firmalar CRUD, şube listesi, analiz çalıştır/göster
 - JSON Resources; `/auth/me` kiracı listesi döner
+
+### FAZ 34 — Bildirimler
+- Database + mail bildirimleri; navbar zili ve `/notifications`
+- Analiz tamamlanınca bildirim; `notifications:dispatch-dues` vade taraması
+- Yetki: `notifications.view`

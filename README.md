@@ -61,5 +61,5 @@ Kimlik doğrulama sonrası tenant için `X-Tenant-Id: <tenant-uuid>` başlığı
 
 ## Faz durumu
 
-Tamamlanan: **01–33**  
-Sıradaki: **34 Bildirimler**
+Tamamlanan: **01–34**  
+Sıradaki: **35 Backup**
