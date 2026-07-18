@@ -60,7 +60,7 @@ class SupplierController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $supplier);
-        abort_unless($supplier->company_id === $company->id, 404);
+        abort_unless((int) $supplier->company_id === (int) $company->id, 404);
         $supplier->load('branch');
 
         return view('suppliers.show', compact('company', 'supplier'));
@@ -70,7 +70,7 @@ class SupplierController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $supplier);
-        abort_unless($supplier->company_id === $company->id, 404);
+        abort_unless((int) $supplier->company_id === (int) $company->id, 404);
 
         return view('suppliers.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class SupplierController extends Controller
         Company $company,
         Supplier $supplier,
     ): RedirectResponse {
-        abort_unless($supplier->company_id === $company->id, 404);
+        abort_unless((int) $supplier->company_id === (int) $company->id, 404);
         $this->suppliers->update($supplier, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class SupplierController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $supplier);
-        abort_unless($supplier->company_id === $company->id, 404);
+        abort_unless((int) $supplier->company_id === (int) $company->id, 404);
         $this->suppliers->delete($supplier);
 
         return redirect()

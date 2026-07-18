@@ -45,6 +45,13 @@ class DocumentEngineTest extends TestCase
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.generated']);
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.word_exported']);
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.pdf_exported']);
+
+        // MySQL often returns integer FKs as strings; show must not 404.
+        $document->company_id = (string) $document->company_id;
+        $this->actingAs($user)
+            ->withSession(['tenant_id' => $tenant->id])
+            ->get(route('companies.generated-documents.show', [$company, $document]))
+            ->assertOk();
     }
 
     public function test_consultant_can_download_generated_word_document(): void

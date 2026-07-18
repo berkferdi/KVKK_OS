@@ -78,7 +78,7 @@ class GeneratedDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $generatedDocument);
-        abort_unless($generatedDocument->company_id === $company->id, 404);
+        abort_unless((int) $generatedDocument->company_id === (int) $company->id, 404);
         $generatedDocument->load('template');
 
         return view('generated-documents.show', [
@@ -91,7 +91,7 @@ class GeneratedDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $generatedDocument);
-        abort_unless($generatedDocument->company_id === $company->id, 404);
+        abort_unless((int) $generatedDocument->company_id === (int) $company->id, 404);
 
         if ($generatedDocument->status === GenerationStatus::Failed) {
             return redirect()
@@ -112,7 +112,7 @@ class GeneratedDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $generatedDocument);
-        abort_unless($generatedDocument->company_id === $company->id, 404);
+        abort_unless((int) $generatedDocument->company_id === (int) $company->id, 404);
 
         if ($generatedDocument->status === GenerationStatus::Failed) {
             return redirect()
@@ -133,7 +133,7 @@ class GeneratedDocumentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $generatedDocument);
-        abort_unless($generatedDocument->company_id === $company->id, 404);
+        abort_unless((int) $generatedDocument->company_id === (int) $company->id, 404);
         $this->generations->delete($generatedDocument);
 
         return redirect()

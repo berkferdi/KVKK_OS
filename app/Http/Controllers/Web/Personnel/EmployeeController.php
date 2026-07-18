@@ -60,7 +60,7 @@ class EmployeeController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $employee);
-        abort_unless($employee->company_id === $company->id, 404);
+        abort_unless((int) $employee->company_id === (int) $company->id, 404);
         $employee->load('branch');
 
         return view('personnel.show', compact('company', 'employee'));
@@ -70,7 +70,7 @@ class EmployeeController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $employee);
-        abort_unless($employee->company_id === $company->id, 404);
+        abort_unless((int) $employee->company_id === (int) $company->id, 404);
 
         return view('personnel.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class EmployeeController extends Controller
         Company $company,
         Employee $employee,
     ): RedirectResponse {
-        abort_unless($employee->company_id === $company->id, 404);
+        abort_unless((int) $employee->company_id === (int) $company->id, 404);
         $this->employees->update($employee, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class EmployeeController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $employee);
-        abort_unless($employee->company_id === $company->id, 404);
+        abort_unless((int) $employee->company_id === (int) $company->id, 404);
         $this->employees->delete($employee);
 
         return redirect()

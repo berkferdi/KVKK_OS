@@ -58,7 +58,7 @@ class RiskAssessmentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $risk);
-        abort_unless($risk->company_id === $company->id, 404);
+        abort_unless((int) $risk->company_id === (int) $company->id, 404);
 
         $risk->load('processingActivity');
 
@@ -69,7 +69,7 @@ class RiskAssessmentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $risk);
-        abort_unless($risk->company_id === $company->id, 404);
+        abort_unless((int) $risk->company_id === (int) $company->id, 404);
 
         return view('risks.edit', [
             'company' => $company,
@@ -87,7 +87,7 @@ class RiskAssessmentController extends Controller
         Company $company,
         RiskAssessment $risk,
     ): RedirectResponse {
-        abort_unless($risk->company_id === $company->id, 404);
+        abort_unless((int) $risk->company_id === (int) $company->id, 404);
         $this->risks->update($risk, $request->validated());
 
         return redirect()
@@ -99,7 +99,7 @@ class RiskAssessmentController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $risk);
-        abort_unless($risk->company_id === $company->id, 404);
+        abort_unless((int) $risk->company_id === (int) $company->id, 404);
 
         $this->risks->delete($risk);
 

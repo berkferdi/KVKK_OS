@@ -56,7 +56,7 @@ class DeliveryPackageController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $deliveryPackage);
-        abort_unless($deliveryPackage->company_id === $company->id, 404);
+        abort_unless((int) $deliveryPackage->company_id === (int) $company->id, 404);
 
         return view('delivery-packages.show', [
             'company' => $company,
@@ -68,7 +68,7 @@ class DeliveryPackageController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $deliveryPackage);
-        abort_unless($deliveryPackage->company_id === $company->id, 404);
+        abort_unless((int) $deliveryPackage->company_id === (int) $company->id, 404);
 
         try {
             return $this->packages->download($deliveryPackage);
@@ -83,7 +83,7 @@ class DeliveryPackageController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $deliveryPackage);
-        abort_unless($deliveryPackage->company_id === $company->id, 404);
+        abort_unless((int) $deliveryPackage->company_id === (int) $company->id, 404);
         $this->packages->delete($deliveryPackage);
 
         return redirect()

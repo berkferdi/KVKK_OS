@@ -62,7 +62,7 @@ class DataBreachController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $breach);
-        abort_unless($breach->company_id === $company->id, 404);
+        abort_unless((int) $breach->company_id === (int) $company->id, 404);
         $breach->load('branch');
 
         return view('breaches.show', compact('company', 'breach'));
@@ -72,7 +72,7 @@ class DataBreachController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $breach);
-        abort_unless($breach->company_id === $company->id, 404);
+        abort_unless((int) $breach->company_id === (int) $company->id, 404);
 
         return view('breaches.edit', [
             'company' => $company,
@@ -92,7 +92,7 @@ class DataBreachController extends Controller
         Company $company,
         DataBreach $breach,
     ): RedirectResponse {
-        abort_unless($breach->company_id === $company->id, 404);
+        abort_unless((int) $breach->company_id === (int) $company->id, 404);
         $this->breaches->update($breach, $request->validated());
 
         return redirect()
@@ -104,7 +104,7 @@ class DataBreachController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $breach);
-        abort_unless($breach->company_id === $company->id, 404);
+        abort_unless((int) $breach->company_id === (int) $company->id, 404);
         $this->breaches->delete($breach);
 
         return redirect()

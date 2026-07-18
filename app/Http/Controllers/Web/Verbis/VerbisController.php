@@ -52,7 +52,7 @@ class VerbisController extends Controller
         Company $company,
         VerbisRegistration $registration,
     ): RedirectResponse {
-        abort_unless($registration->company_id === $company->id, 404);
+        abort_unless((int) $registration->company_id === (int) $company->id, 404);
         $this->registrations->update($registration, $request->validated());
 
         return redirect()

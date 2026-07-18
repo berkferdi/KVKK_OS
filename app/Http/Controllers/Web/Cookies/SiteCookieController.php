@@ -60,7 +60,7 @@ class SiteCookieController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $cookie);
-        abort_unless($cookie->company_id === $company->id, 404);
+        abort_unless((int) $cookie->company_id === (int) $company->id, 404);
         $cookie->load('website');
 
         return view('cookies.show', compact('company', 'cookie'));
@@ -70,7 +70,7 @@ class SiteCookieController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $cookie);
-        abort_unless($cookie->company_id === $company->id, 404);
+        abort_unless((int) $cookie->company_id === (int) $company->id, 404);
 
         return view('cookies.edit', [
             'company' => $company,
@@ -89,7 +89,7 @@ class SiteCookieController extends Controller
         Company $company,
         SiteCookie $cookie,
     ): RedirectResponse {
-        abort_unless($cookie->company_id === $company->id, 404);
+        abort_unless((int) $cookie->company_id === (int) $company->id, 404);
         $this->cookies->update($cookie, $request->validated());
 
         return redirect()
@@ -101,7 +101,7 @@ class SiteCookieController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $cookie);
-        abort_unless($cookie->company_id === $company->id, 404);
+        abort_unless((int) $cookie->company_id === (int) $company->id, 404);
         $this->cookies->delete($cookie);
 
         return redirect()

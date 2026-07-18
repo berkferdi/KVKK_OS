@@ -62,7 +62,7 @@ class DataSubjectApplicationController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('view', $application);
-        abort_unless($application->company_id === $company->id, 404);
+        abort_unless((int) $application->company_id === (int) $company->id, 404);
         $application->load('branch');
 
         return view('applications.show', compact('company', 'application'));
@@ -72,7 +72,7 @@ class DataSubjectApplicationController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('update', $application);
-        abort_unless($application->company_id === $company->id, 404);
+        abort_unless((int) $application->company_id === (int) $company->id, 404);
 
         return view('applications.edit', [
             'company' => $company,
@@ -92,7 +92,7 @@ class DataSubjectApplicationController extends Controller
         Company $company,
         DataSubjectApplication $application,
     ): RedirectResponse {
-        abort_unless($application->company_id === $company->id, 404);
+        abort_unless((int) $application->company_id === (int) $company->id, 404);
         $this->applications->update($application, $request->validated());
 
         return redirect()
@@ -104,7 +104,7 @@ class DataSubjectApplicationController extends Controller
     {
         $this->authorize('view', $company);
         $this->authorize('delete', $application);
-        abort_unless($application->company_id === $company->id, 404);
+        abort_unless((int) $application->company_id === (int) $company->id, 404);
         $this->applications->delete($application);
 
         return redirect()

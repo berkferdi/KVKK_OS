@@ -32,6 +32,10 @@ return Application::configure(basePath: dirname(__DIR__))
             before: SubstituteBindings::class,
             prepend: SetTenantFromHeader::class,
         );
+        $middleware->prependToPriorityList(
+            before: SubstituteBindings::class,
+            prepend: SetTenantFromSession::class,
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
