@@ -67,10 +67,19 @@ docker compose exec app php artisan backup:run
 Arşivler `storage/app/private/backups` (compose volume: `app-storage`).
 
 ## 7) Belge şablonlarını yenileme
-Seed kaynaklı şablon gövdelerini güncellemek için:
+Seed kaynaklı şablon gövdelerini güncellemek için önce şu dosyaları deploy edin:
+- `database/seeders/DocumentTemplateSeeder.php`
+- `app/Application/Services/Documents/PlaceholderResolver.php`
+- (opsiyonel) `app/Console/Commands/RefreshDocumentTemplatesCommand.php`
+
+SSH varsa:
 ```bash
 php artisan documents:refresh-templates
+# veya:
+php artisan db:seed --class=Database\\Seeders\\DocumentTemplateSeeder --force
 ```
-cPanel’de SSH yoksa geçici olarak `public/refresh_templates_once.php` yükleyip
+
+cPanel’de SSH yoksa `public/refresh_templates_once.php` yükleyip
 `?token=KVKK360_REFRESH_TEMPLATES` ile bir kez çalıştırın; ardından dosyayı silin.
+Bu script artisan komutuna ihtiyaç duymaz; seeder’ı doğrudan çalıştırır.
 Elle düzenlenmiş (`source != seed`) şablonlar ezilmez.
