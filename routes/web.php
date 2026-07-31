@@ -262,6 +262,8 @@ Route::middleware(['auth', SetTenantFromSession::class])->group(function (): voi
         Route::post('/analysis/{analysis}/ai-summary', [AiGenerationController::class, 'summarizeRun'])->name('companies.analysis.ai-summary');
     });
 
+    Route::post('document-templates/refresh-seed', [DocumentTemplateController::class, 'refreshSeed'])
+        ->name('document-templates.refresh-seed');
     Route::resource('document-templates', DocumentTemplateController::class);
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class)->except(['show']);

@@ -30,6 +30,16 @@
                value="{{ old('mersis_number', $company?->mersis_number) }}">
     </div>
     <div class="col-md-4">
+        <label class="form-label" for="sgk_registration_number">SGK Sicil No</label>
+        <input type="text" name="sgk_registration_number" id="sgk_registration_number" class="form-control"
+               value="{{ old('sgk_registration_number', $company?->sgk_registration_number) }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="trade_registry_number">Ticaret Sicil No</label>
+        <input type="text" name="trade_registry_number" id="trade_registry_number" class="form-control"
+               value="{{ old('trade_registry_number', $company?->trade_registry_number) }}">
+    </div>
+    <div class="col-md-4">
         <label class="form-label" for="nace_code">NACE</label>
         <input type="text" name="nace_code" id="nace_code" class="form-control"
                value="{{ old('nace_code', $company?->nace_code) }}">
@@ -40,9 +50,24 @@
                value="{{ old('email', $company?->email) }}">
     </div>
     <div class="col-md-4">
+        <label class="form-label" for="kvkk_email">KVKK E-posta</label>
+        <input type="email" name="kvkk_email" id="kvkk_email" class="form-control"
+               value="{{ old('kvkk_email', $company?->kvkk_email) }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="kep_address">KEP</label>
+        <input type="email" name="kep_address" id="kep_address" class="form-control"
+               value="{{ old('kep_address', $company?->kep_address) }}">
+    </div>
+    <div class="col-md-4">
         <label class="form-label" for="phone">Telefon</label>
         <input type="text" name="phone" id="phone" class="form-control"
                value="{{ old('phone', $company?->phone) }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="website_url">Web</label>
+        <input type="text" name="website_url" id="website_url" class="form-control"
+               value="{{ old('website_url', $company?->website_url) }}">
     </div>
     <div class="col-md-8">
         <label class="form-label" for="address">Adres</label>
@@ -58,6 +83,21 @@
         <label class="form-label" for="district">İlçe</label>
         <input type="text" name="district" id="district" class="form-control"
                value="{{ old('district', $company?->district) }}">
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="postal_code">Posta Kodu</label>
+        <input type="text" name="postal_code" id="postal_code" class="form-control"
+               value="{{ old('postal_code', $company?->postal_code) }}">
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="country">Ülke</label>
+        <input type="text" name="country" id="country" class="form-control"
+               value="{{ old('country', $company?->country ?? 'Türkiye') }}">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label" for="founded_at">Kuruluş Tarihi</label>
+        <input type="date" name="founded_at" id="founded_at" class="form-control"
+               value="{{ old('founded_at', optional($company?->founded_at)->format('Y-m-d')) }}">
     </div>
     <div class="col-md-4">
         <label class="form-label" for="authorized_person">Yetkili</label>

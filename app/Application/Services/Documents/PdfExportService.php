@@ -35,7 +35,12 @@ class PdfExportService
         $tempPath = sys_get_temp_dir().DIRECTORY_SEPARATOR.'kvkk_'.uniqid('pdf_', true).'.pdf';
 
         try {
-            $this->writer->write((string) $document->title, $content, $tempPath);
+            $companyName = null;
+            if ($document->relationLoaded('company') || $document->company()->exists()) {
+                $company = $document->company;
+                $companyName = $company ? trim((string) ($company->title ?: $company->trade_name)) : null;
+            }
+            $this->writer->write((string) $document->title, $content, $tempPath, $companyName);
             $binary = file_get_contents($tempPath);
             if ($binary === false) {
                 throw new RuntimeException('PDF dosyası okunamadı.');

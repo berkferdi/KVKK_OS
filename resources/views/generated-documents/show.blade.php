@@ -18,6 +18,9 @@
     <dl class="row mb-0">
         <dt class="col-sm-3">Şablon</dt><dd class="col-sm-9"><code>{{ $document->code }}</code> — {{ $document->template?->title }}</dd>
         <dt class="col-sm-3">Durum / Sürüm</dt><dd class="col-sm-9">{{ $document->status->value }} / v{{ $document->version }}</dd>
+        <dt class="col-sm-3">Doküman No</dt><dd class="col-sm-9">{{ $document->document_number ?: '—' }}</dd>
+        <dt class="col-sm-3">Revizyon</dt><dd class="col-sm-9">{{ $document->revision_number ?: '—' }} — {{ optional($document->revision_date)->format('d.m.Y') ?: '—' }}</dd>
+        <dt class="col-sm-3">Hazırlayan / Onaylayan</dt><dd class="col-sm-9">{{ $document->prepared_by ?: '—' }} / {{ $document->approved_by ?: '—' }}</dd>
         <dt class="col-sm-3">Word</dt><dd class="col-sm-9">{{ $document->file_path ?: '—' }}</dd>
         <dt class="col-sm-3">PDF</dt><dd class="col-sm-9">{{ $document->pdf_path ?: '—' }}</dd>
         <dt class="col-sm-3">Üretim</dt><dd class="col-sm-9">{{ $document->generated_at?->format('d.m.Y H:i') ?: '—' }}</dd>
@@ -34,7 +37,11 @@
 <div class="card border-0 shadow-sm"><div class="card-header bg-white"><strong>Önizleme</strong></div>
 <div class="card-body">
     @if ($document->rendered_content)
-        <pre class="mb-0" style="white-space: pre-wrap;">{{ $document->rendered_content }}</pre>
+        @if (($document->format ?? '') === 'html' || str_contains((string) $document->rendered_content, '<'))
+            <div class="border rounded p-3 bg-white">{!! $document->rendered_content !!}</div>
+        @else
+            <pre class="mb-0" style="white-space: pre-wrap;">{{ $document->rendered_content }}</pre>
+        @endif
     @else
         <p class="text-muted mb-0">İçerik üretilemedi.</p>
     @endif

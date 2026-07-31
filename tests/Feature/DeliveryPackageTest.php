@@ -37,7 +37,7 @@ class DeliveryPackageTest extends TestCase
         $this->assertNotNull($package->file_path);
         Storage::disk('local')->assertExists((string) $package->file_path);
         $this->assertTrue(collect($package->folder_snapshot ?? [])->contains(
-            fn (string $entry) => str_contains($entry, '09 Kamera') && str_ends_with($entry, '.docx')
+            fn (string $entry) => str_contains($entry, '03 Aydınlatma') && str_ends_with($entry, '.docx')
         ));
         $response->assertRedirect(route('companies.delivery-packages.show', [$company, $package]));
         $this->assertDatabaseHas('audit_logs', ['action' => 'delivery_package.created']);
@@ -119,7 +119,7 @@ class DeliveryPackageTest extends TestCase
             'tenant_id' => $tenant->id,
             'code' => 'kamera_aydinlatma',
             'title' => 'Kamera Aydinlatma',
-            'category' => 'camera',
+            'category' => 'disclosure',
             'body' => "Firma: {{firma_unvani}}\nAdres: {{adres}}\nMERSIS: {{mersis}}",
             'is_active' => true,
         ]);

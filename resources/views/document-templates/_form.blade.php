@@ -15,7 +15,7 @@
         <label class="form-label" for="category">Kategori</label>
         <select name="category" id="category" class="form-select">
             @foreach ($categories as $category)
-                <option value="{{ $category->value }}" @selected(old('category', $template?->category?->value ?? 'other') === $category->value)>{{ $category->value }}</option>
+                <option value="{{ $category->value }}" @selected(old('category', $template?->category?->value ?? 'other') === $category->value)>{{ $category->label() }}</option>
             @endforeach
         </select>
     </div>
@@ -24,9 +24,11 @@
         <input type="text" name="description" id="description" class="form-control" value="{{ old('description', $template?->description) }}">
     </div>
     <div class="col-12">
-        <label class="form-label" for="body">Şablon gövdesi *</label>
-        <textarea name="body" id="body" rows="12" class="form-control font-monospace" required placeholder="@{{firma_unvani}}, @{{adres}}, @{{mersis}} ...">{{ old('body', $template?->body) }}</textarea>
-        <div class="form-text">Placeholder formatı: <code>@{{firma_unvani}}</code>, <code>@{{adres}}</code>, <code>@{{mersis}}</code></div>
+        <label class="form-label" for="body">Şablon gövdesi (HTML) *</label>
+        <textarea name="body" id="body" rows="16" class="form-control font-monospace" required placeholder="<h1>...</h1> @{{firma_unvani}}">{{ old('body', $template?->body) }}</textarea>
+        <div class="form-text">
+            HTML desteklenir. Placeholder: <code>@{{firma_unvani}}</code>, <code>@{{kvkk_eposta}}</code>, <code>@{{dokuman_no}}</code>, <code>@{{kamera_sayisi}}</code> …
+        </div>
     </div>
     <div class="col-12">
         <div class="form-check">

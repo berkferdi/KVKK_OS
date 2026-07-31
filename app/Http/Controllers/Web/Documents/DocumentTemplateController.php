@@ -81,4 +81,15 @@ class DocumentTemplateController extends Controller
             ->route('document-templates.index')
             ->with('success', 'Şablon silindi.');
     }
+
+    public function refreshSeed(): RedirectResponse
+    {
+        $this->authorize('create', DocumentTemplate::class);
+
+        $count = $this->templates->refreshSeedTemplates();
+
+        return redirect()
+            ->route('document-templates.index')
+            ->with('success', "Varsayılan şablon paketi yenilendi ({$count} adet).");
+    }
 }

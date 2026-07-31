@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 use App\Domain\Documents\Enums\TemplateCategory;
 use App\Domain\Documents\Models\DocumentTemplate;
+use App\Domain\Documents\Support\HtmlTemplateBuilder;
 use App\Domain\Organization\Models\Tenant;
+use Database\Seeders\DocumentTemplates\DocumentTemplateCatalog;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -12,100 +14,67 @@ class DocumentTemplateSeeder extends Seeder
 {
     public function run(): void
     {
-        $tenant = Tenant::query()->where('slug', 'demo-danismanlik')->first();
-        if ($tenant === null) {
+        $tenants = Tenant::query()->get();
+        if ($tenants->isEmpty()) {
             return;
         }
 
-        $templates = [
-            [
-                'code' => 'kamera_aydinlatma',
-                'title' => 'Kamera Aydınlatma Metni',
-                'category' => TemplateCategory::Camera,
-                'description' => 'Kamera sistemleri için KVKK aydınlatma metni',
-                'body' => <<<'TXT'
-KAMERA İLE İZLEME AYDINLATMA METNİ
+        $builder = new HtmlTemplateBuilder;
+        $catalog = DocumentTemplateCatalog::all();
 
-Veri Sorumlusu: {{firma_unvani}}
-Adres: {{adres}}, {{ilce}} / {{sehir}}
-MERSİS: {{mersis}}
-Vergi No: {{vergi_no}} ({{vergi_dairesi}})
-İletişim: {{eposta}} / {{telefon}}
+        foreach ($tenants as $tenant) {
+            $this->seedForTenant($tenant, $catalog, $builder);
+        }
+    }
 
-İşbu metin, {{firma_unvani}} tarafından işletilen kamera sistemleri kapsamında
-6698 sayılı KVKK uyarınca ilgili kişileri bilgilendirmek amacıyla hazırlanmıştır.
+    /**
+     * @param  list<array{code: string, title: string, category: TemplateCategory, description: string, focus: string}>  $catalog
+     */
+    public function seedForTenant(Tenant $tenant, ?array $catalog = null, ?HtmlTemplateBuilder $builder = null): void
+    {
+        $catalog ??= DocumentTemplateCatalog::all();
+        $builder ??= new HtmlTemplateBuilder;
 
-Yetkili: {{yetkili}} ({{yetkili_unvan}})
-TXT,
-            ],
-            [
-                'code' => 'web_aydinlatma',
-                'title' => 'Web Aydınlatma Metni',
-                'category' => TemplateCategory::Web,
-                'description' => 'Web sitesi ziyaretçileri için aydınlatma',
-                'body' => <<<'TXT'
-WEB SİTESİ AYDINLATMA METNİ
-
-{{firma_unvani}} (“Şirket”) olarak {{eposta}} üzerinden iletişime geçebilirsiniz.
-Adresimiz: {{adres}}, {{sehir}}.
-
-Web sitemizi ziyaretiniz sırasında işlenen kişisel verileriniz KVKK kapsamında korunur.
-Ticaret unvanı: {{ticaret_unvani}}
-MERSİS: {{mersis}}
-TXT,
-            ],
-            [
-                'code' => 'gizlilik_politikasi',
-                'title' => 'Gizlilik Politikası',
-                'category' => TemplateCategory::Policy,
-                'description' => 'Genel gizlilik politikası taslağı',
-                'body' => <<<'TXT'
-GİZLİLİK POLİTİKASI
-
-{{firma_unvani}} gizlilik politikası
-
-1. Veri sorumlusu: {{firma_unvani}}, {{adres}}
-2. Faaliyet: {{faaliyet}}
-3. İletişim: {{eposta}}, {{telefon}}
-4. Yetkili: {{yetkili}} — {{yetkili_unvan}}
-TXT,
-            ],
-            [
-                'code' => 'cerez_politikasi',
-                'title' => 'Çerez Politikası',
-                'category' => TemplateCategory::Cookie,
-                'description' => 'Çerez kullanım politikası',
-                'body' => <<<'TXT'
-ÇEREZ POLİTİKASI
-
-{{firma_unvani}} web sitesinde çerezler kullanılmaktadır.
-İletişim: {{eposta}}
-Adres: {{adres}}, {{sehir}}
-MERSİS: {{mersis}}
-TXT,
-            ],
-        ];
-
-        foreach ($templates as $data) {
+        foreach ($catalog as $item) {
             $template = DocumentTemplate::query()->firstOrNew([
                 'tenant_id' => $tenant->id,
-                'code' => $data['code'],
+                'code' => $item['code'],
             ]);
+
+            if ($template->exists && $template->source !== 'seed') {
+                continue;
+            }
 
             if (! $template->exists) {
                 $template->uuid = (string) Str::uuid();
             }
 
+            $body = $builder->forCatalogItem($item);
+            $bodyChanged = $template->exists && (string) $template->body !== $body;
+            $prefix = strtoupper(substr($item['category']->value, 0, 3));
+
             $template->fill([
-                'title' => $data['title'],
-                'category' => $data['category'],
-                'description' => $data['description'],
-                'body' => $data['body'],
-                'output_formats' => ['text', 'docx', 'pdf'],
-                'version' => 1,
+                'title' => $item['title'],
+                'category' => $item['category'],
+                'description' => $item['description'],
+                'body' => $body,
+                'body_format' => 'html',
+                'document_number' => sprintf('KVKK-%s-%s', $prefix, strtoupper($item['code'])),
+                'output_formats' => ['html', 'docx', 'pdf'],
+                'version' => $bodyChanged
+                    ? max(1, (int) $template->version + 1)
+                    : max(1, (int) ($template->version ?: 1)),
+                'revision_number' => $template->revision_number ?: '00',
+                'revision_date' => $template->revision_date ?: now()->toDateString(),
+                'published_at' => $template->published_at ?: now()->toDateString(),
+                'prepared_by' => $template->prepared_by ?: 'KVKK Danışmanı',
+                'approved_by' => $template->approved_by ?: 'Veri Sorumlusu Yetkilisi',
+                'document_status' => $template->document_status ?: 'effective',
                 'is_active' => true,
                 'source' => 'seed',
-                'metadata' => [],
+                'metadata' => [
+                    'placeholder_groups' => ['firma', 'kvkk', 'dokuman'],
+                ],
             ]);
             $template->save();
         }

@@ -115,7 +115,7 @@ class DocumentEngineTest extends TestCase
         $document = GeneratedDocument::query()->where('document_template_id', $template->id)->first();
         $this->assertNotNull($document);
         $this->assertSame(GenerationStatus::Failed, $document->status);
-        $this->assertContains('adres', $document->missing_placeholders ?? []);
+        $this->assertContains('firma_unvani', $document->missing_placeholders ?? []);
         $this->assertNull($document->rendered_content);
         $response->assertRedirect(route('companies.generated-documents.show', [$company, $document]));
         $this->assertDatabaseHas('audit_logs', ['action' => 'document.generation_failed']);
@@ -143,7 +143,7 @@ class DocumentEngineTest extends TestCase
 
         $companyData = [
             'tenant_id' => $tenant->id,
-            'trade_name' => 'Örnek Teknoloji',
+            'trade_name' => $withCompanyDetails ? 'Örnek Teknoloji' : '',
             'title' => $withCompanyDetails ? 'Örnek Teknoloji A.Ş.' : '',
             'address' => $withCompanyDetails ? 'Demo Cad. No:1' : null,
             'mersis_number' => $withCompanyDetails ? '0123456789012345' : null,

@@ -120,6 +120,11 @@
 - Placeholder çözümü (`{{firma_unvani}}` vb.), metin render ve önizleme
 - Eksik placeholder → failed; başarılı üretimde önceki sürüm superseded
 - Yetkiler: `templates.view` / `templates.manage`
+- **Genişletme:** 12 kategori, ~148 HTML KVKK şablon paketi (Corporate→Diğer)
+- Merkezi `PlaceholderCatalog` (firma, kamera, veri sorumlusu, başvuru, doküman, İK, tedarikçi)
+- Doküman meta: `document_number`, `revision_*`, `published_at`, `prepared_by`, `approved_by`, `document_status`
+- Firma alanları: posta kodu, ülke, web, KEP, kvkk e-posta, kuruluş, SGK/ticaret sicil
+- UI: **Varsayılanları Yenile**; Word/PDF HTML gövde desteği
 
 ### FAZ 29 — Word
 - `phpoffice/phpword` ile `.docx` üretimi

@@ -41,10 +41,34 @@ class DocumentGenerationService
             throw new InvalidArgumentException('Pasif şablondan belge üretilemez.');
         }
 
-        $map = $this->placeholders->forCompany($company);
+        $version = $this->generations->nextVersionForTemplate($company->id, $template->id);
+        $documentNumber = $template->document_number
+            ?: sprintf('KVKK-%s-%03d', strtoupper((string) $template->code), $version);
+        $revisionNumber = $template->revision_number ?: '00';
+        $revisionDate = ($template->revision_date ?? now())->format('d.m.Y');
+        $publishedAt = ($template->published_at ?? now())->format('d.m.Y');
+        $preparedBy = $template->prepared_by ?: ($user?->name ?? '—');
+        $approvedBy = $template->approved_by ?: ((string) ($company->authorized_person ?? '—'));
+        $statusLabel = match ((string) ($template->document_status ?: 'effective')) {
+            'draft' => 'Taslak',
+            'obsolete' => 'Yürürlükten kalkmış',
+            default => 'Yürürlükte',
+        };
+
+        $map = $this->placeholders->forCompany($company, [
+            'dokuman_no' => $documentNumber,
+            'versiyon' => (string) ($template->version ?: $version),
+            'revizyon_no' => $revisionNumber,
+            'revizyon_tarihi' => $revisionDate,
+            'yayin_tarihi' => $publishedAt,
+            'hazirlayan' => $preparedBy,
+            'onaylayan' => $approvedBy,
+            'dokuman_baslik' => $template->title,
+            'yururluk_durumu' => $statusLabel,
+        ], $user);
+
         $keys = $template->placeholderKeys();
         $missing = $this->renderer->missingKeys($keys, $map);
-        $version = $this->generations->nextVersionForTemplate($company->id, $template->id);
 
         if ($missing !== []) {
             /** @var GeneratedDocument $failed */
@@ -54,13 +78,20 @@ class DocumentGenerationService
                 'document_template_id' => $template->id,
                 'title' => $template->title,
                 'code' => $template->code,
+                'document_number' => $documentNumber,
                 'status' => GenerationStatus::Failed,
                 'rendered_content' => null,
                 'placeholder_snapshot' => $map->all(),
                 'missing_placeholders' => $missing,
                 'source' => 'manual',
-                'format' => 'text',
+                'format' => 'html',
                 'version' => $version,
+                'revision_number' => $revisionNumber,
+                'revision_date' => $template->revision_date ?? now()->toDateString(),
+                'published_at' => $template->published_at ?? now()->toDateString(),
+                'prepared_by' => $preparedBy,
+                'approved_by' => $approvedBy,
+                'document_status' => $template->document_status ?: 'effective',
                 'generated_at' => now(),
                 'generated_by' => $user?->id,
                 'metadata' => [],
@@ -77,6 +108,7 @@ class DocumentGenerationService
         $this->generations->supersedeActiveForTemplate($company->id, $template->id);
 
         $rendered = $this->renderer->render((string) $template->body, $map);
+        $isHtml = $this->renderer->isHtml($rendered);
 
         /** @var GeneratedDocument $document */
         $document = $this->generations->create([
@@ -85,17 +117,26 @@ class DocumentGenerationService
             'document_template_id' => $template->id,
             'title' => $template->title,
             'code' => $template->code,
+            'document_number' => $documentNumber,
             'status' => GenerationStatus::Generated,
             'rendered_content' => $rendered,
             'placeholder_snapshot' => $map->all(),
             'missing_placeholders' => [],
             'source' => 'manual',
-            'format' => 'text',
-            'mime_type' => 'text/plain',
+            'format' => $isHtml ? 'html' : 'text',
+            'mime_type' => $isHtml ? 'text/html' : 'text/plain',
             'version' => $version,
+            'revision_number' => $revisionNumber,
+            'revision_date' => $template->revision_date ?? now()->toDateString(),
+            'published_at' => $template->published_at ?? now()->toDateString(),
+            'prepared_by' => $preparedBy,
+            'approved_by' => $approvedBy,
+            'document_status' => $template->document_status ?: 'effective',
             'generated_at' => now(),
             'generated_by' => $user?->id,
-            'metadata' => [],
+            'metadata' => [
+                'body_format' => $template->body_format ?: ($isHtml ? 'html' : 'text'),
+            ],
         ]);
 
         $document = $this->wordExport->export($document);

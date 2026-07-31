@@ -14,18 +14,18 @@ final class DeliveryFolderLayout
         return [
             '01 Kurumsal Belgeler',
             '02 Politikalar',
-            '03 Prosedürler',
-            '04 Envanter',
-            '05 Risk',
-            '06 Personel',
-            '07 Müşteri',
-            '08 Tedarikçi',
-            '09 Kamera',
-            '10 Web',
-            '11 VERBİS',
-            '12 Eğitim',
-            '13 Denetim',
-            '14 İmzalı Belgeler',
+            '03 Aydınlatma',
+            '04 Açık Rıza',
+            '05 Formlar',
+            '06 Sözleşmeler',
+            '07 Taahhütnameler',
+            '08 Prosedürler',
+            '09 Envanter',
+            '10 Raporlar',
+            '11 Talimatlar',
+            '12 Diğer',
+            '13 VERBİS',
+            '14 Eğitim',
             '15 Teslim Dosyası',
         ];
     }
@@ -33,10 +33,18 @@ final class DeliveryFolderLayout
     public static function folderForCategory(?TemplateCategory $category): string
     {
         return match ($category) {
+            TemplateCategory::Corporate => '01 Kurumsal Belgeler',
             TemplateCategory::Policy => '02 Politikalar',
-            TemplateCategory::Camera => '09 Kamera',
-            TemplateCategory::Web, TemplateCategory::Cookie => '10 Web',
-            TemplateCategory::Corporate, TemplateCategory::Other, null => '01 Kurumsal Belgeler',
+            TemplateCategory::Disclosure => '03 Aydınlatma',
+            TemplateCategory::Consent => '04 Açık Rıza',
+            TemplateCategory::Form => '05 Formlar',
+            TemplateCategory::Contract => '06 Sözleşmeler',
+            TemplateCategory::Commitment => '07 Taahhütnameler',
+            TemplateCategory::Procedure => '08 Prosedürler',
+            TemplateCategory::Inventory => '09 Envanter',
+            TemplateCategory::Report => '10 Raporlar',
+            TemplateCategory::Instruction => '11 Talimatlar',
+            TemplateCategory::Other, null => '12 Diğer',
         };
     }
 
