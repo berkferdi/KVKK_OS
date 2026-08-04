@@ -33,4 +33,18 @@ class CompanyServiceTest extends TestCase
             'auditable_id' => $company->id,
         ]);
     }
+
+    public function test_service_throws_when_no_active_tenant(): void
+    {
+        app(TenantContext::class)->clear();
+        session()->forget('tenant_id');
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Aktif tenant bulunamadı');
+
+        app(CompanyService::class)->create([
+            'trade_name' => 'Tenant Yok Firma',
+            'status' => 'draft',
+        ]);
+    }
 }

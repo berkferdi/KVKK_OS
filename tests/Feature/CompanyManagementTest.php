@@ -88,4 +88,31 @@ class CompanyManagementTest extends TestCase
     {
         $this->get(route('companies.index'))->assertRedirect(route('login'));
     }
+
+    public function test_super_admin_can_create_company_when_session_tenant_missing(): void
+    {
+        $tenant = Tenant::factory()->create();
+
+        foreach (['companies.view', 'companies.create', 'companies.update', 'companies.delete'] as $name) {
+            Permission::findOrCreate($name, 'web');
+        }
+
+        $user = User::factory()->create(['is_super_admin' => true]);
+
+        // "Beni hatırla" senaryosu: auth var, session'da tenant_id yok.
+        $response = $this->actingAs($user)
+            ->withSession([])
+            ->post(route('companies.store'), [
+                'trade_name' => 'Emirler Orman Ürünleri Ltd.',
+                'status' => 'draft',
+                'has_camera' => '1',
+                'has_website' => '1',
+            ]);
+
+        $company = Company::query()->where('trade_name', 'Emirler Orman Ürünleri Ltd.')->first();
+        $this->assertNotNull($company);
+        $this->assertSame($tenant->id, $company->tenant_id);
+        $response->assertRedirect(route('companies.show', $company));
+        $this->assertEquals($tenant->id, session('tenant_id'));
+    }
 }
